@@ -1,0 +1,11 @@
+{
+    "name": "tailwindcss-animation",
+    "main": "index.js",
+    "peerDependencies": {
+        "tailwindcss": "^2.2"
+    },
+    "devDependencies": {
+        "eslint": "^7.32"
+    },
+    "dependencies": {}
+}
