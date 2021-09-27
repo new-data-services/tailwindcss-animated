@@ -1,11 +1,18 @@
 {
     "name": "tailwindcss-animation",
-    "main": "index.js",
+    "license": "MIT",
+    "main": "src/index.js",
+    "scripts": {
+        "watch": "npx tailwindcss --config ./.build/tailwind.config.js --output ./demo/tailwind.css --watch",
+        "dev": "npx tailwindcss --config ./.build/tailwind.config.js --output ./demo/tailwind.css",
+        "prod": "npx tailwindcss --config ./.build/tailwind.config.js --output ./demo/tailwind.css --minify",
+        "eslint": "node node_modules/eslint/bin/eslint.js --config .build/.eslintrc.js src/**/*.js"
+    },
     "peerDependencies": {
-        "tailwindcss": "^2.2"
+        "tailwindcss": ">=2.2.0"
     },
     "devDependencies": {
-        "eslint": "^7.32"
-    },
-    "dependencies": {}
+        "eslint": "^7.32",
+        "tailwindcss": "^2.2"
+    }
 }
