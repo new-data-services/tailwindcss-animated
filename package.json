@@ -3,9 +3,10 @@
     "license": "MIT",
     "main": "src/index.js",
     "scripts": {
-        "watch": "npx tailwindcss --config ./.build/tailwind.config.js --output ./demo/tailwind.css --watch",
-        "dev": "npx tailwindcss --config ./.build/tailwind.config.js --output ./demo/tailwind.css",
-        "prod": "npx tailwindcss --config ./.build/tailwind.config.js --output ./demo/tailwind.css --minify",
+        "dev": "npx tailwindcss --config ./.build/tailwind.config.js --output ./demo/tailwind.css --jit",
+        "debug": "npx tailwindcss --config ./.build/tailwind.config.js --output ./demo/tailwind.css",
+        "watch": "npx tailwindcss --config ./.build/tailwind.config.js --output ./demo/tailwind.css --jit --watch",
+        "prod": "npx tailwindcss --config ./.build/tailwind.config.js --output ./demo/tailwind.css --jit --minify",
         "eslint": "node node_modules/eslint/bin/eslint.js --config .build/.eslintrc.js src/**/*.js"
     },
     "peerDependencies": {
