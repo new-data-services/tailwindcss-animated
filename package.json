@@ -1,5 +1,7 @@
 {
     "name": "tailwindcss-animation",
+    "version": "0.0.1",
+    "description": "Extended animation utilities for Tailwind CSS",
     "license": "MIT",
     "main": "src/index.js",
     "scripts": {
