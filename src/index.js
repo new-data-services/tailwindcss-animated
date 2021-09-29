@@ -44,6 +44,13 @@ const animation = plugin(
             '.animate-alternate': { 'animation-direction': 'alternate' },
             '.animate-alternate-reverse': { 'animation-direction': 'alternate-reverse' },
         });
+
+        addUtilities({
+            '.animate-fill-none': { 'animation-fill-mode': 'normal' },
+            '.animate-fill-forwards': { 'animation-fill-mode': 'forwards' },
+            '.animate-fill-backwards': { 'animation-fill-mode': 'backwards' },
+            '.animate-fill-both': { 'animation-fill-mode': 'both' },
+        });
     },
     {
         theme: {
@@ -108,10 +115,10 @@ const animation = plugin(
                 animation: {
                     'wiggle': 'wiggle 1s ease-in-out infinite',
                     'wiggle-more': 'wiggle-more 1s ease-in-out infinite',
-                    'fade-down': 'fade-down 1s ease-out',
-                    'fade-up': 'fade-up 1s ease-out',
-                    'fade-left': 'fade-left 1s ease-out',
-                    'fade-right': 'fade-right 1s ease-out',
+                    'fade-down': 'fade-down 1s ease-out both',
+                    'fade-up': 'fade-up 1s ease-out both',
+                    'fade-left': 'fade-left 1s ease-out both',
+                    'fade-right': 'fade-right 1s ease-out both',
                     'flip-y': 'flip-y 1s ease-out',
                     'flip-x': 'flip-x 1s ease-out',
                     'flip-up': 'flip-up 1s ease-out',
