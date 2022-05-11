@@ -1,8 +1,22 @@
 {
-    "name": "tailwindcss-animation",
-    "version": "0.0.2",
+    "name": "tailwindcss-animated",
+    "version": "0.0.3",
     "description": "Extended animation utilities for Tailwind CSS",
+    "author": "new-data-services",
     "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/new-data-services/tailwindcss-animated.git"
+    },
+    "homepage": "https://github.com/new-data-services/tailwindcss-animated",
+    "keywords": [
+        "tailwindcss",
+        "tailwind",
+        "plugin",
+        "animation",
+        "animated",
+        "keyframes"
+    ],
     "main": "src/index.js",
     "scripts": {
         "dev": "npx tailwindcss --config ./.build/tailwind.config.js --output ./demo/tailwind.css --jit",
