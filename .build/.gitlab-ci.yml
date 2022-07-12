@@ -2,3 +2,7 @@ include:
   - { project: 'nds/server/gitlab-ci-templates', file: '/gitlab-ci/set-variables.yaml' }
   - { project: 'nds/server/gitlab-ci-templates', file: '/gitlab-ci/template/spa.yaml' }
   - { project: 'nds/server/gitlab-ci-templates', file: '/gitlab-ci/deploy.yaml' }
+
+variables:
+  ESLINT_SCRIPT: yarn eslint
+  
