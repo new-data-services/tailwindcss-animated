@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="overflow-hidden">
 
 <head>
     <meta charset="utf-8">
@@ -20,22 +20,44 @@
     <link rel="stylesheet" href="/css/app.css">
 </head>
 
-<body>
+<body class="overflow-hidden">
     <div id="app">
+        <header class="grid grid-cols-3 items-center bg-gray-900 text-white py-2.5 px-6 justify-between absolute w-full h-16">
+            <a class="mr-auto" href="#">
+                <img class="w-20" src="/images/icons/wave.svg" alt="">
+            </a>
 
-        <div class="p-8">
-            <p class="mb-4">
-                You may say I'm a dreamer<br>
-                But I'm not the only one<br>
-                I hope someday you'll join us<br>
-                And the world will be as one<br>
-            </p>
+            <h1 class="uppercase mx-auto">Tailwindcss Animated</h1>
 
-            &mdash; John Lennon
+            <nav class="flex gap-6 items-center justify-end">
+                <a class="relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-px after:w-full after:bg-cyan-500" href="#">Configurator</a>
+
+                <a class="" href="#">About</a>
+
+                <a class="px-4 py-2 bg-cyan-500 text-gray-900" href="#">Docs</a>
+
+                <a href="https://github.com/orgs/new-data-services/repositories/tailwindcss-animated">
+                    <img src="/images/icons/github.svg" alt="">
+                </a>
+            </nav>
+        </header>
+
+        <div>
+            <div class="w-full bg-gray-100 h-[100vh] pt-16 flex">
+                <div class="bg-white w-96">
+                    left column
+                </div>
+
+                <div class="grow bg-dotted">
+                    workspace
+                </div>
+
+                <div class="bg-white w-96">
+                    right column
+                </div>
+            </div>
         </div>
-
     </div>
-
     <script type="module" src="/js/app.js"></script>
 </body>
 
