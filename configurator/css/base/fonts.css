@@ -1,0 +1,15 @@
+@layer base {
+    /* Remove me */
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+    /*
+    @font-face {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('/fonts/roboto-v27-latin-regular.woff2') format('woff2'),
+             url('/fonts/roboto-v27-latin-regular.woff') format('woff');
+    }
+    */
+}

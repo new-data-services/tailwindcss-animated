@@ -24,6 +24,10 @@ node_modules
 # environment variables
 .env
 
+# vite build files
+dist
+dist-ssr
+
 # misc
 .DS_Store
 *.local

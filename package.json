@@ -1,6 +1,6 @@
 {
     "name": "tailwindcss-animated",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Extended animation utilities for Tailwind CSS",
     "author": "new-data-services",
     "license": "MIT",
@@ -19,17 +19,26 @@
     ],
     "main": "src/index.js",
     "scripts": {
-        "dev": "npx tailwindcss --config ./.build/tailwind.config.js --output ./demo/tailwind.css --jit",
-        "debug": "npx tailwindcss --config ./.build/tailwind.config.js --output ./demo/tailwind.css",
-        "watch": "npx tailwindcss --config ./.build/tailwind.config.js --output ./demo/tailwind.css --jit --watch",
-        "prod": "npx tailwindcss --config ./.build/tailwind.config.js --output ./demo/tailwind.css --jit --minify",
-        "eslint": "node node_modules/eslint/bin/eslint.js --config .build/.eslintrc.js src/**/*.js"
+        "dev": "vite",
+        "watch": "vite",
+        "prod": "vite build",
+        "build": "vite build",
+        "preview": "vite preview",
+        "lint": "npm run eslint",
+        "eslint": "node node_modules/eslint/bin/eslint.js --config ./.build/cs/.eslintrc.js {src,configurator}/**/*.js"
     },
     "peerDependencies": {
-        "tailwindcss": ">=2.2.0"
+        "tailwindcss": ">=3.1.6"
     },
     "devDependencies": {
-        "eslint": "^7.32",
-        "tailwindcss": "^2.2"
+        "alpinejs": "^3.10.2",
+        "autoprefixer": "^10.4.7",
+        "eslint": "^8.19.0",
+        "glob": "^8.0.3",
+        "postcss": "^8.4.14",
+        "postcss-discard-comments": "^5.1.2",
+        "postcss-import": "^14.1.0",
+        "tailwindcss": "^3.1.6",
+        "vite": "^2.9.14"
     }
 }

@@ -1,0 +1,36 @@
+:root {
+    color-scheme: light only;
+
+    /* fluid font-size from .94 to 1.12 rem (~ 15 to 18 px) with fallback to 16px */
+    font-size: 100%;
+    font-size: clamp(.94rem, 1.5vw, 1.07rem);
+}
+
+* {
+    -webkit-overflow-scrolling: touch;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+
+    @media (prefers-reduced-motion: reduce) {
+        scroll-behavior: auto;
+    }
+}
+
+html {
+    @apply w-full h-full overflow-x-hidden overflow-y-scroll;
+}
+
+body {
+    @apply w-full h-full font-sans font-normal bg-white text-black;
+}
+
+strong {
+    @apply font-bold;
+}
+
+:focus {
+    outline: none;
+}

@@ -1,13 +1,16 @@
 module.exports = {
-    "env": {
-        "es2021": true,
-        "node": true
+    env: {
+        "es6": true,
+        "node": true,
+        "browser": true
     },
-    "extends": "eslint:recommended",
-    "parserOptions": {
-        "ecmaVersion": 12
+    parserOptions: {
+        ecmaVersion: 2020,
+        sourceType: 'module',
     },
-    "rules": {
+    extends: 'eslint:recommended',
+    ignorePatterns: ['node_modules'],
+    rules: {
         "linebreak-style": [
             "error",
             "unix"
@@ -127,9 +130,6 @@ module.exports = {
             "error"
         ],
         "object-shorthand": [
-            "error"
-        ],
-        "prefer-const": [
             "error"
         ],
         "prefer-destructuring": [
