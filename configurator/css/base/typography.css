@@ -35,3 +35,8 @@ p, .p {
     @apply text-base tracking-normal font-normal;
     line-height:150%;
 }
+
+.p-small {
+    @apply text-xs tracking-normal font-normal;
+    line-height:150%;
+}

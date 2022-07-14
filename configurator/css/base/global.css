@@ -65,7 +65,7 @@ input[type=range] {
     height: 26px;
     background: #86879c;
     border: 3px solid #f1f2f7;
-    border-radius: 13px;
+    border-radius: 20px;
     cursor: pointer;
     -webkit-appearance: none;
   }
@@ -81,11 +81,11 @@ input[type=range] {
     cursor: pointer;
   }
   input[type=range]::-moz-range-thumb {
-    width: 26px;
-    height: 26px;
+    width: 20px;
+    height: 20px;
     background: #86879c;
     border: 3px solid #f1f2f7;
-    border-radius: 13px;
+    border-radius: 20px;
     cursor: pointer;
   }
   input[type=range]::-ms-track {
@@ -112,7 +112,7 @@ input[type=range] {
     height: 26px;
     background: #86879c;
     border: 3px solid #f1f2f7;
-    border-radius: 13px;
+    border-radius: 20px;
     cursor: pointer;
     margin-top: 0px;
     /*Needed to keep the Edge thumb centred*/

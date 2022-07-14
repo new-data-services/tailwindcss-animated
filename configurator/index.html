@@ -41,7 +41,7 @@
 
                 <a class="" href="#">About</a>
 
-                <a class="px-4 py-2 bg-cyan-500 text-gray-900" href="#">Docs</a>
+                <a class="px-4 py-2 bg-cyan-500 hover:bg-white text-gray-900 transition duration-75" href="#">Docs</a>
 
                 <a href="https://github.com/orgs/new-data-services/repositories/tailwindcss-animated">
                     <img src="/images/icons/github.svg" alt="">
@@ -52,15 +52,15 @@
         <div>
             <div class="w-full bg-gray-100 h-[100vh] pt-16 flex">
                 <div class="bg-white w-96 py-8">
-                    <span class="subline ml-8 block mb-1">Interactions</span>
+                    <span class="subline ml-6 block mb-1">Interactions</span>
 
-                    <hr class="ml-8 border-gray-100">
+                    <hr class="ml-6 border-gray-100">
 
                     <button class="p-1 w-full group">
                         <div 
                             class="
                             border hover:border-violet-50 flex justify-start
-                            border-transparent hover:bg-violet-50 p-1.5 w-full transition duration-75 px-7 gap-4 items-center"
+                            border-transparent hover:bg-violet-50 p-1.5 w-full transition duration-75 px-5 gap-4 items-center"
                         >
                             <img class="bg-violet-50 w-8 h-8 p-1.5" src="/images/icons/wave.svg" alt="">
 
@@ -68,17 +68,17 @@
                         </div>
                     </button>
 
-                    <hr class="ml-8 border-gray-100">
+                    <hr class="ml-6 border-gray-100">
 
-                    <span class="subline ml-8 block mb-1 mt-8">Transitions</span>
+                    <span class="subline ml-6 block mb-1 mt-8">Transitions</span>
 
-                    <hr class="ml-8 border-gray-100">
+                    <hr class="ml-6 border-gray-100">
 
                     <button class="p-1 w-full group">
                         <div 
                             class="
                             border hover:border-violet-50 flex justify-start
-                            border-transparent hover:bg-violet-50 p-1.5 w-full transition duration-75 px-7 gap-4 items-center"
+                            border-transparent hover:bg-violet-50 p-1.5 w-full transition duration-75 px-5 gap-4 items-center"
                         >
                             <img class="bg-violet-50 w-8 h-8 p-1.5" src="/images/icons/wave.svg" alt="">
 
@@ -87,7 +87,10 @@
                     </button>
                 </div>
 
-                <div x-data="{range:0, scale() { return 'transform: scale('+ (this.range * 10 + 100) +'%' + ')'}}" class="grow bg-dotted flex flex-col">
+                <div 
+                    x-data="{range:0, scale() { return 'transform: scale('+ (this.range * 10 + 100) +'%' + ')'}}" 
+                    class="grow bg-dotted flex flex-col"
+                >
                     <div class="grow flex items-center justify-center">
                         <img :style="scale" class="transition" src="/images/icons/logo.svg" alt="">
                     </div>
@@ -101,13 +104,143 @@
                             <img class="" src="/images/icons/enlarge.svg" alt="">
                          </div>
 
-                         <span class="text-gray-700 flex px-4 border-l border-gray-200 h-full bg-gray-100 w-20 items-center justify-center" x-text="range * 10 + 100 +' %'">
+                         <span 
+                            class="text-gray-700 flex px-4 border-l border-gray-200 h-full bg-gray-100 
+                            w-20 items-center justify-center" 
+                            x-text="range * 10 + 100 +' %'">
                          </span>
                     </div>
                 </div>
 
-                <div class="bg-white w-96 py-8">
-                    <span class="subline ml-8 block mb-1">Timing</span>
+                <div class="bg-white w-96 py-8 px-6">
+
+                    <div class="flex gap-2 items-center mb-1 relative">
+                        <div class="group">
+                            <img class="cursor-pointer" src="/images/icons/info.svg" alt="">
+
+                            <p class="
+                                p-small text-white bg-gray-900 px-3 py-2 absolute -translate-x-full
+                                top-1/2 -translate-y-1/2 -left-6 max-w-[175px] after:content-['']
+                                after:absolute after:right-0 after:translate-x-full after:top-1/2 after:-translate-y-1/2 
+                                after:border-[10px] after:border-l-[1rem] after:border-r-0 after:border-transparent 
+                                after:border-l-gray-900 opacity-0 pointer-events-none group-hover:pointer-events-auto 
+                                group-hover:opacity-100 scale-50 group-hover:scale-100 transition duration-100 origin-right"
+                            >
+                                Timing Lorem ipsum dolor sit amet consetetur.
+                            </p>
+                        </div>
+
+                        <span class="subline">Timing</span>
+
+                    </div>
+                    
+                    <hr class="border-gray-100 mb-4">
+
+
+                    <div class="mb-4">All the Timing options</div>
+
+
+                    <div class="flex gap-2 items-center mb-1 relative">
+                        <div class="group">
+                            <img class="cursor-pointer" src="/images/icons/info.svg" alt="">
+
+                            <p class="
+                                p-small text-white bg-gray-900 px-3 py-2 absolute -translate-x-full
+                                top-1/2 -translate-y-1/2 -left-6 max-w-[175px] after:content-['']
+                                after:absolute after:right-0 after:translate-x-full after:top-1/2 after:-translate-y-1/2 
+                                after:border-[10px] after:border-l-[1rem] after:border-r-0 after:border-transparent 
+                                after:border-l-gray-900 opacity-0 pointer-events-none group-hover:pointer-events-auto 
+                                group-hover:opacity-100 scale-50 group-hover:scale-100 transition duration-100 origin-right"
+                            >
+                                Easing Lorem ipsum dolor sit amet consetetur.
+                            </p>
+                        </div>
+
+                        <span class="subline">Easing</span>
+
+                    </div>
+                    
+                    <hr class="border-gray-100 mb-4">
+
+
+                    <div class="mb-4">All the Easing options</div>
+
+                    <!-- ACCORDION (DIRECTION) -->
+
+                    <div x-data="{open:false}" class="mb-4"> 
+                        <div class="flex gap-2 items-center relative" @click="open = !open">
+                            <div class="group">
+                                <img class="cursor-pointer" src="/images/icons/info.svg" alt="">
+    
+                                <p class="
+                                    p-small text-white bg-gray-900 px-3 py-2 absolute -translate-x-full
+                                    top-1/2 -translate-y-1/2 -left-6 max-w-[175px] after:content-['']
+                                    after:absolute after:right-0 after:translate-x-full after:top-1/2 after:-translate-y-1/2 
+                                    after:border-[10px] after:border-l-[1rem] after:border-r-0 after:border-transparent 
+                                    after:border-l-gray-900 opacity-0 pointer-events-none group-hover:pointer-events-auto 
+                                    group-hover:opacity-100 scale-50 group-hover:scale-100 transition duration-100 origin-right"
+                                >
+                                    Direction Lorem ipsum dolor sit amet consetetur.
+                                </p>
+                            </div>
+    
+                            <span class="subline">Direction</span>
+    
+                            <button :class="open ? 'bg-violet-50':'bg-gray-100'" class="ml-auto h-7 w-7 flex items-center justify-center">
+                                <svg :class="open ? 'text-violet-500 rotate-180':'text-gray-300'" class="mt-0.5 stroke-current transition" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 1L7 7L13 1"/>
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <hr class="border-gray-100 transition-all" :class="open ? 'pb-4':''">
+    
+    
+                        <div x-show="open" x-collapse>
+                            <div :class="open ? 'opacity-100':'opacity-0'" class="transition">
+                                Lorem
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ACCORDION (FILLMODE) -->
+
+                    <div x-data="{open:false}" class="mb-4"> 
+                        <div class="flex gap-2 items-center relative" @click="open = !open">
+                            <div class="group">
+                                <img class="cursor-pointer" src="/images/icons/info.svg" alt="">
+    
+                                <p class="
+                                    p-small text-white bg-gray-900 px-3 py-2 absolute -translate-x-full
+                                    top-1/2 -translate-y-1/2 -left-6 max-w-[175px] after:content-['']
+                                    after:absolute after:right-0 after:translate-x-full after:top-1/2 after:-translate-y-1/2 
+                                    after:border-[10px] after:border-l-[1rem] after:border-r-0 after:border-transparent 
+                                    after:border-l-gray-900 opacity-0 pointer-events-none group-hover:pointer-events-auto 
+                                    group-hover:opacity-100 scale-50 group-hover:scale-100 transition duration-100 origin-right"
+                                >
+                                    Fillmode Lorem ipsum dolor sit amet consetetur.
+                                </p>
+                            </div>
+    
+                            <span class="subline">Fillmode</span>
+    
+                            <button :class="open ? 'bg-violet-50':'bg-gray-100'" class="ml-auto h-7 w-7 flex items-center justify-center">
+                                <svg :class="open ? 'text-violet-500 rotate-180':'text-gray-300'" class="mt-0.5 stroke-current transition" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 1L7 7L13 1"/>
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <hr class="border-gray-100 transition-all" :class="open ? 'pb-4':''">
+    
+    
+                        <div x-show="open" x-collapse>
+                            <div :class="open ? 'opacity-100':'opacity-0'" class="transition">
+                                Lorem
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
