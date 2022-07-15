@@ -112,66 +112,15 @@
                     </div>
                 </div>
 
-                <div class="bg-white w-96 py-8 px-6">
+                <div class="bg-white w-96 flex flex-col">
+                    <div class="py-8 px-6 overflow-y-scroll h-full hide-scrollbar">
 
-                    <div class="flex gap-2 items-center mb-1 relative">
-                        <div class="group">
-                            <img class="cursor-pointer" src="/images/icons/info.svg" alt="">
+                        
 
-                            <p class="
-                                p-small text-white bg-gray-900 px-3 py-2 absolute -translate-x-full
-                                top-1/2 -translate-y-1/2 -left-6 max-w-[175px] after:content-['']
-                                after:absolute after:right-0 after:translate-x-full after:top-1/2 after:-translate-y-1/2 
-                                after:border-[10px] after:border-l-[1rem] after:border-r-0 after:border-transparent 
-                                after:border-l-gray-900 opacity-0 pointer-events-none group-hover:pointer-events-auto 
-                                group-hover:opacity-100 scale-50 group-hover:scale-100 transition duration-100 origin-right"
-                            >
-                                Timing Lorem ipsum dolor sit amet consetetur.
-                            </p>
-                        </div>
-
-                        <span class="subline">Timing</span>
-
-                    </div>
-                    
-                    <hr class="border-gray-100 mb-4">
-
-
-                    <div class="mb-4">All the Timing options</div>
-
-
-                    <div class="flex gap-2 items-center mb-1 relative">
-                        <div class="group">
-                            <img class="cursor-pointer" src="/images/icons/info.svg" alt="">
-
-                            <p class="
-                                p-small text-white bg-gray-900 px-3 py-2 absolute -translate-x-full
-                                top-1/2 -translate-y-1/2 -left-6 max-w-[175px] after:content-['']
-                                after:absolute after:right-0 after:translate-x-full after:top-1/2 after:-translate-y-1/2 
-                                after:border-[10px] after:border-l-[1rem] after:border-r-0 after:border-transparent 
-                                after:border-l-gray-900 opacity-0 pointer-events-none group-hover:pointer-events-auto 
-                                group-hover:opacity-100 scale-50 group-hover:scale-100 transition duration-100 origin-right"
-                            >
-                                Easing Lorem ipsum dolor sit amet consetetur.
-                            </p>
-                        </div>
-
-                        <span class="subline">Easing</span>
-
-                    </div>
-                    
-                    <hr class="border-gray-100 mb-4">
-
-
-                    <div class="mb-4">All the Easing options</div>
-
-                    <!-- ACCORDION (DIRECTION) -->
-
-                    <div x-data="{open:false}" class="mb-4"> 
-                        <div class="flex gap-2 items-center relative" @click="open = !open">
+                        <div class="flex gap-2 items-center mb-1 relative">
                             <div class="group">
                                 <img class="cursor-pointer" src="/images/icons/info.svg" alt="">
-    
+
                                 <p class="
                                     p-small text-white bg-gray-900 px-3 py-2 absolute -translate-x-full
                                     top-1/2 -translate-y-1/2 -left-6 max-w-[175px] after:content-['']
@@ -180,36 +129,72 @@
                                     after:border-l-gray-900 opacity-0 pointer-events-none group-hover:pointer-events-auto 
                                     group-hover:opacity-100 scale-50 group-hover:scale-100 transition duration-100 origin-right"
                                 >
-                                    Direction Lorem ipsum dolor sit amet consetetur.
+                                    The Timing property defines when, how fast and how often the animation is executed.
                                 </p>
                             </div>
-    
-                            <span class="subline">Direction</span>
-    
-                            <button :class="open ? 'bg-violet-50':'bg-gray-100'" class="ml-auto h-7 w-7 flex items-center justify-center">
-                                <svg :class="open ? 'text-violet-500 rotate-180':'text-gray-300'" class="mt-0.5 stroke-current transition" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M1 1L7 7L13 1"/>
-                                </svg>
-                            </button>
+
+                            <span class="subline">Timing</span>
+
                         </div>
                         
-                        <hr class="border-gray-100 transition-all" :class="open ? 'pb-4':''">
-    
-    
-                        <div x-show="open" x-collapse>
-                            <div :class="open ? 'opacity-100':'opacity-0'" class="transition">
-                                Lorem
+                        <hr class="border-gray-100 mb-4">
+
+
+                        <div class="mb-4 grid gap-4">
+                            <div class="grid grid-cols-2 gap-6">
+                                <button class="bg-gray-100 hover:bg-violet-50 p-8">
+                                    iterations
+                                </button>
+        
+                                <button class="bg-gray-100 hover:bg-violet-50 p-8">
+                                    infinite
+                                </button>
+                            </div>
+
+                            <div class="grid grid-cols-3">
+                                <button class="bg-gray-100 hover:bg-violet-50 p-4 border-r border-gray-200">
+                                    once
+                                </button>
+
+                                <button class="bg-gray-100 hover:bg-violet-50 p-4 border-r border-gray-200">
+                                    twice
+                                </button>
+
+                                <button class="bg-gray-100 hover:bg-violet-50 p-4">
+                                    thrice
+                                </button>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-6">
+                                <div class="flex relative">
+                                    <label for="duration">
+                                        <input name="duration" type="number" class="border border-gray-200 bg-gray-50 p-3 px-4 after:content-['hello'] w-full focus:border-violet-300 focus:bg-white peer" placeholder=" " required>
+
+                                        <span class="pointer-events-none absolute text-gray-300 bg-gray-50 transition-all px-1 input-label">
+                                            duration
+                                        </span>
+                                    </label>
+                                    <span class="block bg-gray-100 border border-gray-200 p-3 px-4 border-l-0">ms</span>
+                                </div>
+
+                                <div class="flex relative">
+                                    <label for="delay">
+                                        <input name="delay" type="number" class="border border-gray-200 bg-gray-50 p-3 px-4 after:content-['hello'] w-full focus:border-violet-300 focus:bg-white peer" placeholder=" " required>
+
+                                        <span class="pointer-events-none absolute text-gray-300 bg-gray-50 transition-all px-1 input-label">
+                                            delay
+                                        </span>
+                                    </label>
+                                    <span class="block bg-gray-100 border border-gray-200 p-3 px-4 border-l-0">ms</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- ACCORDION (FILLMODE) -->
 
-                    <div x-data="{open:false}" class="mb-4"> 
-                        <div class="flex gap-2 items-center relative" @click="open = !open">
+                        <div class="flex gap-2 items-center mb-1 relative">
                             <div class="group">
                                 <img class="cursor-pointer" src="/images/icons/info.svg" alt="">
-    
+
                                 <p class="
                                     p-small text-white bg-gray-900 px-3 py-2 absolute -translate-x-full
                                     top-1/2 -translate-y-1/2 -left-6 max-w-[175px] after:content-['']
@@ -218,29 +203,151 @@
                                     after:border-l-gray-900 opacity-0 pointer-events-none group-hover:pointer-events-auto 
                                     group-hover:opacity-100 scale-50 group-hover:scale-100 transition duration-100 origin-right"
                                 >
-                                    Fillmode Lorem ipsum dolor sit amet consetetur.
+                                    The easing property specifies the speed curve of the transition effect.
                                 </p>
                             </div>
-    
-                            <span class="subline">Fillmode</span>
-    
-                            <button :class="open ? 'bg-violet-50':'bg-gray-100'" class="ml-auto h-7 w-7 flex items-center justify-center">
-                                <svg :class="open ? 'text-violet-500 rotate-180':'text-gray-300'" class="mt-0.5 stroke-current transition" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M1 1L7 7L13 1"/>
-                                </svg>
-                            </button>
+
+                            <span class="subline">Easing</span>
+
                         </div>
                         
-                        <hr class="border-gray-100 transition-all" :class="open ? 'pb-4':''">
-    
-    
-                        <div x-show="open" x-collapse>
-                            <div :class="open ? 'opacity-100':'opacity-0'" class="transition">
-                                Lorem
+                        <hr class="border-gray-100 mb-4">
+
+
+                        <div class="mb-4">
+                            <div class="grid grid-cols-2 gap-x-6 gap-y-4">
+                                <button class="bg-gray-100 hover:bg-violet-50 p-8">
+                                    ease linear
+                                </button>
+        
+                                <button class="bg-gray-100 hover:bg-violet-50 p-8">
+                                    ease in
+                                </button>
+
+                                <button class="bg-gray-100 hover:bg-violet-50 p-8">
+                                    ease out
+                                </button>
+        
+                                <button class="bg-gray-100 hover:bg-violet-50 p-8">
+                                    ease in out
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- ACCORDION (DIRECTION) -->
+
+                        <div x-data="{open:false}" class="mb-4"> 
+                            <div class="flex gap-2 items-center relative" @click="open = !open">
+                                <div class="group">
+                                    <img class="cursor-pointer" src="/images/icons/info.svg" alt="">
+        
+                                    <p class="
+                                        p-small text-white bg-gray-900 px-3 py-2 absolute -translate-x-full
+                                        top-1/2 -translate-y-1/2 -left-6 max-w-[175px] after:content-['']
+                                        after:absolute after:right-0 after:translate-x-full after:top-1/2 after:-translate-y-1/2 
+                                        after:border-[10px] after:border-l-[1rem] after:border-r-0 after:border-transparent 
+                                        after:border-l-gray-900 opacity-0 pointer-events-none group-hover:pointer-events-auto 
+                                        group-hover:opacity-100 scale-50 group-hover:scale-100 transition duration-100 origin-right"
+                                    >
+                                        The direction property sets whether an animation should play forward, backward, or alternate back and forth between playing the sequence forward and backward.
+                                    </p>
+                                </div>
+        
+                                <span class="subline">Direction</span>
+        
+                                <button :class="open ? 'bg-violet-50':'bg-gray-100'" class="ml-auto h-7 w-7 flex items-center justify-center">
+                                    <svg :class="open ? 'text-violet-500 rotate-180':'text-gray-300'" class="mt-0.5 stroke-current transition" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 1L7 7L13 1"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            
+                            <hr class="border-gray-100 transition-all" :class="open ? 'pb-4':''">
+        
+        
+                            <div x-show="open" x-collapse>
+                                <div :class="open ? 'opacity-100':'opacity-0'" class="transition">
+                                    <div class="grid grid-cols-2">
+                                        <button class="p-4 bg-gray-100 hover:bg-violet-50 border-b border-r border-gray-200">
+                                            none
+                                        </button>
+
+                                        <button class="p-4 bg-gray-100 hover:bg-violet-50 border-b border-gray-200">
+                                            forward
+                                        </button>
+
+                                        <button class="p-4 bg-gray-100 hover:bg-violet-50 border-r">
+                                            backwards
+                                        </button>
+
+                                        <button class="p-4 bg-gray-100 hover:bg-violet-50">
+                                            both
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ACCORDION (FILLMODE) -->
+
+                        <div x-data="{open:false}" class="mb-4"> 
+                            <div class="flex gap-2 items-center relative" @click="open = !open">
+                                <div class="group">
+                                    <img class="cursor-pointer" src="/images/icons/info.svg" alt="">
+        
+                                    <p class="
+                                        p-small text-white bg-gray-900 px-3 py-2 absolute -translate-x-full
+                                        top-1/2 -translate-y-1/2 -left-6 max-w-[175px] after:content-['']
+                                        after:absolute after:right-0 after:translate-x-full after:top-1/2 after:-translate-y-1/2 
+                                        after:border-[10px] after:border-l-[1rem] after:border-r-0 after:border-transparent 
+                                        after:border-l-gray-900 opacity-0 pointer-events-none group-hover:pointer-events-auto 
+                                        group-hover:opacity-100 scale-50 group-hover:scale-100 transition duration-100 origin-right"
+                                    >
+                                        The Fillmode sets how the animation applies styles to its target before and after its execution.
+                                    </p>
+                                </div>
+        
+                                <span class="subline">Fillmode</span>
+        
+                                <button :class="open ? 'bg-violet-50':'bg-gray-100'" class="ml-auto h-7 w-7 flex items-center justify-center">
+                                    <svg :class="open ? 'text-violet-500 rotate-180':'text-gray-300'" class="mt-0.5 stroke-current transition" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 1L7 7L13 1"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            
+                            <hr class="border-gray-100 transition-all" :class="open ? 'pb-4':''">
+        
+        
+                            <div x-show="open" x-collapse>
+                                <div :class="open ? 'opacity-100':'opacity-0'" class="transition">
+                                    <div class="grid grid-cols-3">
+                                        <button class="bg-gray-100 hover:bg-violet-50 p-4 border-r border-gray-200">
+                                            forward
+                                        </button>
+            
+                                        <button class="bg-gray-100 hover:bg-violet-50 p-4 border-r border-gray-200">
+                                            backwards
+                                        </button>
+            
+                                        <button class="bg-gray-100 hover:bg-violet-50 p-4">
+                                            both
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
+                    <div class="bg-white h-64 shrink-0 border-t border-gray-100 p-3 flex flex-col">
+                        <div class="bg-gray-900 py-4 px-5 text-cyan-500 font-mono grow overflow-y-scroll hide-scrollbar">
+                            classes output
+                        </div>
+
+                        <button class="bg-cyan-500 w-full p-2.5 hover:bg-violet-300 transition shrink-0 hover:text-violet-900">
+                            Copy animation classes
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

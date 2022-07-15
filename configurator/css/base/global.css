@@ -132,4 +132,40 @@ input[type=range] {
       /*Edge starts the margin from the thumb, not the track as other browsers do*/
     }
   }
-  
+
+
+input:placeholder-shown ~ .input-label {
+  @apply top-[0.8rem] left-[0.8rem] text-base;
+}
+
+.input-label {
+  @apply -top-1.5 text-xs left-[0.8rem];
+}
+
+input:focus ~ .input-label {
+  @apply -top-1.5 text-xs left-[0.8rem] text-violet-300 bg-white;
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* hide scrollbar but allow scrolling */
+.hide-scrollbar {
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+    overflow-y: scroll; 
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+}
