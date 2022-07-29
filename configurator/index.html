@@ -181,7 +181,7 @@
                             <div class="grid grid-cols-2 gap-6">
                                 <div class="flex relative">
                                     <label for="duration">
-                                        <input name="duration" type="number" class="border border-gray-200 bg-gray-50 p-3 px-4 after:content-['hello'] w-full focus:border-violet-300 focus:bg-white peer" placeholder=" " required>
+                                        <input x-init="$el.value = $store.properties.duration" name="duration" type="number" class="border border-gray-200 bg-gray-50 p-3 px-4 after:content-['hello'] w-full focus:border-violet-300 focus:bg-white peer" placeholder=" " required>
 
                                         <span class="pointer-events-none absolute text-gray-300 bg-gray-50 transition-all px-1 input-label">
                                             duration
@@ -192,7 +192,7 @@
 
                                 <div class="flex relative">
                                     <label for="delay">
-                                        <input name="delay" type="number" class="border border-gray-200 bg-gray-50 p-3 px-4 after:content-['hello'] w-full focus:border-violet-300 focus:bg-white peer" placeholder=" " required>
+                                        <input x-init="$el.value = $store.properties.delay" name="delay" type="number" class="border border-gray-200 bg-gray-50 p-3 px-4 after:content-['hello'] w-full focus:border-violet-300 focus:bg-white peer" placeholder=" " required>
 
                                         <span class="pointer-events-none absolute text-gray-300 bg-gray-50 transition-all px-1 input-label">
                                             delay
@@ -352,14 +352,35 @@
                         </div>
                     </div>
 
-                    <div class="bg-white h-64 border-t border-gray-100 p-3 flex flex-col absolute w-full bottom-0">
-                        <div class="bg-gray-900 py-4 px-5 text-cyan-500 font-mono grow overflow-y-scroll hide-scrollbar">
-                            classes output
+                    <div 
+                        x-data="{
+                            copy() {
+                                $refs.feedback.classList.remove('opacity-0','duration-300');
+                                setTimeout(function(){ $refs.feedback.classList.add('opacity-0','duration-300'); }, 300);
+                                navigator.clipboard.writeText($refs.print.innerHTML);
+                            }
+                        }"
+                        class="bg-white h-64 border-t border-gray-100 p-3 flex flex-col absolute w-full bottom-0"
+                    >
+                        <div 
+                            x-ref="print"
+                            class="bg-gray-900 py-4 px-5 grow overflow-y-scroll hide-scrollbar flex flex-col text-cyan-500 font-mono break-lines print" 
+                            x-init="
+                            $el.innerHTML = 
+                            ($store.properties.timing != null ? $store.properties.timing : '') + 
+                            ($store.properties.direction != null ? (' ' + $store.properties.direction) : '') +
+                            ($store.properties.fillmode != null ? (' ' + $store.properties.fillmode) : '') +
+                            ($store.properties.delay != null ? (' ' + $store.properties.duration) : '') +
+                            ($store.properties.delay != null ? (' ' + $store.properties.delay) : '')
+                            "
+                        >
                         </div>
 
-                        <button class="bg-cyan-500 w-full p-2.5 hover:bg-violet-300 transition shrink-0 hover:text-violet-900">
+                        <button @click="copy()" id="copy-output" class="bg-cyan-500 w-full p-2.5 hover:bg-violet-300 transition shrink-0 hover:text-violet-900 active:bg-violet-500">
                             Copy animation classes
                         </button>
+
+                        <span x-ref="feedback" class="absolute bg-violet-500 text-violet-200 p-1 px-2 right-3 opacity-0 duration-300">copied!</span>
                     </div>
                 </div>
             </div>

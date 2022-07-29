@@ -168,3 +168,7 @@ input[type=number] {
 .hide-scrollbar::-webkit-scrollbar {
     display: none; /* for Chrome, Safari, and Opera */
 }
+
+.print {
+  word-spacing: 9999px;
+}
