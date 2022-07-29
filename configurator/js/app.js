@@ -3,7 +3,7 @@ import collapse from '@alpinejs/collapse';
 
 Alpine.store('properties', {
 
-    // Set default values here
+    // set default values here
 
     timing: "once",
     direction: null,
@@ -13,6 +13,7 @@ Alpine.store('properties', {
     easing: null,
     currentAnimation: "wiggle",
 
+    //alter property values
     modifyProperty(property, newValue) {
         if (property == "timing") {
             this.timing = newValue;
@@ -40,7 +41,7 @@ Alpine.store('properties', {
     },
 
     update() {
-        //reload preview objects
+        //missing function here to reload preview objects
         this.setParams();
         return
     },
@@ -59,7 +60,7 @@ Alpine.store('properties', {
     },
 
     init() {
-        //pull params from URL
+        //pull params from URL and apply them
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         if (urlParams.get('t') != null && urlParams.get('t') != '') {
