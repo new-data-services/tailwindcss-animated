@@ -46,7 +46,18 @@
         <p x-show="open" x-collapse class="text-xs" x-html="'currentAnimation: '+$store.properties.currentAnimation">loading...</p>
     </div>
 
-    <div id="app" x-int="init()">
+    <div 
+        id="app" 
+        x-int="init()" 
+        x-data="{
+            hint:0, 
+            Ypos:0,
+            sethint(x, el) {
+                this.hint = x;
+                this.Ypos = el.getBoundingClientRect().y+7;
+            }
+        }"
+    >
         <header class="grid grid-cols-3 items-center bg-gray-900 text-white py-2.5 px-6 justify-between absolute w-full h-16">
             <a class="mr-auto" href="#">
                 <img class="w-20 hover:scale-105 transition" src="/images/icons/wave.svg" alt="">
@@ -81,7 +92,7 @@
 
                     <hr class="ml-6 border-gray-100">
 
-                    <button x-data="{}" class="p-1 w-full group"
+                    <button x-data class="p-1 w-full group"
                             @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)"  >
                         <div 
                             :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
@@ -97,7 +108,7 @@
 
                     <hr class="ml-6 border-gray-100">
 
-                    <button x-data="{}" class="p-1 w-full group"
+                    <button x-data class="p-1 w-full group"
                             @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
                         <div 
                             :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
@@ -115,7 +126,7 @@
 
                     <hr class="ml-6 border-gray-100">
 
-                    <button x-data="{}" class="p-1 w-full group"
+                    <button x-data class="p-1 w-full group"
                             @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
                         <div 
                             :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
@@ -133,7 +144,7 @@
 
                     <hr class="ml-6 border-gray-100">
 
-                    <button x-data="{}" class="p-1 w-full group"
+                    <button x-data class="p-1 w-full group"
                             @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
                         <div 
                             :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
@@ -151,7 +162,7 @@
 
                     <hr class="ml-6 border-gray-100">
 
-                    <button x-data="{}" class="p-1 w-full group"
+                    <button x-data class="p-1 w-full group"
                             @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
                         <div 
                             :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
@@ -169,7 +180,7 @@
 
                     <hr class="ml-6 border-gray-100">
 
-                    <button x-data="{}" class="p-1 w-full group"
+                    <button x-data class="p-1 w-full group"
                             @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
                         <div 
                             :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
@@ -187,7 +198,7 @@
 
                     <hr class="ml-6 border-gray-100">
 
-                    <button x-data="{}" class="p-1 w-full group"
+                    <button x-data class="p-1 w-full group"
                             @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
                         <div 
                             :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
@@ -205,7 +216,7 @@
 
                     <hr class="ml-6 border-gray-100">
 
-                    <button x-data="{}" class="p-1 w-full group"
+                    <button x-data class="p-1 w-full group"
                             @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
                         <div 
                             :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
@@ -241,7 +252,7 @@
 
                     <hr class="ml-6 border-gray-100">
 
-                    <button x-data="{}" class="p-1 w-full group"
+                    <button x-data class="p-1 w-full group"
                             @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
                         <div 
                             :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
@@ -259,7 +270,7 @@
 
                     <hr class="ml-6 border-gray-100">
 
-                    <button x-data="{}" class="p-1 w-full group"
+                    <button x-data class="p-1 w-full group"
                             @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
                         <div 
                             :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
@@ -277,7 +288,7 @@
 
                     <hr class="ml-6 border-gray-100">
 
-                    <button x-data="{}" class="p-1 w-full group"
+                    <button x-data class="p-1 w-full group"
                             @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
                         <div 
                             :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
@@ -299,7 +310,7 @@
 
                     <hr class="ml-6 border-gray-100">
 
-                    <button x-data="{}" class="p-1 w-full group"
+                    <button x-data class="p-1 w-full group"
                             @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
                         <div 
                             :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
@@ -317,7 +328,7 @@
 
                     <hr class="ml-6 border-gray-100">
 
-                    <button x-data="{}" class="p-1 w-full group"
+                    <button x-data class="p-1 w-full group"
                             @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
                         <div 
                             :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
@@ -335,7 +346,7 @@
 
                     <hr class="ml-6 border-gray-100">
 
-                    <button x-data="{}" class="p-1 w-full group"
+                    <button x-data class="p-1 w-full group"
                             @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
                         <div 
                             :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
@@ -353,7 +364,7 @@
 
                     <hr class="ml-6 border-gray-100">
 
-                    <button x-data="{}" class="p-1 w-full group"
+                    <button x-data class="p-1 w-full group"
                             @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
                         <div 
                             :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
@@ -371,7 +382,7 @@
 
                     <hr class="ml-6 border-gray-100">
 
-                    <button x-data="{}" class="p-1 w-full group"
+                    <button x-data class="p-1 w-full group"
                             @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
                         <div 
                             :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
@@ -389,7 +400,7 @@
 
                     <hr class="ml-6 border-gray-100">
 
-                    <button x-data="{}" class="p-1 w-full group"
+                    <button x-data class="p-1 w-full group"
                             @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
                         <div 
                             :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
@@ -407,7 +418,7 @@
 
                     <hr class="ml-6 border-gray-100">
 
-                    <button x-data="{}" class="p-1 w-full group"
+                    <button x-data class="p-1 w-full group"
                             @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
                         <div 
                             :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
@@ -455,22 +466,11 @@
                 </div>
 
                 <div class="bg-white w-96 flex flex-col relative">
-                    <div class="py-8 px-6 h-full hide-scrollbar pb-64">
+                    <div class="py-8 px-6 h-full hide-scrollbar pb-64 overflow-y-auto">
 
                         <div class="flex gap-2 items-center mb-1 relative">
                             <div class="group">
-                                <img class="cursor-pointer" src="/images/icons/info.svg" alt="">
-
-                                <p class="
-                                    p-small text-white bg-gray-900 px-3 py-2 absolute -translate-x-full
-                                    top-1/2 -translate-y-1/2 -left-6 max-w-[175px] after:content-['']
-                                    after:absolute after:right-0 after:translate-x-full after:top-1/2 after:-translate-y-1/2 
-                                    after:border-[10px] after:border-l-[1rem] after:border-r-0 after: 
-                                    after:border-l-gray-900 opacity-0 pointer-events-none group-hover:pointer-events-auto 
-                                    group-hover:opacity-100 scale-50 group-hover:scale-100 transition duration-100 origin-right"
-                                >
-                                    The Timing properties define when, how fast and how often the animation is executed. Duration and Delay support values from 100 to 1000 in increments of a hundred.
-                                </p>
+                                <img @mouseenter="sethint(1,$el)" @mouseleave="hint=0" class="cursor-pointer" src="/images/icons/info.svg" alt="">
                             </div>
 
                             <span class="subline">Timing</span>
@@ -519,10 +519,10 @@
                                 x-data="{
                                     round(property, el, store) {
                                         if (el.value != null) {
-                                            if (el.value < 1000 && el.value > 0) {
+                                            if (el.value < 1000 && el.value > 99) {
                                                 el.value = 100 * Math.round(el.value / 100);
                                             }
-                                            else if (el.value <= 0) {
+                                            else if (el.value <= 99) {
                                                 el.value = null;
                                             }
                                             else {
@@ -577,18 +577,7 @@
 
                         <div class="flex gap-2 items-center mb-1 relative">
                             <div class="group">
-                                <img class="cursor-pointer" src="/images/icons/info.svg" alt="">
-
-                                <p class="
-                                    p-small text-white bg-gray-900 px-3 py-2 absolute -translate-x-full
-                                    top-1/2 -translate-y-1/2 -left-6 max-w-[175px] after:content-['']
-                                    after:absolute after:right-0 after:translate-x-full after:top-1/2 after:-translate-y-1/2 
-                                    after:border-[10px] after:border-l-[1rem] after:border-r-0 after: 
-                                    after:border-l-gray-900 opacity-0 pointer-events-none group-hover:pointer-events-auto 
-                                    group-hover:opacity-100 scale-50 group-hover:scale-100 transition duration-100 origin-right"
-                                >
-                                    The easing property specifies the speed curve of the transition effect.
-                                </p>
+                                <img @mouseenter="sethint(2,$el)" @mouseleave="hint=0" class="cursor-pointer" src="/images/icons/info.svg" alt="">
                             </div>
 
                             <span class="subline">Easing</span>
@@ -639,18 +628,7 @@
                         <div x-data="{open:false}" class="mb-4"> 
                             <div class="flex gap-2 items-center relative" @click="open = !open">
                                 <div class="group">
-                                    <img class="cursor-pointer" src="/images/icons/info.svg" alt="">
-        
-                                    <p class="
-                                        p-small text-white bg-gray-900 px-3 py-2 absolute -translate-x-full
-                                        top-1/2 -translate-y-1/2 -left-6 max-w-[175px] after:content-['']
-                                        after:absolute after:right-0 after:translate-x-full after:top-1/2 after:-translate-y-1/2 
-                                        after:border-[10px] after:border-l-[1rem] after:border-r-0 after: 
-                                        after:border-l-gray-900 opacity-0 pointer-events-none group-hover:pointer-events-auto 
-                                        group-hover:opacity-100 scale-50 group-hover:scale-100 transition duration-100 origin-right"
-                                    >
-                                        The direction property sets whether an animation should play forward, backward, or alternate back and forth between playing the sequence forward and backward.
-                                    </p>
+                                    <img @mouseenter="sethint(3,$el)" @mouseleave="hint=0" class="cursor-pointer" src="/images/icons/info.svg" alt="">
                                 </div>
         
                                 <span class="subline">Direction</span>
@@ -709,18 +687,7 @@
                         <div x-data="{open:false}" class="mb-4"> 
                             <div class="flex gap-2 items-center relative" @click="open = !open">
                                 <div class="group">
-                                    <img class="cursor-pointer" src="/images/icons/info.svg" alt="">
-        
-                                    <p class="
-                                        p-small text-white bg-gray-900 px-3 py-2 absolute -translate-x-full
-                                        top-1/2 -translate-y-1/2 -left-6 max-w-[175px] after:content-['']
-                                        after:absolute after:right-0 after:translate-x-full after:top-1/2 after:-translate-y-1/2 
-                                        after:border-[10px] after:border-l-[1rem] after:border-r-0 after: 
-                                        after:border-l-gray-900 opacity-0 pointer-events-none group-hover:pointer-events-auto 
-                                        group-hover:opacity-100 scale-50 group-hover:scale-100 transition duration-100 origin-right"
-                                    >
-                                        The Fillmode sets how the animation applies styles to its target before and after its execution.
-                                    </p>
+                                    <img @mouseenter="sethint(4,$el)" @mouseleave="hint=0" class="cursor-pointer" src="/images/icons/info.svg" alt="">
                                 </div>
         
                                 <span class="subline">Fillmode</span>
@@ -769,10 +736,20 @@
 
                     <div 
                         x-data="{
-                            copy() {
-                                $refs.feedback.classList.remove('opacity-0','duration-300');
-                                setTimeout(function(){ $refs.feedback.classList.add('opacity-0','duration-300'); }, 300);
-                                navigator.clipboard.writeText($refs.print.innerHTML);
+                            feedbackText:'copied Output!',
+                            copy(type) {
+                                if (type == 'print') {
+                                    this.feedbackText = copied Output!;
+                                    $refs.feedback.classList.remove('opacity-0','duration-300');
+                                    setTimeout(function(){ $refs.feedback.classList.add('opacity-0','duration-300'); }, 300);
+                                    navigator.clipboard.writeText($refs.print.innerHTML);
+                                }
+                                else if (type == 'link') {
+                                    this.feedbackText = 'copied Link!';
+                                    $refs.feedback.classList.remove('opacity-0','duration-300');
+                                    setTimeout(function(){ $refs.feedback.classList.add('opacity-0','duration-300'); }, 300);
+                                    navigator.clipboard.writeText(window.location.href);
+                                }
                             }
                         }"
                         class="bg-white h-64 border-t border-gray-100 p-3 flex flex-col absolute w-full bottom-0"
@@ -793,15 +770,84 @@
                         >
                         </div>
 
-                        <button @click="copy()" id="copy-output" class="bg-cyan-500 w-full p-2.5 hover:bg-violet-300 transition shrink-0 hover:text-violet-900 active:bg-violet-500">
+                        <button @click="copy('print')" id="copy-output" class="bg-cyan-500 w-full p-2.5 hover:bg-violet-300 transition shrink-0 hover:text-violet-900 active:bg-violet-500">
                             Copy animation classes
                         </button>
 
-                        <span x-ref="feedback" class="absolute bg-violet-500 text-violet-200 p-1 px-2 right-3 opacity-0 duration-300">copied!</span>
+                        <button @click="copy('link')" id="copy-output" class="bg-violet-200 w-full p-2.5 hover:bg-violet-300 transition shrink-0 hover:text-violet-900 active:bg-violet-500">
+                            Copy Link
+                        </button>
+
+                        <span x-ref="feedback" x-html="feedbackText" class="absolute bg-violet-500 text-violet-200 p-1 px-2 right-3 opacity-0 duration-300">copied Output!</span>
                     </div>
                 </div>
             </div>
         </div>
+
+        
+        
+    
+        
+        <p 
+            :class="hint == 1 ? '':'scale-50 opacity-0 pointer-events-none'"
+            x-bind:style="'top:'+Ypos+'px'"
+            x-cloak
+            class="
+            p-small text-white bg-gray-900 px-3 py-2 absolute after:border-transparent
+            max-w-[10rem] after:content-[''] right-[24rem] top-1/2 after:top-1/2 after:-translate-y-1/2
+            after:absolute after:right-0 after:translate-x-full -translate-y-1/2
+            after:border-[10px] after:border-l-[1rem] after:border-r-0
+            after:border-l-gray-900 group-hover:pointer-events-auto 
+            group-hover:opacity-100 group-hover:scale-100 transition duration-100 origin-right"
+        >
+            The Timing properties define when, how fast and how often the animation is executed. Duration and Delay support values from 100 to 1000 in increments of a hundred.
+        </p>
+        
+        <p 
+            :class="hint == 2 ? '':'scale-50 opacity-0 pointer-events-none'"
+            x-bind:style="'top:'+Ypos+'px'"
+            x-cloak
+            class="
+            p-small text-white bg-gray-900 px-3 py-2 absolute after:border-transparent
+            max-w-[10rem] after:content-[''] right-[24rem] top-1/2 after:top-1/2 after:-translate-y-1/2
+            after:absolute after:right-0 after:translate-x-full -translate-y-1/2
+            after:border-[10px] after:border-l-[1rem] after:border-r-0
+            after:border-l-gray-900 group-hover:pointer-events-auto 
+            group-hover:opacity-100 group-hover:scale-100 transition duration-100 origin-right"
+        >
+                The easing property specifies the speed curve of the transition effect.
+        </p>
+        
+        <p 
+            :class="hint == 3 ? '':'scale-50 opacity-0 pointer-events-none'"
+            x-bind:style="'top:'+Ypos+'px'"
+            x-cloak
+            class="
+            p-small text-white bg-gray-900 px-3 py-2 absolute after:border-transparent
+            max-w-[10rem] after:content-[''] right-[24rem] top-1/2 after:top-1/2 after:-translate-y-1/2
+            after:absolute after:right-0 after:translate-x-full -translate-y-1/2
+            after:border-[10px] after:border-l-[1rem] after:border-r-0
+            after:border-l-gray-900 group-hover:pointer-events-auto 
+            group-hover:opacity-100 group-hover:scale-100 transition duration-100 origin-right"
+        >
+            The direction property sets whether an animation should play forward, backward, or alternate back and forth between playing the sequence forward and backward.
+        </p>
+
+        <p 
+            :class="hint == 4 ? '':'scale-50 opacity-0 pointer-events-none'"
+            x-bind:style="'top:'+Ypos+'px'"
+            x-cloak
+            class="
+            p-small text-white bg-gray-900 px-3 py-2 absolute after:border-transparent
+            max-w-[10rem] after:content-[''] right-[24rem] top-1/2 after:top-1/2 after:-translate-y-1/2
+            after:absolute after:right-0 after:translate-x-full -translate-y-1/2
+            after:border-[10px] after:border-l-[1rem] after:border-r-0
+            after:border-l-gray-900 group-hover:pointer-events-auto 
+            group-hover:opacity-100 group-hover:scale-100 transition duration-100 origin-right"
+        >
+            The Fillmode sets how the animation applies styles to its target before and after its execution.
+        </p>
+        
     </div>
     <script type="module" src="/js/app.js"></script>
 </body>
