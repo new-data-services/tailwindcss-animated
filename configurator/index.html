@@ -35,7 +35,7 @@
     </span>
 
     <!-- Alpine Store Display -->
-    <div @click="open = ! open" x-data="{open:true}" class="absolute bg-white z-50 top-8 right-0 p-1 cursor-pointer">
+    <div @click="open = ! open" x-data="{open:true}" class="absolute bg-white z-50 top-8 right-0 p-1 cursor-pointer hidden lg:block">
         <p class="text-xs font-bold">Alpinejs Variables</p>
         <p x-show="open" x-collapse class="text-xs" x-html="'timing: '+$store.properties.timing">loading...</p>
         <p x-show="open" x-collapse class="text-xs" x-html="'direction: '+$store.properties.direction">loading...</p>
@@ -46,9 +46,54 @@
         <p x-show="open" x-collapse class="text-xs" x-html="'currentAnimation: '+$store.properties.currentAnimation">loading...</p>
     </div>
 
+
+    <div id="mobile" class="bg-gray-100 h-screen bg-dotted lg:hidden">
+        <header class="grid grid-cols-4 items-center bg-gray-900 text-white py-2.5 px-6 justify-between w-full h-16">
+            <a class="mr-auto" href="#">
+                <img class="w-20 hover:scale-105 transition" src="/images/icons/wave.svg" alt="">
+            </a>
+
+            <h1 class="uppercase mx-auto p text-white col-span-2 text-center leading-5">Tailwindcss Animated</h1>
+
+            <nav class="hidden absolute">
+                <a 
+                    class="
+                        relative after:content-[''] after:absolute after:left-0 after:bottom-0 
+                        after:h-px after:w-full after:bg-cyan-500" 
+                    href="#"
+                >
+                    Configurator
+                </a>
+
+                <a class="" href="#">About</a>
+
+                <a class="px-4 py-2 bg-cyan-500 hover:bg-white text-gray-900 transition duration-75" href="#">Docs</a>
+
+                <a href="https://github.com/orgs/new-data-services/repositories/tailwindcss-animated">
+                    <img src="/images/icons/github.svg" alt="">
+                </a>
+            </nav>
+        </header>
+
+        <div class="h-full flex flex-col items-center justify-center px-8">
+            <img class="mb-8 w-48" src="/images/icons/mobile-error.svg" alt="">
+
+            <h3 class="text-center mb-4 max-w-xs">It seems like you’re on a mobile device.</h3>
+
+            <p class="p text-center mb-8 max-w-xs">Try again on a desktop device or learn more about Tailwindcss Animated instead.</p>
+
+            <a href="#" class="flex items-center gap-2 py-2 px-3 bg-violet-500 text-white hover:bg-opacity-80">
+                About
+
+                <img class="w-5" src="/images/icons/arrow-right-white.svg" alt="">
+            </a>
+        </div>
+    </div>
+
     <div 
         id="app" 
         x-int="init()" 
+        class="hidden lg:block"
         x-data="{
             hint:0, 
             Ypos:0,
@@ -87,7 +132,7 @@
 
         <div>
             <div class="w-full bg-gray-100 h-[100vh] pt-16 flex">
-                <div class="bg-white w-96 py-8 overflow-y-scroll hide-scrollbar">
+                <div class="bg-white xl:w-96 py-8 overflow-y-scroll hide-scrollbar shrink-0">
                     <span class="subline ml-6 block mb-1">Interactions</span>
 
                     <hr class="ml-6 border-gray-100">
@@ -439,33 +484,138 @@
                 </div>
 
                 <div 
-                    x-data="{range:0, scale() { return 'transform: scale('+ (this.range * 10 + 100) +'%' + ')'}}" 
+                    x-data="{
+                        range:0, 
+                        scale() { 
+                            return 'transform: scale('+ (this.range * 10 + 100) +'%' + ')'
+                        }
+                    }" 
                     class="grow bg-dotted flex flex-col"
                 >
                     <div class="grow flex items-center justify-center">
                         <img :style="scale" class="transition" src="/images/icons/logo.svg" alt="">
                     </div>
 
-                    <div class="bg-white h-16 w-full border-l border-r border-gray-100 p-3 flex">
-                         <div class="bg-gray-100 p-2.5 flex items-center gap-2.5">
-                            <img class="cursor-pointer" @click="if (range > -8) {range--}" src="/images/icons/shrink.svg" alt="">
+                    <div x-data="{preview:1}" class="bg-white w-full border-l border-r border-gray-100 p-3 flex gap-2.5 flex-wrap flex-row-reverse justify-end 2xl:justify-start 2xl:flex-row">
+                        <div class="flex">
+                            <div class="bg-gray-100 p-2.5 flex items-center gap-2.5">
+                                <img class="cursor-zoom-out" @click="if (range > -8) {range--}" src="/images/icons/shrink.svg" alt="">
+    
+                                <input x-refs="scale()" x-model="range" class="w-40" type="range" min="-8" max="10">
+    
+                                <img class="cursor-zoom-in" @click="if (range < 10) {range++}" src="/images/icons/enlarge.svg" alt="">
+                            </div>
+    
+                            <span 
+                                @click="range = 0"
+                                title="reset"
+                                class="cursor-pointer text-gray-700 flex px-4 border-l border-gray-200 h-full bg-gray-100 
+                                w-20 items-center justify-center" 
+                                x-text="range * 10 + 100 +' %'">
+                            </span>
+                        </div>
 
-                            <input x-refs="scale()" x-model="range" class="w-40" type="range" min="-8" max="10">
+                        <div class="flex gap-2.5">
+                            <button 
+                                @click="preview = 1"
+                                x-data="{active:false}" 
+                                @mouseenter="active=true" 
+                                @mouseleave="active=false" 
+                                class="w-10 h-10 flex justify-center items-center transition duration-75"
+                                :class="preview == 1 ? 'bg-violet-50 border border-violet-300':'bg-gray-100 hover:bg-violet-50'"
+                            >
+                                <img :src="active || preview == 1 ? '/images/icons/preview-logo-active.svg':'/images/icons/preview-logo.svg'" alt="">
+                            </button>
+    
+                            <button 
+                                @click="preview = 2"
+                                x-data="{active:false}" 
+                                @mouseenter="active=true" 
+                                @mouseleave="active=false" 
+                                class="w-10 h-10 flex justify-center items-center transition duration-75"
+                                :class="preview == 2 ? 'bg-violet-50 border border-violet-300':'bg-gray-100 hover:bg-violet-50'"
+                            >
+                                <img :src="active || preview == 2 ? '/images/icons/preview-headline-active.svg':'/images/icons/preview-headline.svg'" alt="">
+                            </button>
+    
+                            <button 
+                                @click="preview = 3"
+                                x-data="{active:false}" 
+                                @mouseenter="active=true" 
+                                @mouseleave="active=false" 
+                                class="w-10 h-10 flex justify-center items-center transition duration-75"
+                                :class="preview == 3 ? 'bg-violet-50 border border-violet-300':'bg-gray-100 hover:bg-violet-50'"
+                            >
+                                <img :src="active || preview == 3 ? '/images/icons/preview-text-active.svg':'/images/icons/preview-text.svg'" alt="">
+                            </button>
+    
+                            <button 
+                                @click="preview = 4"
+                                x-data="{active:false}" 
+                                @mouseenter="active=true" 
+                                @mouseleave="active=false" 
+                                class="w-10 h-10 flex justify-center items-center transition duration-75"
+                                :class="preview == 4 ? 'bg-violet-50 border border-violet-300':'bg-gray-100 hover:bg-violet-50'"
+                            >
+                                <img :src="active || preview == 4 ? '/images/icons/preview-image-active.svg':'/images/icons/preview-image.svg'" alt="">
+                            </button>
+    
+                            <button 
+                                @click="preview = 5"
+                                x-data="{active:false}" 
+                                @mouseenter="active=true" 
+                                @mouseleave="active=false" 
+                                class="w-10 h-10 flex justify-center items-center transition duration-75"
+                                :class="preview == 5 ? 'bg-violet-50 border border-violet-300':'bg-gray-100 hover:bg-violet-50'"
+                            >
+                                <img :src="active || preview == 5 ? '/images/icons/preview-button-active.svg':'/images/icons/preview-button.svg'" alt="">
+                            </button>
+                        </div>
 
-                            <img class="cursor-pointer" @click="if (range < 10) {range++}" src="/images/icons/enlarge.svg" alt="">
-                         </div>
+                        <div class="2xl:grow flex justify-end">
+                            <div x-data="{open:false, mode:1}" class=" text-violet-900 h-10 transition duration-75 bg-violet-100 flex items-center relative w-40 cursor-pointer">
 
-                         <span 
-                            @click="range = 0"
-                            title="reset"
-                            class="cursor-pointer text-gray-700 flex px-4 border-l border-gray-200 h-full bg-gray-100 
-                            w-20 items-center justify-center" 
-                            x-text="range * 10 + 100 +' %'">
-                         </span>
+                                <span 
+                                    x-text="mode == 1 ? 'Play':(mode == 2 ? 'on click':'on hover')" 
+                                    class="grow px-5 h-full flex items-center"
+                                    :class="mode == 1 ? 'hover:bg-violet-200 text-violet-900':'bg-violet-50 text-violet-300 cursor-not-allowed cursor'"
+                                >
+                                    Play
+                                </span>
+
+                                <div @click="open = !open" class="border-l h-full flex items-center justify-center px-3 border-violet-200 hover:bg-violet-200">
+                                    <img class="transition duration-200" :class="open ? 'rotate-180':''" src="/images/icons/chevron.svg" alt="">
+                                </div>
+
+                                <div x-show="open" x-collapse class="absolute w-full top-0 left-0 -translate-y-full">
+                                    <div 
+                                        @click="mode = 1; open = false" 
+                                        class="bg-violet-100 w-full border-b border-violet-200 py-2 hover:bg-violet-200 px-5"
+                                    >
+                                        Play
+                                    </div>
+
+                                    <div 
+                                        @click="mode = 2; open = false" 
+                                        class="bg-violet-100 w-full border-b border-violet-200 py-2 hover:bg-violet-200 px-5"
+                                    >
+                                        on click
+                                    </div>
+
+                                    <div 
+                                        @click="mode = 3; open = false" 
+                                        class="bg-violet-100 w-full border-b border-violet-200 py-2 hover:bg-violet-200 px-5"
+                                    >
+                                        on hover
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="bg-white w-96 flex flex-col relative">
+                <div class="bg-white w-96 flex flex-col relative shrink-0">
                     <div class="py-8 px-6 h-full hide-scrollbar pb-64 overflow-y-auto">
 
                         <div class="flex gap-2 items-center mb-1 relative">
@@ -482,15 +632,19 @@
 
                         <div class="mb-4 grid gap-4">
                             <div class="grid grid-cols-2 gap-6">
-                                <button :class="$store.properties.timing != 'infinite' ? 'ring-1 ring-violet-300 bg-violet-50':''" 
-                                class="bg-gray-100 hover:bg-violet-50 p-8" 
+                                <button x-data="{active:false}" @mouseenter="active=true" @mouseleave="active=false" :class="$store.properties.timing != 'infinite' ? 'ring-1 ring-violet-300 bg-violet-50':''" 
+                                class="bg-gray-100 hover:bg-violet-50 p-4 flex flex-col items-center hover:text-violet-900" 
                                 @click="showIterationCount = true, $store.properties.modifyProperty('timing', 'once')">
+                                    <img class="w-8 h-8" :src="active || $store.properties.timing != 'infinite' ? '/images/icons/iterate-active.svg':'/images/icons/iterate.svg'" alt="">
+
                                     iterations
                                 </button>
         
-                                <button :class="$store.properties.timing == 'infinite' ? 'ring-1 ring-violet-300 bg-violet-50':''" 
-                                class="bg-gray-100 hover:bg-violet-50 p-8" 
+                                <button x-data="{active:false}" @mouseenter="active=true" @mouseleave="active=false" :class="$store.properties.timing == 'infinite' ? 'ring-1 ring-violet-300 bg-violet-50':''" 
+                                class="bg-gray-100 hover:bg-violet-50 p-4 flex flex-col items-center hover:text-violet-900" 
                                 @click="showIterationCount = false, $store.properties.modifyProperty('timing', 'infinite')">
+                                    <img class="w-9 h-8" :src="active || $store.properties.timing == 'infinite' ? '/images/icons/infinite-active.svg':'/images/icons/infinite.svg'" alt="">
+
                                     infinite
                                 </button>
                             </div>
@@ -590,34 +744,46 @@
                         <div x-data class="mb-4">
                             <div class="grid grid-cols-2 gap-x-6 gap-y-4">
                                 <button 
+                                    x-data="{active:false}" @mouseenter="active=true" @mouseleave="active=false" 
                                     :class="$store.properties.easing == 'ease-linear' ? 'ring-1 ring-violet-300 ring-inset bg-violet-50':''"
-                                    class="bg-gray-100 hover:bg-violet-50 p-8"
+                                    class="bg-gray-100 hover:bg-violet-50 p-4 flex flex-col items-center"
                                     @click="$store.properties.modifyProperty('easing','ease-linear')"
                                 >
+                                    <img class="w-8 h-8 mb-1" :src="active || $store.properties.easing == 'ease-linear' ? '/images/icons/ease-linear-active.svg':'/images/icons/ease-linear.svg'" alt="">
+        
                                     ease linear
                                 </button>
         
                                 <button 
+                                    x-data="{active:false}" @mouseenter="active=true" @mouseleave="active=false" 
                                     :class="$store.properties.easing == 'ease-in' ? 'ring-1 ring-violet-300 ring-inset bg-violet-50':''"
-                                    class="bg-gray-100 hover:bg-violet-50 p-8"
+                                    class="bg-gray-100 hover:bg-violet-50 p-4 flex flex-col items-center"
                                     @click="$store.properties.modifyProperty('easing','ease-in')"
                                 >
+                                    <img class="w-8 h-8 mb-1" :src="active || $store.properties.easing == 'ease-in' ? '/images/icons/ease-in-active.svg':'/images/icons/ease-in.svg'" alt="">
+
                                     ease in
                                 </button>
 
                                 <button 
+                                    x-data="{active:false}" @mouseenter="active=true" @mouseleave="active=false" 
                                     :class="$store.properties.easing == 'ease-out' ? 'ring-1 ring-violet-300 ring-inset bg-violet-50':''"
-                                    class="bg-gray-100 hover:bg-violet-50 p-8"
+                                    class="bg-gray-100 hover:bg-violet-50 p-4 flex flex-col items-center"
                                     @click="$store.properties.modifyProperty('easing','ease-out')"
                                 >
+                                    <img class="w-8 h-8 mb-1" :src="active || $store.properties.easing == 'ease-out' ? '/images/icons/ease-out-active.svg':'/images/icons/ease-out.svg'" alt="">
+
                                     ease out
                                 </button>
         
                                 <button 
+                                    x-data="{active:false}" @mouseenter="active=true" @mouseleave="active=false" 
                                     :class="$store.properties.easing == 'ease-in-out' ? 'ring-1 ring-violet-300 ring-inset bg-violet-50':''"
-                                    class="bg-gray-100 hover:bg-violet-50 p-8"
+                                    class="bg-gray-100 hover:bg-violet-50 p-4 flex flex-col items-center"
                                     @click="$store.properties.modifyProperty('easing', 'ease-in-out')"
                                 >
+                                    <img class="w-8 h-8 mb-1" :src="active || $store.properties.easing == 'ease-in-out' ? '/images/icons/ease-in-out-active.svg':'/images/icons/ease-in-out.svg'" alt="">
+
                                     ease in out
                                 </button>
                             </div>
@@ -764,18 +930,20 @@
                             ($store.properties.direction != null ? (' animate-' + $store.properties.direction) : '') +
                             ($store.properties.fillmode != null ? (' animate-fill-' + $store.properties.fillmode) : '') +
                             ($store.properties.easing != null ? (' ' + $store.properties.easing) : '') +
-                            ($store.properties.delay != null && $store.properties.duration != '' ? (' animate-duration-' + $store.properties.duration) : '') +
+                            ($store.properties.duration != null && $store.properties.duration != '' ? (' animate-duration-' + $store.properties.duration) : '') +
                             ($store.properties.delay != null && $store.properties.delay != '' ? (' animate-delay-' + $store.properties.delay) : '')
                             "
                         >
                         </div>
 
                         <div class="flex w-full">
-                            <button @click="copy('link')" id="copy-output" class="bg-violet-300 p-2.5 px-4 hover:bg-violet-200 transition shrink-0 hover:text-violet-900 active:bg-violet-300">
+                            <button @click="copy('link')" id="copy-output" class="bg-violet-300 p-2.5 px-4 hover:bg-violet-200 transition shrink-0 text-violet-900 active:bg-violet-300">
                                 Copy link
                             </button>
                             
-                            <button @click="copy('print')" id="copy-output" class="bg-cyan-500 p-2.5 px-4 hover:bg-opacity-60 transition shrink-0 hover:text-violet-900 active:bg-opacity-100 grow">
+                            <button @click="copy('print')" id="copy-output" class="bg-cyan-500 p-2.5 px-4 hover:bg-opacity-60 transition justify-center flex gap-2 items-center shrink-0 active:bg-opacity-100 grow">
+                                <img class="w-4.5 opacity-50" src="/images/icons/copy.svg" alt="">
+
                                 Copy animation classes
                             </button>
     
