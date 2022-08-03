@@ -486,17 +486,28 @@
                 <div 
                     x-data="{
                         range:0, 
-                        scale() { 
+                        preview:5,
+                        scale() {
                             return 'transform: scale('+ (this.range * 10 + 100) +'%' + ')'
-                        }
-                    }" 
+                        },
+                        
+                    }"
                     class="grow bg-dotted flex flex-col"
                 >
                     <div class="grow flex items-center justify-center">
-                        <img :style="scale" class="transition" src="/images/icons/logo.svg" alt="">
+                        <img x-cloak x-show="preview == 1" :style="preview == 1 ? scale:'display:none;'" class="transition" src="/images/icons/logo.svg" alt="">
+
+                        <span x-cloak x-show="preview == 2" :style="preview == 2 ? scale:'display:none;'" class="transition h1 text-center">Build your custom <br>animations with ease.</span>
+
+                        <p x-cloak x-show="preview == 3" :style="preview == 3 ? scale:'display:none;'" class="max-w-sm transition">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita, tempora officia! Autem iusto dolores quam, eos quasi recusandae aut hic aperiam quas ipsum obcaecati repudiandae consequatur iure vero deleniti distinctio.</p>
+
+                        <img x-cloak x-show="preview == 4" :style="preview == 4 ? scale:'display:none;'" class="transition max-w-md" src="/images/colibri-andres-herrera.jpg" alt="">
+
+                        <button x-cloak x-show="preview == 5" :style="preview == 5 ? scale:'display:none;'" class="transition bg-violet-300 py-2 px-3 hover:bg-violet-200 active:bg-violet-300 duration-75 text-violet-900">Get started now</button>
+
                     </div>
 
-                    <div x-data="{preview:1}" class="bg-white w-full border-l border-r border-gray-100 p-3 flex gap-2.5 flex-wrap flex-row-reverse justify-end 2xl:justify-start 2xl:flex-row">
+                    <div class="bg-white w-full border-l border-r border-gray-100 p-3 flex gap-2.5 flex-wrap flex-row-reverse justify-end 2xl:justify-start 2xl:flex-row">
                         <div class="flex">
                             <div class="bg-gray-100 p-2.5 flex items-center gap-2.5">
                                 <img class="cursor-zoom-out" @click="if (range > -8) {range--}" src="/images/icons/shrink.svg" alt="">

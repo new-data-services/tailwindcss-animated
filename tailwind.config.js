@@ -47,7 +47,8 @@ module.exports = {
         require('tailwindcss/plugin')(
             ({ addBase }) => addBase({
                 '[x-cloak]': { display: 'none !important' },
-            })
+            }),
         ),
+        require('./src/index.js'),
     ],
 }
