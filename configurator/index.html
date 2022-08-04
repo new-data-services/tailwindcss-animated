@@ -100,6 +100,28 @@
             sethint(x, el) {
                 this.hint = x;
                 this.Ypos = el.getBoundingClientRect().y+7;
+            },
+            preview:1,
+            reflowMode:1,
+            reflowHandler() {
+                const previewObjects = document.querySelector('.preview').children;
+                for (let i = 0; i < previewObjects.length; i++) {
+                    console.log(previewObjects[i]);
+                    previewObjects[i].setAttribute('x-on:mouseenter','-');
+                    previewObjects[i].setAttribute('x-on:click','-');
+                }
+                if (this.reflowMode == 2) {
+                    for (let i = 0; i < previewObjects.length; i++) {
+                        console.log(previewObjects[i]);
+                        previewObjects[i].setAttribute('x-on:click','$store.properties.reflowPreview()');
+                    }
+                }
+                else if (this.reflowMode == 3) {
+                    for (let i = 0; i < previewObjects.length; i++) {
+                        console.log(previewObjects[i]);
+                        previewObjects[i].setAttribute('x-on:mouseenter','$store.properties.reflowPreview()');
+                    }
+                }
             }
         }"
     >
@@ -473,9 +495,7 @@
                         >
                             <img class="bg-violet-50 w-8 h-8 p-1.5" src="/images/icons/wave.svg" alt="">
 
-                            <span x-ref="anim"
-
-                            class="group-hover:text-violet-700">flip-down</span>
+                            <span x-ref="anim" class="group-hover:text-violet-700">flip-down</span>
                         </div>
                     </button>
 
@@ -485,25 +505,98 @@
 
                 <div 
                     x-data="{
-                        range:0, 
-                        preview:5,
+                        range:0,
                         scale() {
                             return 'transform: scale('+ (this.range * 10 + 100) +'%' + ')'
-                        },
-                        
+                        }
                     }"
                     class="grow bg-dotted flex flex-col"
                 >
-                    <div class="grow flex items-center justify-center">
-                        <img x-cloak x-show="preview == 1" :style="preview == 1 ? scale:'display:none;'" class="transition" src="/images/icons/logo.svg" alt="">
+                    <div class="grow flex items-center justify-center preview transition pointer-events-none [&>*]:pointer-events-auto" :style="scale()">
+                        <img 
+                            :class="
+                            ($store.properties.currentAnimation != null ? ('animate-' + $store.properties.currentAnimation) : '') + 
+                            ($store.properties.timing != null ? (' animate-' + $store.properties.timing) : '') +
+                            ($store.properties.direction != null ? (' animate-' + $store.properties.direction) : '') +
+                            ($store.properties.fillmode != null ? (' animate-fill-' + $store.properties.fillmode) : '') +
+                            ($store.properties.easing != null ? (' ' + $store.properties.easing) : '') +
+                            ($store.properties.duration != null && $store.properties.duration != '' ? (' animate-duration-' + $store.properties.duration) : '') +
+                            ($store.properties.delay != null && $store.properties.delay != '' ? (' animate-delay-' + $store.properties.delay) : '')" 
+                            x-cloak 
+                            x-show="preview == 1" 
+                            :style="preview == 1 ? '':'display:none;'" 
+                            class="transition" 
+                            src="/images/icons/logo.svg" 
+                            alt="">
 
-                        <span x-cloak x-show="preview == 2" :style="preview == 2 ? scale:'display:none;'" class="transition h1 text-center">Build your custom <br>animations with ease.</span>
+                        <span 
+                            :class="
+                            ($store.properties.currentAnimation != null ? ('animate-' + $store.properties.currentAnimation) : '') + 
+                            ($store.properties.timing != null ? (' animate-' + $store.properties.timing) : '') +
+                            ($store.properties.direction != null ? (' animate-' + $store.properties.direction) : '') +
+                            ($store.properties.fillmode != null ? (' animate-fill-' + $store.properties.fillmode) : '') +
+                            ($store.properties.easing != null ? (' ' + $store.properties.easing) : '') +
+                            ($store.properties.duration != null && $store.properties.duration != '' ? (' animate-duration-' + $store.properties.duration) : '') +
+                            ($store.properties.delay != null && $store.properties.delay != '' ? (' animate-delay-' + $store.properties.delay) : '')" 
+                            x-cloak 
+                            x-show="preview == 2" 
+                            :style="preview == 2 ? '':'display:none;'" 
+                            class="transition h1 text-center"
+                        >
+                            Build your custom <br>animations with ease.
+                        </span>
 
-                        <p x-cloak x-show="preview == 3" :style="preview == 3 ? scale:'display:none;'" class="max-w-sm transition">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita, tempora officia! Autem iusto dolores quam, eos quasi recusandae aut hic aperiam quas ipsum obcaecati repudiandae consequatur iure vero deleniti distinctio.</p>
+                        <p 
+                            :class="
+                            ($store.properties.currentAnimation != null ? ('animate-' + $store.properties.currentAnimation) : '') + 
+                            ($store.properties.timing != null ? (' animate-' + $store.properties.timing) : '') +
+                            ($store.properties.direction != null ? (' animate-' + $store.properties.direction) : '') +
+                            ($store.properties.fillmode != null ? (' animate-fill-' + $store.properties.fillmode) : '') +
+                            ($store.properties.easing != null ? (' ' + $store.properties.easing) : '') +
+                            ($store.properties.duration != null && $store.properties.duration != '' ? (' animate-duration-' + $store.properties.duration) : '') +
+                            ($store.properties.delay != null && $store.properties.delay != '' ? (' animate-delay-' + $store.properties.delay) : '')" 
+                            x-cloak 
+                            x-show="preview == 3" 
+                            :style="preview == 3 ? '':'display:none;'" 
+                            class="max-w-sm transition"
+                        >
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita, tempora 
+                            officia! Autem iusto dolores quam, eos quasi recusandae aut hic aperiam 
+                            quas ipsum obcaecati repudiandae consequatur iure vero deleniti distinctio.
+                        </p>
 
-                        <img x-cloak x-show="preview == 4" :style="preview == 4 ? scale:'display:none;'" class="transition max-w-md" src="/images/colibri-andres-herrera.jpg" alt="">
+                        <img 
+                            :class="
+                            ($store.properties.currentAnimation != null ? ('animate-' + $store.properties.currentAnimation) : '') + 
+                            ($store.properties.timing != null ? (' animate-' + $store.properties.timing) : '') +
+                            ($store.properties.direction != null ? (' animate-' + $store.properties.direction) : '') +
+                            ($store.properties.fillmode != null ? (' animate-fill-' + $store.properties.fillmode) : '') +
+                            ($store.properties.easing != null ? (' ' + $store.properties.easing) : '') +
+                            ($store.properties.duration != null && $store.properties.duration != '' ? (' animate-duration-' + $store.properties.duration) : '') +
+                            ($store.properties.delay != null && $store.properties.delay != '' ? (' animate-delay-' + $store.properties.delay) : '')" 
+                            x-cloak 
+                            x-show="preview == 4" 
+                            :style="preview == 4 ? '':'display:none;'" 
+                            class="transition max-w-md" 
+                            src="/images/colibri-andres-herrera.jpg" 
+                            alt="">
 
-                        <button x-cloak x-show="preview == 5" :style="preview == 5 ? scale:'display:none;'" class="transition bg-violet-300 py-2 px-3 hover:bg-violet-200 active:bg-violet-300 duration-75 text-violet-900">Get started now</button>
+                        <button 
+                            :class="
+                            ($store.properties.currentAnimation != null ? ('animate-' + $store.properties.currentAnimation) : '') + 
+                            ($store.properties.timing != null ? (' animate-' + $store.properties.timing) : '') +
+                            ($store.properties.direction != null ? (' animate-' + $store.properties.direction) : '') +
+                            ($store.properties.fillmode != null ? (' animate-fill-' + $store.properties.fillmode) : '') +
+                            ($store.properties.easing != null ? (' ' + $store.properties.easing) : '') +
+                            ($store.properties.duration != null && $store.properties.duration != '' ? (' animate-duration-' + $store.properties.duration) : '') +
+                            ($store.properties.delay != null && $store.properties.delay != '' ? (' animate-delay-' + $store.properties.delay) : '')" 
+                            x-cloak 
+                            x-show="preview == 5" 
+                            :style="preview == 5 ? '':'display:none;'" 
+                            class="transition bg-violet-300 py-2 px-3 hover:bg-violet-200 active:bg-violet-300 duration-75 text-violet-900"
+                        >
+                            Get started now
+                        </button>
 
                     </div>
 
@@ -584,12 +677,13 @@
                         </div>
 
                         <div class="2xl:grow flex justify-end">
-                            <div x-data="{open:false, mode:1}" class=" text-violet-900 h-10 transition duration-75 bg-violet-100 flex items-center relative w-40 cursor-pointer">
+                            <div x-data="{open:false}" class=" text-violet-900 h-10 transition duration-75 bg-violet-100 flex items-center relative w-40 cursor-pointer">
 
                                 <span 
-                                    x-text="mode == 1 ? 'Play':(mode == 2 ? 'on click':'on hover')" 
+                                    x-text="reflowMode == 1 ? 'Play':(reflowMode == 2 ? 'on click':'on hover')" 
                                     class="grow px-5 h-full flex items-center"
-                                    :class="mode == 1 ? 'hover:bg-violet-200 text-violet-900':'bg-violet-50 text-violet-300 cursor-not-allowed cursor'"
+                                    :class="reflowMode == 1 ? 'hover:bg-violet-200 text-violet-900':'bg-violet-50 text-violet-300 cursor-not-allowed cursor pointer-events-none'"
+                                    @click="$store.properties.reflowPreview()"
                                 >
                                     Play
                                 </span>
@@ -600,21 +694,21 @@
 
                                 <div x-show="open" x-collapse class="absolute w-full top-0 left-0 -translate-y-full">
                                     <div 
-                                        @click="mode = 1; open = false" 
+                                        @click="reflowMode = 1; open = false; reflowHandler()" 
                                         class="bg-violet-100 w-full border-b border-violet-200 py-2 hover:bg-violet-200 px-5"
                                     >
                                         Play
                                     </div>
 
                                     <div 
-                                        @click="mode = 2; open = false" 
+                                        @click="reflowMode = 2; open = false; reflowHandler()" 
                                         class="bg-violet-100 w-full border-b border-violet-200 py-2 hover:bg-violet-200 px-5"
                                     >
                                         on click
                                     </div>
 
                                     <div 
-                                        @click="mode = 3; open = false" 
+                                        @click="reflowMode = 3; open = false, reflowHandler()" 
                                         class="bg-violet-100 w-full border-b border-violet-200 py-2 hover:bg-violet-200 px-5"
                                     >
                                         on hover
@@ -832,27 +926,27 @@
                                         </button>
 
                                         <button 
-                                            @click="$store.properties.modifyProperty('direction', 'forwards')"
+                                            @click="$store.properties.modifyProperty('direction', 'reverse')"
                                             class="p-4 bg-gray-100 hover:bg-violet-50 border-b border-gray-200"
-                                            :class="$store.properties.direction == 'forwards' ? 'ring-1 ring-violet-300 ring-inset bg-violet-50 border-gray-100':''"
+                                            :class="$store.properties.direction == 'reverse' ? 'ring-1 ring-violet-300 ring-inset bg-violet-50 border-gray-100':''"
                                         >
-                                            forwards
+                                            reverse
                                         </button>
 
                                         <button 
-                                            @click="$store.properties.modifyProperty('direction', 'backwards')"
+                                            @click="$store.properties.modifyProperty('direction', 'alternate')"
                                             class="p-4 bg-gray-100 hover:bg-violet-50 border-r"
-                                            :class="$store.properties.direction == 'backwards' ? 'ring-1 ring-violet-300 ring-inset bg-violet-50 border-gray-100':''"
+                                            :class="$store.properties.direction == 'alternate' ? 'ring-1 ring-violet-300 ring-inset bg-violet-50 border-gray-100':''"
                                         >
-                                            backwards
+                                            alternate
                                         </button>
 
                                         <button 
-                                            @click="$store.properties.modifyProperty('direction', 'both')"
+                                            @click="$store.properties.modifyProperty('direction', 'alternate-reverse')"
                                             class="p-4 bg-gray-100 hover:bg-violet-50"
-                                            :class="$store.properties.direction == 'both' ? 'ring-1 ring-violet-300 ring-inset bg-violet-50 border-gray-100':''"
+                                            :class="$store.properties.direction == 'alternate-reverse' ? 'ring-1 ring-violet-300 ring-inset bg-violet-50 border-gray-100':''"
                                         >
-                                            both
+                                            alternate-reverse
                                         </button>
                                     </div>
                                 </div>

@@ -41,9 +41,17 @@ Alpine.store('properties', {
     },
 
     update() {
-        //missing function here to reload preview objects
+        this.reflowPreview();
         this.setParams();
         return
+    },
+
+    reflowPreview() {
+        const previewObjects = document.querySelector('.preview').childNodes;
+        for (let i = 0; i < previewObjects.length; i++) {
+            let copy = previewObjects[i];
+            previewObjects[i].parentNode.replaceChild(previewObjects[i], copy);
+        }
     },
 
     setParams() {

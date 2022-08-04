@@ -80,12 +80,12 @@ const animation = plugin(
                         '0%': { opacity: '0', transform: 'translateX(-2rem)' },
                         '100%': { opacity: '1', transform: 'translateX(0)' },
                     },
-                    'flip-y': {
-                        '0%': { transform: 'rotateY(900deg)' },
+                    'rotate-y': {
+                        '0%': { transform: 'rotateY(360deg)' },
                         '100%': { transform: 'rotateY(0)' },
                     },
-                    'flip-x': {
-                        '0%': { transform: 'rotateX(900deg)' },
+                    'rotate-x': {
+                        '0%': { transform: 'rotateX(360deg)' },
                         '100%': { transform: 'rotateX(0)' },
                     },
                     'flip-up': {
@@ -111,6 +111,16 @@ const animation = plugin(
                         '20%': { transform: 'scale(120%)' },
                         '100%': { transform: 'scale(0%)' },
                     },
+                    'shake': {
+                        '0%': { transform: 'translateX(0rem)' },
+                        '25%': { transform: 'translateX(-1rem)' },
+                        '75%': { transform: 'translateX(1rem)' },
+                        '100%': { transform: 'translateX(0rem)' },
+                    },
+                    'fade': {
+                        '0%': { opacity: '0' },
+                        '100%': { opacity: '1' },
+                    },
                 },
                 animation: {
                     'wiggle': 'wiggle 1s ease-in-out infinite',
@@ -119,13 +129,15 @@ const animation = plugin(
                     'fade-up': 'fade-up 1s ease-out both',
                     'fade-left': 'fade-left 1s ease-out both',
                     'fade-right': 'fade-right 1s ease-out both',
-                    'flip-y': 'flip-y 1s ease-out',
-                    'flip-x': 'flip-x 1s ease-out',
+                    'rotate-y': 'rotate-y 1s ease-out',
+                    'rotate-x': 'rotate-x 1s ease-out',
                     'flip-up': 'flip-up 1s ease-out',
                     'flip-down': 'flip-down 1s ease-out',
                     'jump': 'jump .5s ease-in-out',
                     'jump-in': 'jump-in .5s ease-in-out',
                     'jump-out': 'jump-out .5s ease-in-out',
+                    'shake': 'shake .5s ease-in-out',
+                    'fade': 'fade .5s ease-in-out',
                 },
                 animationDelay: {
                     none: '0ms',
