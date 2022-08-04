@@ -35,7 +35,7 @@
     </span>
 
     <!-- Alpine Store Display -->
-    <div @click="open = ! open" x-data="{open:true}" class="absolute bg-white z-50 top-8 right-0 p-1 cursor-pointer hidden lg:block">
+    <div @click="open = ! open" x-data="{open:false}" class="absolute bg-white z-50 top-16 right-0 p-1 cursor-pointer hidden lg:block">
         <p class="text-xs font-bold">Alpinejs Variables</p>
         <p x-show="open" x-collapse class="text-xs" x-html="'timing: '+$store.properties.timing">loading...</p>
         <p x-show="open" x-collapse class="text-xs" x-html="'direction: '+$store.properties.direction">loading...</p>
@@ -47,7 +47,7 @@
     </div>
 
 
-    <div id="mobile" class="bg-gray-100 h-screen bg-dotted lg:hidden">
+    <div id="mobile" x-data="{menu:false}" class="bg-gray-100 h-screen bg-dotted lg:hidden">
         <header class="grid grid-cols-4 items-center bg-gray-900 text-white py-2.5 px-6 justify-between w-full h-16">
             <a class="mr-auto" href="#">
                 <img class="w-20 hover:scale-105 transition" src="/images/icons/wave.svg" alt="">
@@ -55,24 +55,38 @@
 
             <h1 class="uppercase mx-auto p text-white col-span-2 text-center leading-5">Tailwindcss Animated</h1>
 
-            <nav class="hidden absolute">
-                <a 
-                    class="
-                        relative after:content-[''] after:absolute after:left-0 after:bottom-0 
-                        after:h-px after:w-full after:bg-cyan-500" 
-                    href="#"
-                >
-                    Configurator
-                </a>
+            <button class="w-12 h-12 place-self-end self-center flex flex-col gap-3.5 justify-center px-1 items-center" @click="menu = !menu">
+                <span :class="menu ? 'rotate-45 translate-y-2':''" class="block h-[3px] w-full bg-cyan-500 transition"></span>
+                <span :class="menu ? '-rotate-45 -translate-y-2':''" class="block h-[3px] w-full bg-cyan-500 transition"></span>
+            </button>
 
-                <a class="" href="#">About</a>
-
-                <a class="px-4 py-2 bg-cyan-500 hover:bg-white text-gray-900 transition duration-75" href="#">Docs</a>
-
-                <a href="https://github.com/orgs/new-data-services/repositories/tailwindcss-animated">
-                    <img src="/images/icons/github.svg" alt="">
-                </a>
-            </nav>
+            <div class="absolute top-16 right-0" x-show="menu" x-collapse x-cloak>
+                <nav class=" flex flex-col bg-white p-4 px-6 text-gray-900 text-xl gap-3">
+                    <a class="flex gap-3" href="#">
+                        <img class="w-4 invert opacity-50" src="/images/icons/arrow-right-white.svg" alt="">
+                        
+                        <span class="border-b border-violet-500">Configurator</span>
+                    </a>
+    
+                    <a class="flex gap-3" href="/about.html">
+                        <img class="w-4 invert opacity-50" src="/images/icons/arrow-right-white.svg" alt="">
+                        
+                        About
+                    </a>
+    
+                    <a class="flex gap-3" href="#">
+                        <img class="w-4 invert opacity-50" src="/images/icons/arrow-right-white.svg" alt="">
+                        
+                        Docs
+                    </a>
+    
+                    <a class="flex gap-3" href="https://github.com/orgs/new-data-services/repositories/tailwindcss-animated">
+                        <img class="w-4 invert opacity-50" src="/images/icons/arrow-right-white.svg" alt="">
+                        
+                        Github
+                    </a>
+                </nav>
+            </div>
         </header>
 
         <div class="h-full flex flex-col items-center justify-center px-8">
@@ -82,7 +96,7 @@
 
             <p class="p text-center mb-8 max-w-xs">Try again on a desktop device or learn more about Tailwindcss Animated instead.</p>
 
-            <a href="#" class="flex items-center gap-2 py-2 px-3 bg-violet-500 text-white hover:bg-opacity-80">
+            <a href="/about.html" class="flex items-center gap-2 py-2 px-3 bg-violet-500 text-white hover:bg-opacity-80">
                 About
 
                 <img class="w-5" src="/images/icons/arrow-right-white.svg" alt="">
@@ -142,7 +156,7 @@
                     Configurator
                 </a>
 
-                <a class="" href="#">About</a>
+                <a class="" href="/about.html">About</a>
 
                 <a class="px-4 py-2 bg-cyan-500 hover:bg-white text-gray-900 transition duration-75" href="#">Docs</a>
 
