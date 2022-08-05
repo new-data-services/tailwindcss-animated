@@ -51,6 +51,13 @@ const animation = plugin(
             '.animate-fill-backwards': { 'animation-fill-mode': 'backwards' },
             '.animate-fill-both': { 'animation-fill-mode': 'both' },
         });
+
+        addUtilities({
+            '.animate-ease-linear': { 'animation-timing-function': 'linear' },
+            '.animate-ease-in': { 'animation-timing-function': 'cubic-bezier(0.4, 0, 1, 1)' },
+            '.animate-ease-out': { 'animation-timing-function': 'cubic-bezier(0, 0, 0.2, 1)' },
+            '.animate-ease-in-out': { 'animation-timing-function': 'cubic-bezier(0.4, 0, 0.2, 1)' },
+        });
     },
     {
         theme: {
@@ -123,21 +130,21 @@ const animation = plugin(
                     },
                 },
                 animation: {
-                    'wiggle': 'wiggle 1s ease-in-out infinite',
-                    'wiggle-more': 'wiggle-more 1s ease-in-out infinite',
-                    'fade-down': 'fade-down 1s ease-out both',
-                    'fade-up': 'fade-up 1s ease-out both',
-                    'fade-left': 'fade-left 1s ease-out both',
-                    'fade-right': 'fade-right 1s ease-out both',
-                    'rotate-y': 'rotate-y 1s ease-out',
-                    'rotate-x': 'rotate-x 1s ease-out',
-                    'flip-up': 'flip-up 1s ease-out',
-                    'flip-down': 'flip-down 1s ease-out',
-                    'jump': 'jump .5s ease-in-out',
-                    'jump-in': 'jump-in .5s ease-in-out',
-                    'jump-out': 'jump-out .5s ease-in-out',
-                    'shake': 'shake .5s ease-in-out',
-                    'fade': 'fade .5s ease-in-out',
+                    'wiggle': 'wiggle 1s infinite',
+                    'wiggle-more': 'wiggle-more 1s infinite',
+                    'fade-down': 'fade-down 1s both',
+                    'fade-up': 'fade-up 1s both',
+                    'fade-left': 'fade-left 1s both',
+                    'fade-right': 'fade-right 1s both',
+                    'rotate-y': 'rotate-y 1s',
+                    'rotate-x': 'rotate-x 1s',
+                    'flip-up': 'flip-up 1s',
+                    'flip-down': 'flip-down 1s',
+                    'jump': 'jump .5s',
+                    'jump-in': 'jump-in .5s',
+                    'jump-out': 'jump-out .5s',
+                    'shake': 'shake .5s',
+                    'fade': 'fade .5s',
                 },
                 animationDelay: {
                     none: '0ms',

@@ -60,6 +60,11 @@ module.exports = {
         'animate-duration-2000',
         'animate-duration-3000',
         'animate-duration-5000',
+
+        'animate-ease-linear',
+        'animate-ease-in',
+        'animate-ease-out',
+        'animate-ease-in-out',
         
     ],
     theme: {
