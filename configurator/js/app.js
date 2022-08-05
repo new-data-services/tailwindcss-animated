@@ -11,7 +11,7 @@ Alpine.store('properties', {
     duration: null,
     delay: null,
     easing: null,
-    currentAnimation: "wiggle",
+    currentAnimation: "jump-in",
 
     //alter property values
     modifyProperty(property, newValue) {
@@ -43,7 +43,6 @@ Alpine.store('properties', {
     update() {
         this.reflowPreview();
         this.setParams();
-        return
     },
 
     reflowPreview() {
@@ -69,8 +68,7 @@ Alpine.store('properties', {
 
     init() {
         //pull params from URL and apply them
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
+        const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('t') != "null" && urlParams.get('t') != '' && urlParams.get('t') != null) {
             this.timing = urlParams.get('t');
         }

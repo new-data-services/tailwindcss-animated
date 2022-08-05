@@ -743,6 +743,19 @@
 
                             <span class="subline">Timing</span>
 
+                            <span 
+                                @click="
+                                $store.properties.modifyProperty('timing', 'once');
+                                $store.properties.modifyProperty('direction', null);
+                                $store.properties.modifyProperty('fillmode', null);
+                                $store.properties.modifyProperty('duration', null);
+                                $store.properties.modifyProperty('delay', null);
+                                $store.properties.modifyProperty('easing', null);
+                                "
+                                class="p-small ml-auto cursor-pointer text-violet-500 hover:text-violet-300 active:text-violet-500">
+                                Reset all properties
+                            </span>
+
                         </div>
                         
                         <hr class="border-gray-100 mb-4">
@@ -1151,7 +1164,7 @@
             after:border-l-gray-900 group-hover:pointer-events-auto 
             group-hover:opacity-100 group-hover:scale-100 transition duration-100 origin-right"
         >
-            The Timing properties define when, how fast and how often the animation is executed. Duration and Delay support values from 100 to 1000 in increments of a hundred.
+            The Timing properties define when, how fast and how often the animation is executed.
         </p>
         
         <p 
