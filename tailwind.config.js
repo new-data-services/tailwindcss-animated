@@ -32,6 +32,7 @@ module.exports = {
         'animate-once',
         'animate-twice',
         'animate-thrice',
+        'animate-infinite',
         'animate-normal',
         'animate-reverse',
         'animate-alternate',

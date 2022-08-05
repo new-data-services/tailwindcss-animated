@@ -71,26 +71,29 @@ Alpine.store('properties', {
         //pull params from URL and apply them
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
-        if (urlParams.get('t') != "null" && urlParams.get('t') != '') {
+        if (urlParams.get('t') != "null" && urlParams.get('t') != '' && urlParams.get('t') != null) {
             this.timing = urlParams.get('t');
         }
-        if (urlParams.get('di') != "null" && urlParams.get('di') != '') {
+        if (urlParams.get('di') != "null" && urlParams.get('di') != '' && urlParams.get('di') != null) {
             this.direction = urlParams.get('di');
         }
-        if (urlParams.get('f') != "null" && urlParams.get('f') != '') {
+        if (urlParams.get('f') != "null" && urlParams.get('f') != '' && urlParams.get('f') != null) {
             this.fillmode = urlParams.get('f');
         }
-        if (urlParams.get('du') != "null" && urlParams.get('du') != '') {
+        if (urlParams.get('du') != "null" && urlParams.get('du') != '' && urlParams.get('du') != null) {
             this.duration = urlParams.get('du');
         }
-        if (urlParams.get('de') != "null" && urlParams.get('de') != '') {
+        if (urlParams.get('de') != "null" && urlParams.get('de') != '' && urlParams.get('de') != null) {
             this.delay = urlParams.get('de');
         }
-        if (urlParams.get('e') != "null" && urlParams.get('e') != '') {
+        if (urlParams.get('e') != "null" && urlParams.get('e') != '' && urlParams.get('e') != null) {
             this.easing = urlParams.get('e');
         }
-        if (urlParams.get('a') != "null" && urlParams.get('a') != '') {
+        if (urlParams.get('a') != "null" && urlParams.get('a') != '' && urlParams.get('a') != null) {
         this.currentAnimation = urlParams.get('a');
+        }
+        else {
+
         }
     }
 })

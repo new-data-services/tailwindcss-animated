@@ -727,7 +727,6 @@
                                     >
                                         on hover
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -790,20 +789,84 @@
 
                             <div 
                                 x-data="{
-                                    round(property, el, store) {
+                                    roundDelay(property, el, store) {
                                         if (el.value != null) {
-                                            if (el.value < 1000 && el.value > 99) {
-                                                el.value = 100 * Math.round(el.value / 100);
-                                            }
-                                            else if (el.value <= 99) {
+                                            if (el.value < 1) {
                                                 el.value = null;
+                                            }
+                                            if (el.value < 83) {
+                                                el.value = 75;
+                                            }
+                                            else if (el.value < 125) {
+                                                el.value = 100;
+                                            }
+                                            else if (el.value < 175) {
+                                                el.value = 150;
+                                            }
+                                            else if (el.value < 250) {
+                                                el.value = 200;
+                                            }
+                                            else if (el.value < 400) {
+                                                el.value = 300;
+                                            }
+                                            else if (el.value < 600) {
+                                                el.value = 500;
+                                            }
+                                            else if (el.value < 850) {
+                                                el.value = 700;
                                             }
                                             else {
                                                 el.value = 1000;
                                             }
                                         }
                                         store.properties.modifyProperty(property, el.value);
-                                    }
+                                        el.blur()
+                                    },
+                                    roundDuration(property, el, store) {
+                                        if (el.value != null) {
+                                            if (el.value < 1) {
+                                                el.value = null;
+                                            }
+                                            if (el.value < 83) {
+                                                el.value = 75;
+                                            }
+                                            else if (el.value < 125) {
+                                                el.value = 100;
+                                            }
+                                            else if (el.value < 175) {
+                                                el.value = 150;
+                                            }
+                                            else if (el.value < 250) {
+                                                el.value = 200;
+                                            }
+                                            else if (el.value < 400) {
+                                                el.value = 300;
+                                            }
+                                            else if (el.value < 600) {
+                                                el.value = 500;
+                                            }
+                                            else if (el.value < 850) {
+                                                el.value = 700;
+                                            }
+                                            else if (el.value < 1250) {
+                                                el.value = 1000;
+                                            }
+                                            else if (el.value < 1750) {
+                                                el.value = 1500;
+                                            }
+                                            else if (el.value < 2500) {
+                                                el.value = 2000;
+                                            }
+                                            else if (el.value < 4000) {
+                                                el.value = 3000;
+                                            }
+                                            else {
+                                                el.value = 5000;
+                                            }
+                                        }
+                                        store.properties.modifyProperty(property, el.value);
+                                        el.blur()
+                                    },
                                 }" 
                                 class="grid grid-cols-2 gap-6"
                             >
@@ -816,7 +879,8 @@
                                             class="border border-gray-200 bg-gray-50 p-3 px-4 after:content-['hello'] w-full focus:border-violet-300 focus:bg-white peer" 
                                             placeholder=" " 
                                             required
-                                            @click.away="round('duration', $el, $store)"
+                                            @keyup.enter="roundDuration('duration', $el, $store)"
+                                            @focusout="roundDuration('duration', $el, $store)"
                                         >
 
                                         <span class="pointer-events-none absolute text-gray-300 bg-gray-50 transition-all px-1 input-label">
@@ -835,7 +899,8 @@
                                             class="border border-gray-200 bg-gray-50 p-3 px-4 after:content-['hello'] w-full focus:border-violet-300 focus:bg-white peer" 
                                             placeholder=" " 
                                             required
-                                            @click.away="round('delay', $el, $store)"
+                                            @keyup.enter="roundDelay('delay', $el, $store)"
+                                            @focusout="roundDelay('delay', $el, $store)"
                                         >
 
                                         <span class="pointer-events-none absolute text-gray-300 bg-gray-50 transition-all px-1 input-label">
