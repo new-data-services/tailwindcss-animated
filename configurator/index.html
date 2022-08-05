@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
 
-    <title>Tailwind CSS Animated</title>
+    <title>Configurator | Tailwind CSS Animated</title>
     <meta name="description" content="">
     <meta name="robots" content="index,follow">
 
@@ -24,18 +24,25 @@
 
     <!-- Tailwind Viewport Indicator -->
     <span 
+        x-data="{w: window.innerWidth,right: false, visible:false}" 
+        @click="right=!right" 
+        x-show="visible"
+        x-cloak
         class="cursor-pointer text-xs absolute bottom-0 z-50 bg-white p-1 before:mr-1
         before:content-['xs'] sm:before:content-['sm'] md:before:content-['md'] before:font-bold
         lg:before:content-['lg'] xl:before:content-['xl'] 2xl:before:content-['2xl']" 
-        @click="right=!right" 
         :class="right ? 'right-0':'left-0'" 
         x-on:resize.window="w=window.innerWidth" 
-        x-data="{w: window.innerWidth,right: false}" 
         x-html="w+' px'">
     </span>
 
     <!-- Alpine Store Display -->
-    <div @click="open = ! open" x-data="{open:false}" class="absolute bg-white z-50 top-16 right-0 p-1 cursor-pointer hidden lg:block">
+    <div
+        x-data="{open:false, visible:false}" 
+        @click="open = ! open" 
+        x-show="visible"
+        x-cloak
+        class="absolute bg-white z-50 top-16 right-0 p-1 cursor-pointer hidden lg:block">
         <p class="text-xs font-bold">Alpinejs Variables</p>
         <p x-show="open" x-collapse class="text-xs" x-html="'timing: '+$store.properties.timing">loading...</p>
         <p x-show="open" x-collapse class="text-xs" x-html="'direction: '+$store.properties.direction">loading...</p>
@@ -745,7 +752,7 @@
 
                             <span 
                                 @click="
-                                $store.properties.modifyProperty('timing', 'once');
+                                $store.properties.modifyProperty('timing', null);
                                 $store.properties.modifyProperty('direction', null);
                                 $store.properties.modifyProperty('fillmode', null);
                                 $store.properties.modifyProperty('duration', null);

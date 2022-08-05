@@ -5,13 +5,13 @@ Alpine.store('properties', {
 
     // set default values here
 
-    timing: 'once',
+    timing: null,
     direction: null,
     fillmode: null,
     duration: null,
     delay: null,
     easing: null,
-    currentAnimation: 'jump-in',
+    currentAnimation: 'fade-up',
 
     //alter property values
     modifyProperty(property, newValue) {
