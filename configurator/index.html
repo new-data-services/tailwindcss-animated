@@ -69,26 +69,26 @@
 
             <div class="absolute top-16 right-0" x-show="menu" x-collapse x-cloak>
                 <nav class=" flex flex-col bg-white p-4 px-6 text-gray-900 text-xl gap-3">
-                    <a class="flex gap-3" href="#">
-                        <img class="w-4 invert opacity-50" src="/images/icons/arrow-right-white.svg" alt="">
+                    <a class="flex gap-3 group" href="#">
+                        <img class="w-4 invert opacity-50 group-hover:translate-x-1 transition" src="/images/icons/arrow-right-white.svg" alt="">
                         
                         <span class="border-b border-violet-500">Configurator</span>
                     </a>
     
-                    <a class="flex gap-3" href="/about.html">
-                        <img class="w-4 invert opacity-50" src="/images/icons/arrow-right-white.svg" alt="">
+                    <a class="flex gap-3 group" href="/about/index.html">
+                        <img class="w-4 invert opacity-50 group-hover:translate-x-1 transition" src="/images/icons/arrow-right-white.svg" alt="">
                         
                         About
                     </a>
     
-                    <a class="flex gap-3" href="#">
-                        <img class="w-4 invert opacity-50" src="/images/icons/arrow-right-white.svg" alt="">
+                    <a class="flex gap-3 group" href="#">
+                        <img class="w-4 invert opacity-50 group-hover:translate-x-1 transition" src="/images/icons/arrow-right-white.svg" alt="">
                         
                         Docs
                     </a>
     
-                    <a class="flex gap-3" href="https://github.com/orgs/new-data-services/repositories/tailwindcss-animated">
-                        <img class="w-4 invert opacity-50" src="/images/icons/arrow-right-white.svg" alt="">
+                    <a class="flex gap-3 group" href="https://github.com/orgs/new-data-services/repositories/tailwindcss-animated">
+                        <img class="w-4 invert opacity-50 group-hover:translate-x-1 transition" src="/images/icons/arrow-right-white.svg" alt="">
                         
                         Github
                     </a>
@@ -103,7 +103,7 @@
 
             <p class="p text-center mb-8 max-w-xs">Try again on a desktop device or learn more about Tailwindcss Animated instead.</p>
 
-            <a href="/about.html" class="flex items-center gap-2 py-2 px-3 bg-violet-500 text-white hover:bg-opacity-80">
+            <a href="/about/index.html" class="flex items-center gap-2 py-2 px-3 bg-violet-500 text-white hover:bg-opacity-80">
                 About
 
                 <img class="w-5" src="/images/icons/arrow-right-white.svg" alt="">
@@ -143,10 +143,13 @@
                         previewObjects[i].setAttribute('x-on:mouseenter','$store.properties.reflowPreview()');
                     }
                 }
-            }
+            },
+            leftColSize:'width:384px',
+            rightColSize:'width:384px',
+            rightSize:384
         }"
     >
-        <header class="grid grid-cols-3 items-center bg-gray-900 text-white py-2.5 px-6 justify-between absolute w-full h-16">
+        <header class="grid grid-cols-3 items-center bg-gray-900 text-white py-2.5 px-6 justify-between absolute w-full h-16 z-10">
             <a class="mr-auto" href="#">
                 <img class="w-20 hover:scale-105 transition" src="/images/icons/wave.svg" alt="">
             </a>
@@ -163,7 +166,7 @@
                     Configurator
                 </a>
 
-                <a class="" href="/about.html">About</a>
+                <a class="" href="/about/index.html">About</a>
 
                 <a class="px-4 py-2 bg-cyan-500 hover:bg-white text-gray-900 transition duration-75" href="#">Docs</a>
 
@@ -175,7 +178,7 @@
 
         <div>
             <div class="w-full bg-gray-100 h-[100vh] pt-16 flex">
-                <div class="bg-white xl:w-96 py-8 overflow-y-scroll hide-scrollbar shrink-0">
+                <div :style="leftColSize" class="bg-white py-8 overflow-y-scroll hide-scrollbar shrink-0 z-10">
                     <span class="subline ml-6 block mb-1">Interactions</span>
 
                     <hr class="ml-6 border-gray-100">
@@ -525,6 +528,12 @@
                 </div>
 
                 <div 
+                    @drag="if (event.pageX > 200 && event.pageX < window.innerWidth/3) {leftColSize='width:'+event.pageX+'px'}" 
+                    draggable="true" 
+                    class="h-auto border-r border-transparent hover:border-cyan-500 transition delay-100 scale-x-[400%] relative z-30 cursor-ew-resize">
+                </div>
+
+                <div 
                     x-data="{
                         range:0,
                         scale() {
@@ -621,7 +630,7 @@
 
                     </div>
 
-                    <div class="bg-white w-full border-l border-r border-gray-100 p-3 flex gap-2.5 flex-wrap flex-row-reverse justify-end 2xl:justify-start 2xl:flex-row">
+                    <div class="bg-white w-full p-3 flex gap-2.5 flex-wrap flex-row-reverse justify-end 2xl:justify-start 2xl:flex-row">
                         <div class="flex">
                             <div class="bg-gray-100 p-2.5 flex items-center gap-2.5">
                                 <img class="cursor-zoom-out" @click="if (range > -8) {range--}" src="/images/icons/shrink.svg" alt="">
@@ -740,7 +749,13 @@
                     </div>
                 </div>
 
-                <div class="bg-white w-96 flex flex-col relative shrink-0">
+                <div 
+                    @drag="if ((window.innerWidth-event.pageX) > 350 && (window.innerWidth-event.pageX) < window.innerWidth/3) {rightColSize='width:'+(window.innerWidth-event.pageX)+'px'; rightSize=(window.innerWidth-event.pageX) }" 
+                    draggable="true" 
+                    class="h-auto border-r border-transparent hover:border-cyan-500 transition delay-100 scale-x-[400%] z-30 cursor-ew-resize">
+                </div>
+
+                <div :style="rightColSize" class="bg-white flex flex-col relative shrink-0 z-10">
                     <div class="py-8 px-6 h-full hide-scrollbar pb-64 overflow-y-auto">
 
                         <div class="flex gap-2 items-center mb-1 relative">
@@ -1161,11 +1176,11 @@
         
         <p 
             :class="hint == 1 ? '':'scale-50 opacity-0 pointer-events-none'"
-            x-bind:style="'top:'+Ypos+'px'"
+            x-bind:style="'top:'+Ypos+'px;'+'right:'+rightSize+'px'"
             x-cloak
-            class="
+            class=" z-20
             p-small text-white bg-gray-900 px-3 py-2 absolute after:border-transparent
-            max-w-[10rem] after:content-[''] right-[24rem] top-1/2 after:top-1/2 after:-translate-y-1/2
+            max-w-[10rem] after:content-[''] top-1/2 after:top-1/2 after:-translate-y-1/2
             after:absolute after:right-0 after:translate-x-full -translate-y-1/2
             after:border-[10px] after:border-l-[1rem] after:border-r-0
             after:border-l-gray-900 group-hover:pointer-events-auto 
@@ -1176,11 +1191,11 @@
         
         <p 
             :class="hint == 2 ? '':'scale-50 opacity-0 pointer-events-none'"
-            x-bind:style="'top:'+Ypos+'px'"
+            x-bind:style="'top:'+Ypos+'px;'+'right:'+rightSize+'px'"
             x-cloak
-            class="
+            class=" z-20
             p-small text-white bg-gray-900 px-3 py-2 absolute after:border-transparent
-            max-w-[10rem] after:content-[''] right-[24rem] top-1/2 after:top-1/2 after:-translate-y-1/2
+            max-w-[10rem] after:content-[''] top-1/2 after:top-1/2 after:-translate-y-1/2
             after:absolute after:right-0 after:translate-x-full -translate-y-1/2
             after:border-[10px] after:border-l-[1rem] after:border-r-0
             after:border-l-gray-900 group-hover:pointer-events-auto 
@@ -1191,11 +1206,11 @@
         
         <p 
             :class="hint == 3 ? '':'scale-50 opacity-0 pointer-events-none'"
-            x-bind:style="'top:'+Ypos+'px'"
+            x-bind:style="'top:'+Ypos+'px;'+'right:'+rightSize+'px'"
             x-cloak
-            class="
+            class=" z-20
             p-small text-white bg-gray-900 px-3 py-2 absolute after:border-transparent
-            max-w-[10rem] after:content-[''] right-[24rem] top-1/2 after:top-1/2 after:-translate-y-1/2
+            max-w-[10rem] after:content-[''] top-1/2 after:top-1/2 after:-translate-y-1/2
             after:absolute after:right-0 after:translate-x-full -translate-y-1/2
             after:border-[10px] after:border-l-[1rem] after:border-r-0
             after:border-l-gray-900 group-hover:pointer-events-auto 
@@ -1206,11 +1221,11 @@
 
         <p 
             :class="hint == 4 ? '':'scale-50 opacity-0 pointer-events-none'"
-            x-bind:style="'top:'+Ypos+'px'"
+            x-bind:style="'top:'+Ypos+'px;'+'right:'+rightSize+'px'"
             x-cloak
-            class="
+            class=" z-20
             p-small text-white bg-gray-900 px-3 py-2 absolute after:border-transparent
-            max-w-[10rem] after:content-[''] right-[24rem] top-1/2 after:top-1/2 after:-translate-y-1/2
+            max-w-[10rem] after:content-[''] top-1/2 after:top-1/2 after:-translate-y-1/2
             after:absolute after:right-0 after:translate-x-full -translate-y-1/2
             after:border-[10px] after:border-l-[1rem] after:border-r-0
             after:border-l-gray-900 group-hover:pointer-events-auto 
