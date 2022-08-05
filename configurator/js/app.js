@@ -83,8 +83,6 @@ Alpine.store('properties', {
         }
         if (urlParams.get('a') != 'null' && urlParams.get('a') != '' && urlParams.get('a') != null) {
         this.currentAnimation = urlParams.get('a');
-        } else {
-
         }
     }
 });
