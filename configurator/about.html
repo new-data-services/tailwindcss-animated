@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="overflow-hidden">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -19,57 +19,310 @@
 
     <link rel="stylesheet" href="/css/app.css">
 </head>
-<body class="overflow-hidden"> 
-    <header x-data="{menu:false}" class="grid grid-cols-4 items-center bg-white text-gray-700 px-6 xl:px-16 justify-between w-full h-16">
+
+<body class="overflow-x-hidden"> 
+
+        <!-- Tailwind Viewport Indicator -->
+    <span 
+        x-data="{w: window.innerWidth,right: false, visible:true}" 
+        @click="right=!right" 
+        x-show="visible"
+        x-cloak
+        class="cursor-pointer text-xs fixed bottom-0 z-50 bg-white p-1 before:mr-1
+        before:content-['xs'] sm:before:content-['sm'] md:before:content-['md'] before:font-bold
+        lg:before:content-['lg'] xl:before:content-['xl'] 2xl:before:content-['2xl']" 
+        :class="right ? 'right-0':'left-0'" 
+        x-on:resize.window="w=window.innerWidth" 
+        x-html="w+' px'">
+    </span>
+
+    <header x-data="{menu:false}" class="grid grid-cols-4 gap-4 lg:flex items-center bg-white text-gray-700 px-6 lg:px-16 justify-between w-full h-16 z-20 fixed top-0">
         <a class="mr-auto" href="#">
-            <img class="w-32 transition mb-1" src="/images/icons/logo.svg" alt="">
+            <img class="w-32 transition mb-1 hidden lg:block" src="/images/icons/logo.svg" alt="">
+            <img class="w-32 transition mb-1 lg:hidden" src="/images/icons/wave.svg" alt="">
         </a>
 
-        <h1 class="uppercase mx-auto p text-gray-700 col-span-2 text-center leading-5">Tailwindcss Animated</h1>
+        <h1 class="uppercase mx-auto p text-gray-700 col-span-2 text-center leading-5 lg:hidden">Tailwindcss Animated</h1>
 
-        <button class="w-12 h-12 place-self-end self-center flex flex-col gap-3.5 justify-center px-1 items-center" @click="menu = !menu">
+        <button class="w-12 h-12 place-self-end self-center flex flex-col gap-3.5 justify-center px-1 items-center lg:hidden" @click="menu = !menu">
             <span :class="menu ? 'rotate-45 translate-y-2':''" class="block h-[3px] w-full bg-violet-500 transition"></span>
             <span :class="menu ? '-rotate-45 -translate-y-2':''" class="block h-[3px] w-full bg-violet-500 transition"></span>
         </button>
 
         <div class="absolute top-16 right-0" x-show="menu" x-collapse x-cloak>
-            <nav class=" flex flex-col bg-gray-100 p-4 px-6 text-gray-900 text-xl gap-3">
-                <a class="flex gap-3" href="#">
-                    <img class="w-4 invert opacity-50" src="/images/icons/arrow-right-white.svg" alt="">
+            <nav class=" flex flex-col bg-gray-100 p-4 px-6 text-gray-900 text-xl gap-3 lg:hidden">
+                <a class="flex gap-3 group" href="/">
+                    <img class="w-4 invert opacity-50 group-hover:translate-x-1 transition" src="/images/icons/arrow-right-white.svg" alt="">
                     
                     <span class="border-b border-violet-500">Configurator</span>
                 </a>
 
-                <a class="flex gap-3" href="/about.html">
-                    <img class="w-4 invert opacity-50" src="/images/icons/arrow-right-white.svg" alt="">
+                <a class="flex gap-3 group" href="/about.html">
+                    <img class="w-4 invert opacity-50 group-hover:translate-x-1 transition" src="/images/icons/arrow-right-white.svg" alt="">
                     
                     About
                 </a>
 
-                <a class="flex gap-3" href="#">
-                    <img class="w-4 invert opacity-50" src="/images/icons/arrow-right-white.svg" alt="">
+                <a class="flex gap-3 group" href="#">
+                    <img class="w-4 invert opacity-50 group-hover:translate-x-1 transition" src="/images/icons/arrow-right-white.svg" alt="">
                     
                     Docs
                 </a>
 
-                <a class="flex gap-3" href="https://github.com/orgs/new-data-services/repositories/tailwindcss-animated">
-                    <img class="w-4 invert opacity-50" src="/images/icons/arrow-right-white.svg" alt="">
+                <a class="flex gap-3 group" href="https://github.com/new-data-services/tailwindcss-animated">
+                    <img class="w-4 invert opacity-50 group-hover:translate-x-1 transition" src="/images/icons/arrow-right-white.svg" alt="">
                     
                     Github
                 </a>
             </nav>
+
         </div>
+
+        <nav class="gap-6 items-center justify-end hidden lg:flex">
+            <a href="/index.html">
+                Configurator
+            </a>
+
+            <a 
+            class="
+                relative after:content-[''] after:absolute after:left-0 after:bottom-0 
+                after:h-px after:w-full after:bg-violet-500"  
+                href="/about.html">
+                About
+            </a>
+
+            <a class="px-4 py-2 bg-cyan-500 hover:bg-opacity-70 text-gray-900 transition duration-75" href="#">Docs</a>
+
+            <a href="https://github.com/orgs/new-data-services/repositories/tailwindcss-animated">
+                <img class="invert opacity-50" src="/images/icons/github.svg" alt="">
+            </a>
+        </nav>
     </header>
 
-    <span class="block bg-gradient-to-r from-violet-500 to-cyan-500 h-[2px] w-full"></span>
+    <span class="block bg-gradient-to-r from-violet-500 to-cyan-500 h-[2px] w-full fixed top-16 z-20"></span>
 
 
-    <div x-data="{ open: false }">
-        <button @click="open = true">Expand</button>
-     
-        <span x-show="open">
-          Content...
-        </span>
-    </div>
-</body> 
+    
+
+
+    <section class="relative flex items-center justify-center bg-white mt-16 px-6">
+        <img class="w-[65vw] hidden md:block absolute left-0 -translate-x-1/2 md:-translate-x-1/4 bottom-0 translate-y-16 md:translate-y-24" src="/images/icons/wave.svg" alt="">
+        <img class="w-[80vw] hidden md:block absolute -right-[30vw] top-0 translate-x-24 -translate-y-16 md:translate-x-8 md:-translate-y-32 2xl:-translate-y-44" src="/images/icons/wave.svg" alt="">
+
+        <div class="relative bg-white inline-block text-center max-w-xl my-24 md:my-32 xl:my-64 2xl:p-8">
+            <h1 class="mb-4">Build your custom <br> animations with ease.</h1>
+
+            <h4>
+                <a href="#" class="text-violet-500 hover:text-violet-300 transition duration-75">
+                    Add the Tailwind-Animated plugin
+                </a> 
+
+                to your Tailwindcss project and generate your animation using the 
+
+                <a href="/index" class="text-violet-500 hover:text-violet-300 transition duration-75">
+                    configurator.
+                </a> 
+            </h4>
+        </div>
+    </section>
+
+    <section class="py-16 lg:py-32 bg-gray-100 px-6 bg-opacity-50">
+        <div class="grid lg:grid-cols-2 max-w-6xl mx-auto items-center gap-16">
+            <div>
+                <h2 class="mb-6">Get in full control.</h2>
+                
+                <p class="text-gray-700">
+                    Set all the CSS animation properties with the interactive configurator without 
+                    even touching the code. Opt in every property required for your needs.
+                </p>
+            </div>
+
+            <ul class="text-violet-300 space-y-8 p-10 bg-gray-900">
+                <li>animation-duration</li>
+                <li>animation-delay</li>
+                <li>animation-iteration-count</li>
+                <li>animation-direction</li>
+                <li>animation-fill-mode</li>
+                <li>animation-timing-function</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="bg-gray-900 relative overflow-hidden py-16 lg:py-32 px-6 lg:px-16">
+        <img class="w-[65vw] filter blur-[100px] hidden md:block absolute left-0 -translate-x-1/2 md:-translate-x-1/4 bottom-0 translate-y-16 md:translate-y-24" src="/images/icons/wave.svg" alt="">
+        <img class="w-[80vw] filter blur-[100px] hidden md:block absolute -right-[30vw] top-0 translate-x-24 -translate-y-16 md:translate-x-8 md:-translate-y-32 2xl:-translate-y-44" src="/images/icons/wave.svg" alt="">
+
+        <span class="bg-[url('/images/wave-pattern.svg')] absolute left-0 right-0 top-0 bottom-0"></span>
+        <div class="relative z-10 text-white grid md:grid-cols-2 xl:grid-cols-4 gap-16 items-center">
+            <div>
+            <h2 class="text-white mb-4">JIT support for tiny build sizes.</h2>
+
+            <p class="text-white">
+                You might be concerned that all the unused premade animations could slow down your application? <br>
+                We’ve got you covered.  <br>
+                The Animated plugin makes use of Tailwinds 
+                <a class="text-cyan-500 hover:opacity-70 whitespace-nowrap underline transition duration-75" href="https://tailwindcss.com/docs/upgrade-guide#migrating-to-the-jit-engine">
+                    Just-in-Time engine
+                </a>
+                , effectively removing everything that you did not use in your project.
+            </p>
+            </div>
+
+            <img class="mx-auto" src="/images/spaceship.svg" alt="">
+
+            <div>
+            <h2 class="text-white mb-4">Ready to go in like a minute.</h2>
+
+            <p class="text-white">
+                Install the plugin with a single command in your terminal. Take a look at the 
+                <a class="text-cyan-500 hover:opacity-70 whitespace-nowrap underline transition duration-75" href="#">
+                    docs
+                </a> 
+                for a detailed guide.
+            </p>
+            </div>
+
+            <div class="bg-gray-900 border-[5px] border-gray-700 p-5 h-64">
+                <span class="block text-gray-700">> npm install -D tailwindcss</span>
+                <span class="block text-gray-700">> npx tailwindcss init</span>
+                <span class="block text-cyan-500 after:content-[''] after:p-1 after:bg-white after:ml-1 after:py-px">
+                    <span class="text-violet-500">
+                        >
+                    </span>
+
+                    npm install -D tailwindcss-animated
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 lg:py-32 bg-white px-6">
+        <div class="grid lg:grid-cols-2 max-w-6xl mx-auto items-center gap-16">
+            <div>
+                <h2 class="mb-6">Ships with the most commonly used premade animations.</h2>
+                
+                <p class="text-gray-500">
+                    Quickly need some animations to spice up your application? <br>
+                    Simply use some of the premade animations with different levels of complexity. 
+                    You can still apply all of the available CSS properties to make it fit into your project perfectly.
+                </p>
+            </div>
+
+            <ul class="text-violet-300 p-10 bg-gray-900 grid grid-cols-2 gap-4">
+                <li>wiggle</li>
+                <li>wiggle-more</li>
+                <li>rotate-y</li>
+                <li>rotate-x</li>
+                <li>jump</li>
+                <li>jump-in</li>
+                <li>jump-out</li>
+                <li>spin</li>
+                <li>ping</li>
+                <li>pulse</li>
+                <li>bounce</li>
+                <li>shake</li>
+                <li>fade</li>
+                <li>fade-down</li>
+                <li>fade-up</li>
+                <li>fade-left</li>
+                <li>fade-right</li>
+                <li>flip-up</li>
+                <li>flip-down</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="py-16 lg:py-32 bg-gray-100 bg-opacity-50 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col items-center">
+            <h2 class="mb-16 max-w-4xl w-full">
+                Still not convinced?  <br>
+                Then take a look at the <a class="text-violet-500 hover:text-violet-300 transition duration-75" href="/index">animation configurator.</a>
+            </h2>
+
+            <img class="w-full mb-8" src="/images/configurator-screenshot.jpg" alt="">
+
+            <ul class="h3 space-y-8 max-w-4xl mb-16 w-full">
+                
+                <li class="flex gap-4 items-start">
+                    <img class="w-9 filter brightness-0 my-1.5" src="/images/icons/wave.svg" alt="">
+
+                    Control all the plugins' options with an interactive interface
+                </li>
+                
+                <li class="flex gap-4 items-start">
+                    <img class="w-9 filter brightness-0 my-1.5" src="/images/icons/wave.svg" alt="">
+
+                    Play your animation inside the editor to see it in action
+                </li>
+                
+                <li class="flex gap-4 items-start">
+                    <img class="w-9 filter brightness-0 my-1.5" src="/images/icons/wave.svg" alt="">
+
+                    Check your animations look on a button, image, text and many more
+                </li>
+                
+                <li class="flex gap-4 items-start">
+                    <img class="w-9 filter brightness-0 my-1.5" src="/images/icons/wave.svg" alt="">
+
+                    View all premade animations and customize them on a fly
+                </li>
+                
+                <li class="flex gap-4 items-start">
+                    <img class="w-9 filter brightness-0 my-1.5" src="/images/icons/wave.svg" alt="">
+
+                    Get all the required classes with just one click and simply paste them into your projects code to recreate that exact animation
+                </li>
+            </ul>
+
+            <a href="/index.html" class="inline-flex items-center gap-2 py-2 px-3 bg-violet-500 text-white hover:bg-opacity-80">
+                Try now
+
+                <img class="w-5" src="/images/icons/arrow-right-white.svg" alt="">
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 relative overflow-hidden py-16 lg:py-32 lg:px-48 px-6">
+        <img class="w-[80vw] filter blur-[100px] hidden md:block absolute -right-[30vw] top-0" src="/images/icons/wave.svg" alt="">
+
+        <span class="bg-[url('/images/wave-pattern.svg')] absolute left-0 right-0 top-0 bottom-0"></span>
+        <div class="relative z-10 text-white gap-16 sm:items-center flex justify-between flex-col sm:flex-row">
+            <div class="flex flex-col gap-4">
+                <a class="inline-block font-bold text-2xl border-b-[3px] border-white mr-auto hover:border-cyan-500" href="/index">Configurator</a>
+
+                <a class="inline-block font-bold text-2xl border-b-[3px] border-white mr-auto hover:border-cyan-500" href="#">Docs</a>
+
+                <a class="block" href="#">Imprint</a>
+
+                <a class="block" href="#">Privacy</a>
+            </div>
+
+            <div class="flex flex-col h-full justify-center">
+                <img class="w-48 mb-8" src="/images/rgb_nds-logo-white.svg" alt="">
+
+                <div class="flex w-full justify-between">
+                    <a href="#">
+                        <img class="hover:opacity-70 transition duration-75" src="/images/icons/instagram.svg" alt="">
+                    </a>
+
+                    <a href="#">
+                        <img class="hover:opacity-70 transition duration-75" src="/images/icons/github.svg" alt="">
+                    </a>
+
+                    <a href="#">
+                        <img class="hover:opacity-70 transition duration-75" src="/images/icons/web.svg" alt="">
+                    </a>
+
+                    <a href="#">
+                        <img class="hover:opacity-70 transition duration-75" src="/images/icons/facebook.svg" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+
+    <script type="module" src="/js/about.js"></script>
+</body>
+
 </html>
