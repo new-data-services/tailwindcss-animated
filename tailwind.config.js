@@ -3,6 +3,9 @@ module.exports = {
         './configurator/**/*.html',
         './configurator/js/**/*.js',
     ],
+    safelist: [{
+        pattern: /animate-./
+    }],
     theme: {
         extend: {
             colors: {
@@ -48,5 +51,6 @@ module.exports = {
                 '[x-cloak]': { display: 'none !important' },
             })
         ),
+        require('./src/index.js'),
     ],
 }
