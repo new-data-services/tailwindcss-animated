@@ -46,7 +46,7 @@ There are several animations that can be integrated with a single utility class.
 Open the configurator to see them in action:<br>
 https://tailwindcss-animated.com/preview/
 
-All animations can be customized with the utilities classes below.
+All animations can be customized with the utility classes below.
 
 ### Duration
 
