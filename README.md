@@ -111,6 +111,15 @@ All animations can be customized with the utility classes below.
 | animate-fill-backwards | animation-fill-mode: backwards; |
 | animate-fill-both | animation-fill-mode: both; |
 
+### Play State
+
+| Class | Properties |
+|-----|-----|
+| animate-run | animation-play-state: running; |
+| animate-play | animation-play-state: running; |
+| animate-stop | animation-play-state: paused; |
+| animate-pause | animation-play-state: paused; |
+
 ## Variant modifiers and breakpoints
 
 All variants and breakpoints (hover, focus, lg, ...) work with animations und animation utility classes.
