@@ -1,7 +1,7 @@
 module.exports = {
     content: [
-        './configurator/**/*.html',
-        './configurator/js/**/*.js',
+        './website/**/*.html',
+        './website/js/**/*.js',
     ],
     safelist: [{
         pattern: /animate-./
@@ -47,11 +47,6 @@ module.exports = {
         },
     },
     plugins: [
-        require('tailwindcss/plugin')(
-            ({ addBase }) => addBase({
-                '[x-cloak]': { display: 'none !important' },
-            }),
-        ),
-        require('./src/index.js'),
+        require('./../src/index.js'),
     ],
-}
+};

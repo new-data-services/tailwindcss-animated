@@ -1,6 +1,6 @@
 {
     "name": "tailwindcss-animated",
-    "version": "0.0.4",
+    "version": "0.1.0",
     "description": "Extended animation utilities for Tailwind CSS",
     "author": "new-data-services",
     "license": "MIT",
@@ -19,29 +19,28 @@
     ],
     "main": "src/index.js",
     "scripts": {
-        "dev": "vite",
-        "watch": "vite",
-        "prod": "vite build",
-        "build": "vite build",
-        "preview": "vite preview",
+        "dev": "vite --config ./website/vite.config.js",
+        "watch": "npm run dev",
+        "prod": "vite build --config ./website/vite.config.js",
+        "build": "npm run prod",
+        "preview": "vite preview --config ./website/vite.config.js",
         "lint": "npm run eslint",
-        "eslint": "node node_modules/eslint/bin/eslint.js --config ./.build/cs/.eslintrc.js {src,configurator}/**/*.js"
+        "eslint": "node node_modules/eslint/bin/eslint.js --config ./.build/cs/.eslintrc.js {src,website}/**/*.js"
     },
     "peerDependencies": {
-        "tailwindcss": ">=3.1.6"
+        "tailwindcss": ">=3.1.0"
     },
     "devDependencies": {
-        "alpinejs": "^3.10.2",
-        "autoprefixer": "^10.4.7",
-        "eslint": "^8.19.0",
+        "@alpinejs/collapse": "^3.10.3",
+        "alpinejs": "^3.10.3",
+        "autoprefixer": "^10.4.8",
+        "eslint": "^8.21.0",
         "glob": "^8.0.3",
-        "postcss": "^8.4.14",
+        "postcss": "^8.4.16",
         "postcss-discard-comments": "^5.1.2",
         "postcss-import": "^14.1.0",
-        "tailwindcss": "^3.1.6",
-        "vite": "^2.9.14"
+        "tailwindcss": "^3.1.0",
+        "vite": "^3.0.4"
     },
-    "dependencies": {
-        "@alpinejs/collapse": "^3.10.2"
-    }
+    "dependencies": {}
 }

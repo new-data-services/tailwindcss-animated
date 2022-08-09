@@ -173,3 +173,6 @@ input[type=number] {
   word-spacing: 9999px;
 }
 
+[x-cloak] {
+    display: none !important;
+}
