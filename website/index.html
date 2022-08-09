@@ -829,30 +829,6 @@
                                             if (el.value < 1) {
                                                 el.value = null;
                                             }
-                                            if (el.value < 83) {
-                                                el.value = 75;
-                                            }
-                                            else if (el.value < 125) {
-                                                el.value = 100;
-                                            }
-                                            else if (el.value < 175) {
-                                                el.value = 150;
-                                            }
-                                            else if (el.value < 250) {
-                                                el.value = 200;
-                                            }
-                                            else if (el.value < 400) {
-                                                el.value = 300;
-                                            }
-                                            else if (el.value < 600) {
-                                                el.value = 500;
-                                            }
-                                            else if (el.value < 850) {
-                                                el.value = 700;
-                                            }
-                                            else {
-                                                el.value = 1000;
-                                            }
                                         }
                                         store.properties.modifyProperty(property, el.value);
                                         el.blur()
@@ -861,42 +837,6 @@
                                         if (el.value != null) {
                                             if (el.value < 1) {
                                                 el.value = null;
-                                            }
-                                            if (el.value < 83) {
-                                                el.value = 75;
-                                            }
-                                            else if (el.value < 125) {
-                                                el.value = 100;
-                                            }
-                                            else if (el.value < 175) {
-                                                el.value = 150;
-                                            }
-                                            else if (el.value < 250) {
-                                                el.value = 200;
-                                            }
-                                            else if (el.value < 400) {
-                                                el.value = 300;
-                                            }
-                                            else if (el.value < 600) {
-                                                el.value = 500;
-                                            }
-                                            else if (el.value < 850) {
-                                                el.value = 700;
-                                            }
-                                            else if (el.value < 1250) {
-                                                el.value = 1000;
-                                            }
-                                            else if (el.value < 1750) {
-                                                el.value = 1500;
-                                            }
-                                            else if (el.value < 2500) {
-                                                el.value = 2000;
-                                            }
-                                            else if (el.value < 4000) {
-                                                el.value = 3000;
-                                            }
-                                            else {
-                                                el.value = 5000;
                                             }
                                         }
                                         store.properties.modifyProperty(property, el.value);
@@ -1149,8 +1089,54 @@
                             ($store.properties.direction != null ? (' animate-' + $store.properties.direction) : '') +
                             ($store.properties.fillmode != null ? (' animate-fill-' + $store.properties.fillmode) : '') +
                             ($store.properties.easing != null ? (' animate-' + $store.properties.easing) : '') +
-                            ($store.properties.duration != null && $store.properties.duration != '' ? (' animate-duration-' + $store.properties.duration) : '') +
-                            ($store.properties.delay != null && $store.properties.delay != '' ? (' animate-delay-' + $store.properties.delay) : '')
+
+                            ($store.properties.delay != null && $store.properties.delay != '' ? 
+                                ( 
+                                    $store.properties.delay != 75 && 
+                                    $store.properties.delay != 100 && 
+                                    $store.properties.delay != 150 && 
+                                    $store.properties.delay != 200 && 
+                                    $store.properties.delay != 300 && 
+                                    $store.properties.delay != 500 && 
+                                    $store.properties.delay != 700 && 
+                                    $store.properties.delay != 1000 ?
+                                        (
+                                            ' animate-delay-[' + $store.properties.delay + 'ms]'
+                                        )
+                                        :
+                                        (
+                                            ' animate-delay-' + $store.properties.delay
+                                        )
+                                ) 
+                                : 
+                                ''
+                            ) +
+
+                            ($store.properties.duration != null && $store.properties.duration != '' ? 
+                                ( 
+                                    $store.properties.duration != 75 && 
+                                    $store.properties.duration != 100 && 
+                                    $store.properties.duration != 150 && 
+                                    $store.properties.duration != 200 && 
+                                    $store.properties.duration != 300 && 
+                                    $store.properties.duration != 500 && 
+                                    $store.properties.duration != 700 && 
+                                    $store.properties.duration != 1000 && 
+                                    $store.properties.duration != 1500 && 
+                                    $store.properties.duration != 2000 &&
+                                    $store.properties.duration != 3000 && 
+                                    $store.properties.duration != 5000 ?
+                                        (
+                                            ' animate-duration-[' + $store.properties.duration + 'ms]'
+                                        )
+                                        :
+                                        (
+                                            ' animate-duration-' + $store.properties.duration
+                                        )
+                                ) 
+                                : 
+                                ''
+                            )
                             "
                         >
                         </div>
