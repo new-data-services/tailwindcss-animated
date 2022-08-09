@@ -41,7 +41,8 @@ module.exports = {
                 },
             },
             fontFamily: {
-                sans: ['Roboto', 'ui-sans-serif', 'system-ui', '-apple-system', 'Roboto', 'Arial', 'sans-serif'],
+                sans: ['Ubuntu', 'ui-sans-serif', 'system-ui', '-apple-system', 'Roboto', 'Arial', 'sans-serif'],
+                mono: ['Ubuntu-Mono', 'ui-sans-serif', 'system-ui', '-apple-system', 'Roboto', 'Arial', 'sans-serif'],
             },
         },
     },
@@ -49,7 +50,7 @@ module.exports = {
         require('tailwindcss/plugin')(
             ({ addBase }) => addBase({
                 '[x-cloak]': { display: 'none !important' },
-            })
+            }),
         ),
         require('./src/index.js'),
     ],

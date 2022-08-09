@@ -1,15 +1,42 @@
 @layer base {
-    /* Remove me */
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-    /*
     @font-face {
-        font-family: 'Roboto';
+        font-family: 'Ubuntu';
         font-style: normal;
-        font-weight: 400;
         font-display: swap;
-        src: url('/fonts/roboto-v27-latin-regular.woff2') format('woff2'),
-             url('/fonts/roboto-v27-latin-regular.woff') format('woff');
+        src:  url('/fonts/Ubuntu-Light.ttf') format('truetype');
+        font-weight: 300;
     }
-    */
+
+    @font-face {
+        font-family: 'Ubuntu';
+        font-style: normal;
+        font-display: swap;
+        src:  url('/fonts/Ubuntu-Regular.ttf') format('truetype');
+        font-weight: 400;
+    }
+
+    @font-face {
+        font-family: 'Ubuntu';
+        font-style: normal;
+        font-display: swap;
+        src:  url('/fonts/Ubuntu-Medium.ttf') format('truetype');
+        font-weight: 500;
+    }
+
+    @font-face {
+        font-family: 'Ubuntu';
+        font-style: normal;
+        font-display: swap;
+        src:  url('/fonts/Ubuntu-Bold.ttf') format('truetype');
+        font-weight: 700;
+    }
+
+    @font-face {
+        font-family: 'Ubuntu-Mono';
+        font-style: normal;
+        font-display: swap;
+        src:  url('/fonts/UbuntuMono-Regular.ttf') format('truetype');
+        font-weight: 400;
+    }
 }
