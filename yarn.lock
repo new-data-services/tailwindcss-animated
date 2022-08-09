@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@alpinejs/collapse@^3.10.2":
-  version "3.10.2"
-  resolved "https://registry.yarnpkg.com/@alpinejs/collapse/-/collapse-3.10.2.tgz#c7c10db6ebf42499b02a4fa32b7440c5828e58a4"
-  integrity sha512-ZI7ysUXPjtrdI61dyF23vNRnDLWW/BMeqrdoQtUMENHx7lsYAKvG9asFUM8hV0eF7KVQiHz/K9oV3qX2i6UXhQ==
+"@alpinejs/collapse@^3.10.3":
+  version "3.10.3"
+  resolved "https://registry.yarnpkg.com/@alpinejs/collapse/-/collapse-3.10.3.tgz#ffadf065e4bdd3a715916f8f517f81ab5d735745"
+  integrity sha512-AG0OwpOgOB2xt3dBYJUijkXrjzDtonni7PKzqgYwk4k9pbz9QRjmQl4TY7ACz1gjgI2kAzMbgJIvbKb6J4XL0w==
 
 "@esbuild/linux-loong64@0.14.54":
   version "0.14.54"
@@ -1206,7 +1206,7 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-tailwindcss@^3.1.8:
+tailwindcss@^3.1.0:
   version "3.1.8"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.1.8.tgz#4f8520550d67a835d32f2f4021580f9fddb7b741"
   integrity sha512-YSneUCZSFDYMwk+TGq8qYFdCA3yfBRdBlS7txSq0LUmzyeqRe3a8fBQzbz9M3WS/iFT4BNf/nmw9mEzrnSaC0g==
