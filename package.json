@@ -31,15 +31,15 @@
         "tailwindcss": ">=3.1.6"
     },
     "devDependencies": {
-        "alpinejs": "^3.10.2",
-        "autoprefixer": "^10.4.7",
-        "eslint": "^8.19.0",
+        "alpinejs": "^3.10.3",
+        "autoprefixer": "^10.4.8",
+        "eslint": "^8.21.0",
         "glob": "^8.0.3",
-        "postcss": "^8.4.14",
+        "postcss": "^8.4.16",
         "postcss-discard-comments": "^5.1.2",
         "postcss-import": "^14.1.0",
-        "tailwindcss": "^3.1.6",
-        "vite": "^2.9.14"
+        "tailwindcss": "^3.1.8",
+        "vite": "^3.0.4"
     },
     "dependencies": {
         "@alpinejs/collapse": "^3.10.2"
