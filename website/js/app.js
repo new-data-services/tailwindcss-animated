@@ -13,48 +13,49 @@ Alpine.store('properties', {
     easing: null,
     currentAnimation: 'fade-up',
     classList() {
-     let list = (this.currentAnimation != null ? ('animate-' + this.currentAnimation) : '') + 
+     let list = (this.currentAnimation != null ? ('animate-' + this.currentAnimation) : '') +
             (this.timing != null ? (' animate-' + this.timing) : '') +
             (this.direction != null ? (' animate-' + this.direction) : '') +
             (this.fillmode != null ? (' animate-fill-' + this.fillmode) : '') +
             (this.easing != null ? (' animate-' + this.easing) : '') +
 
-            (this.delay != null && this.delay != '' ? 
-                ( 
-                    this.delay != 75 && 
-                    this.delay != 100 && 
-                    this.delay != 150 && 
-                    this.delay != 200 && 
-                    this.delay != 300 && 
-                    this.delay != 500 && 
-                    this.delay != 700 && 
+            (this.delay != null && this.delay != '' ?
+                (
+                    this.delay != 75 &&
+                    this.delay != 100 &&
+                    this.delay != 150 &&
+                    this.delay != 200 &&
+                    this.delay != 300 &&
+                    this.delay != 500 &&
+                    this.delay != 700 &&
                     this.delay != 1000 ?
                         (' animate-delay-[' + this.delay + 'ms]')
                         :
                         (' animate-delay-' + this.delay)
-                ) 
-                : 
+                )
+                :
                 ''
             ) +
 
-            (this.duration != null && this.duration != '' ? 
-                ( 
-                    this.duration != 75 && 
-                    this.duration != 100 && 
-                    this.duration != 150 && 
-                    this.duration != 200 && 
-                    this.duration != 300 && 
-                    this.duration != 500 && 
-                    this.duration != 700 && 
+            (this.duration != null && this.duration != '' ?
+                (
+                    this.duration != 75 &&
+                    this.duration != 100 &&
+                    this.duration != 150 &&
+                    this.duration != 200 &&
+                    this.duration != 300 &&
+                    this.duration != 500 &&
+                    this.duration != 700 &&
                     this.duration != 1000 ?
                         (' animate-duration-[' + this.duration + 'ms]')
                         :
                         (' animate-duration-' + this.duration)
-                ) 
-                : 
+                )
+                :
                 ''
-            )
-            return list
+            );
+
+            return list;
     },
 
     //alter property values
