@@ -7,6 +7,11 @@
   resolved "https://registry.yarnpkg.com/@alpinejs/collapse/-/collapse-3.10.3.tgz#ffadf065e4bdd3a715916f8f517f81ab5d735745"
   integrity sha512-AG0OwpOgOB2xt3dBYJUijkXrjzDtonni7PKzqgYwk4k9pbz9QRjmQl4TY7ACz1gjgI2kAzMbgJIvbKb6J4XL0w==
 
+"@alpinejs/intersect@^3.10.3":
+  version "3.10.3"
+  resolved "https://registry.yarnpkg.com/@alpinejs/intersect/-/intersect-3.10.3.tgz#9aebf43b40e02b0f53e244229472cc3f1d1ed304"
+  integrity sha512-vMRvhbMJzS1tupb2a/3GF5H+gLxxWaXJpcxJlfSHrV2JTb+RFWOJIkL/63JpPPGibtpaNBDrx3hsRN0CJ4d5mw==
+
 "@esbuild/linux-loong64@0.14.54":
   version "0.14.54"
   resolved "https://registry.yarnpkg.com/@esbuild/linux-loong64/-/linux-loong64-0.14.54.tgz#de2a4be678bd4d0d1ffbb86e6de779cde5999028"

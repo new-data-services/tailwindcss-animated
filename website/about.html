@@ -106,23 +106,29 @@
 
 
     <section class="relative flex items-center justify-center bg-white mt-16 px-6">
-        <img class="w-[65vw] hidden md:block absolute left-0 -translate-x-1/2 md:-translate-x-1/4 bottom-0 translate-y-16 md:translate-y-24" src="/images/icons/wave.svg" alt="">
-        <img class="w-[80vw] hidden md:block absolute -right-[30vw] top-0 translate-x-24 -translate-y-16 md:translate-x-8 md:-translate-y-32 2xl:-translate-y-44" src="/images/icons/wave.svg" alt="">
+        <div class="w-full h-full absolute animate-fade animate-ease-in animate-fill-backwards animate-duration-[2000ms] animate-delay-1000">
+            <div class="absolute flex items-center justify-center w-full h-full animate-ease-in animate-duration-[2000ms] animate-spin animate-once animate-reverse">
+                <img class=" w-[50vw] lg:w-[65vw] hidden md:block absolute left-0 -translate-x-1/2 md:-translate-x-1/4 bottom-0 translate-y-8 lg:translate-y-24" src="/images/icons/wave.svg" alt="">
+                <img class=" w-[80vw] hidden md:block absolute -right-[30vw] top-0 translate-x-24 -translate-y-16 md:translate-x-8 md:-translate-y-24 lg:-translate-y-32 2xl:-translate-y-44" src="/images/icons/wave.svg" alt="">
+            </div>
+        </div>
 
-        <div class="relative bg-white inline-block text-center max-w-xl my-24 md:my-32 xl:my-64 2xl:p-8">
-            <h1 class="mb-4">Build your custom <br> animations with ease.</h1>
-
-            <h4>
-                <a href="#" class="text-violet-500 hover:text-violet-300 transition duration-75">
-                    Add the Tailwind-Animated plugin
-                </a> 
-
-                to your Tailwindcss project and generate your animation using the 
-
-                <a href="/index" class="text-violet-500 hover:text-violet-300 transition duration-75">
-                    configurator.
-                </a> 
-            </h4>
+        <div class="relative bg-white inline-block text-center max-w-xl my-24 md:my-32 xl:my-64 2xl:p-8 animate-fade-up animate-ease-out animate-duration-[500ms] animate-delay-300">
+            <div class="animate-flip-up animate-once animate-ease-out animate-duration-[1500ms]">
+                <h1 class="mb-4">Build your custom <br> animations with ease.</h1>
+    
+                <h4>
+                    <a href="#" class="text-violet-500 hover:text-violet-300 transition duration-75">
+                        Add the Tailwind-Animated plugin
+                    </a> 
+    
+                    to your Tailwindcss project and generate your animation using the 
+    
+                    <a href="/index" class="text-violet-500 hover:text-violet-300 transition duration-75">
+                        configurator.
+                    </a> 
+                </h4>
+            </div>
         </div>
     </section>
 
@@ -149,29 +155,29 @@
     </section>
 
     <section class="bg-gray-900 relative overflow-hidden py-16 lg:py-32 px-6 lg:px-16">
-        <img class="w-[65vw] filter blur-[100px] hidden md:block absolute left-0 -translate-x-1/2 md:-translate-x-1/4 bottom-0 translate-y-16 md:translate-y-24" src="/images/icons/wave.svg" alt="">
-        <img class="w-[80vw] filter blur-[100px] hidden md:block absolute -right-[30vw] top-0 translate-x-24 -translate-y-16 md:translate-x-8 md:-translate-y-32 2xl:-translate-y-44" src="/images/icons/wave.svg" alt="">
+        <img class="w-[65vw] animate-spin animate-infinite animate-alternate animate-ease-in-out animate-duration-[5000ms] filter blur-[100px] hidden md:block absolute left-0 -translate-x-1/2 md:-translate-x-1/4 bottom-0 translate-y-16 md:translate-y-24" src="/images/icons/wave.svg" alt="">
+        <img class="w-[80vw] animate-spin animate-infinite animate-alternate animate-ease-in-out animate-duration-[5000ms] animate-delay-1000 filter blur-[100px] hidden md:block absolute -right-[30vw] top-0 translate-x-24 -translate-y-16 md:translate-x-8 md:-translate-y-32 2xl:-translate-y-44" src="/images/icons/wave.svg" alt="">
 
         <span class="bg-[url('/images/wave-pattern.svg')] absolute left-0 right-0 top-0 bottom-0"></span>
-        <div class="relative z-10 text-white grid md:grid-cols-2 xl:grid-cols-4 gap-16 items-center">
-            <div>
-            <h2 class="text-white mb-4">JIT support for tiny build sizes.</h2>
+        <div x-data="{intersect:false}" x-intersect:enter="intersect=true" x-intersect:leave="intersect=false" class="relative z-10 text-white grid md:grid-cols-2 xl:grid-cols-4 gap-16 items-center">
+            <div :class="intersect ? 'animate-fade-left animate-ease-out':'opacity-0'">
+            <h2 class="text-white mb-4" :class="intersect ? 'animate-fade-up animate-duration-1000 animate-delay-500':'opacity-0'">JIT support for tiny build sizes.</h2>
 
             <p class="text-white">
                 You might be concerned that all the unused premade animations could slow down your application? <br>
                 We’ve got you covered.  <br>
                 The Animated plugin makes use of Tailwinds 
-                <a class="text-cyan-500 hover:opacity-70 whitespace-nowrap underline transition duration-75" href="https://tailwindcss.com/docs/upgrade-guide#migrating-to-the-jit-engine">
+                <a class="text-cyan-500 hover:opacity-70 whitespace-nowrap underline transition duration-75" target="_blank" href="https://tailwindcss.com/docs/upgrade-guide#migrating-to-the-jit-engine">
                     Just-in-Time engine
                 </a>
                 , effectively removing everything that you did not use in your project.
             </p>
             </div>
 
-            <img class="mx-auto" src="/images/spaceship.svg" alt="">
+            <img :class="intersect ? 'animate-fade-left animate-ease-out animate-delay-100':'opacity-0'" class="mx-auto" src="/images/spaceship.svg" alt="">
 
-            <div>
-            <h2 class="text-white mb-4">Ready to go in like a minute.</h2>
+            <div :class="intersect ? 'animate-fade-left animate-ease-out animate-delay-200':'opacity-0'">
+            <h2 class="text-white mb-4" :class="intersect ? 'animate-fade-up animate-duration-1000 animate-delay-700':'opacity-0'">Ready to go in like a minute.</h2>
 
             <p class="text-white">
                 Install the plugin with a single command in your terminal. Take a look at the 
@@ -182,7 +188,7 @@
             </p>
             </div>
 
-            <div class="bg-gray-900 border-[5px] border-gray-700 p-5 h-64">
+            <div :class="intersect ? 'animate-fade-left animate-ease-out animate-delay-300':'opacity-0'" class="bg-gray-900 border-[5px] border-gray-700 p-5 h-64">
                 <span class="block text-gray-700">> npm install -D tailwindcss</span>
                 <span class="block text-gray-700">> npx tailwindcss init</span>
                 <span class="block text-cyan-500 after:content-[''] after:p-1 after:bg-white after:ml-1 after:py-px">
@@ -199,7 +205,7 @@
     <section class="py-16 lg:py-32 bg-white px-6">
         <div class="grid lg:grid-cols-2 max-w-6xl mx-auto items-center gap-16">
             <div>
-                <h2 class="mb-6">Ships with the most commonly used premade animations.</h2>
+                <h2 x-data="{intersect:false}" x-intersect:enter="intersect=true" x-intersect:leave="intersect=false" class="mb-6" :class="intersect ? 'animate-fade-up animate-duration-1000 animate-delay-300':'opacity-0'">Ships with the most commonly used premade animations.</h2>
                 
                 <p class="text-gray-500">
                     Quickly need some animations to spice up your application? <br>
@@ -208,26 +214,31 @@
                 </p>
             </div>
 
-            <ul class="text-violet-300 p-10 bg-gray-900 grid grid-cols-2 gap-4">
-                <li>wiggle</li>
-                <li>wiggle-more</li>
-                <li>rotate-y</li>
-                <li>rotate-x</li>
-                <li>jump</li>
-                <li>jump-in</li>
-                <li>jump-out</li>
-                <li>spin</li>
-                <li>ping</li>
-                <li>pulse</li>
-                <li>bounce</li>
-                <li>shake</li>
-                <li>fade</li>
-                <li>fade-down</li>
-                <li>fade-up</li>
-                <li>fade-left</li>
-                <li>fade-right</li>
-                <li>flip-up</li>
-                <li>flip-down</li>
+            <ul x-data="{intersect:false}" x-intersect:enter="intersect=true" x-intersect:leave="intersect=false" class="text-violet-300 p-10 bg-gray-900 grid grid-cols-2 gap-4">
+                <div class="flex flex-col gap-4">
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-100':''">wiggle</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-200':''">wiggle-more</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-300':''">rotate-y</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[400ms]':''">rotate-x</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-500':''">jump</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[600ms]':''">jump-in</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-700':''">jump-out</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[800ms]':''">spin</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[900ms]':''">ping</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-1000':''">pulse</li>
+                </div>
+
+                <div class="flex flex-col gap-4">
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[1100ms]':''">bounce</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[1200ms]':''">shake</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[1300ms]':''">fade</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[1400ms]':''">fade-down</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[1500ms]':''">fade-up</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[1600ms]':''">fade-left</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[1700ms]':''">fade-right</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[1800ms]':''">flip-up</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[1900ms]':''">flip-down</li>
+                </div>
             </ul>
         </div>
     </section>
@@ -239,7 +250,7 @@
                 Then take a look at the <a class="text-violet-500 hover:text-violet-300 transition duration-75" href="/index">animation configurator.</a>
             </h2>
 
-            <img class="w-full mb-8" src="/images/configurator-screenshot.jpg" alt="">
+            <img x-data="{intersect:false}" x-intersect:enter="intersect=true" x-intersect:leave="intersect=false" :class="intersect ? 'animate-fade-up animate-duration-1000 animate-delay-500':'opacity-0'" class="w-full mb-8" src="/images/configurator-screenshot.jpg" alt="">
 
             <ul class="h3 space-y-8 max-w-4xl mb-16 w-full">
                 
@@ -274,16 +285,16 @@
                 </li>
             </ul>
 
-            <a href="/index.html" class="inline-flex items-center gap-2 py-2 px-3 bg-violet-500 text-white hover:bg-opacity-80">
+            <a href="/index.html" class="inline-flex items-center gap-2 py-4 px-6 bg-violet-500 text-white hover:bg-opacity-80 h4 group">
                 Try now
 
-                <img class="w-5" src="/images/icons/arrow-right-white.svg" alt="">
+                <img class="w-6 group-hover:translate-x-1 transition" src="/images/icons/arrow-right-white.svg" alt="">
             </a>
         </div>
     </section>
 
     <footer class="bg-gray-900 relative overflow-hidden py-16 lg:py-32 lg:px-48 px-6">
-        <img class="w-[80vw] filter blur-[100px] hidden md:block absolute -right-[30vw] top-0" src="/images/icons/wave.svg" alt="">
+        <img class="w-[80vw] filter blur-[150px] hidden md:block absolute -right-[30vw] top-0 animate-spin animate-infinite animate-alternate animate-ease-in-out animate-duration-[10000ms]" src="/images/icons/wave.svg" alt="">
 
         <span class="bg-[url('/images/wave-pattern.svg')] absolute left-0 right-0 top-0 bottom-0"></span>
         <div class="relative z-10 text-white gap-16 sm:items-center flex justify-between flex-col sm:flex-row">
