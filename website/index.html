@@ -1,59 +1,10 @@
-<!DOCTYPE html>
-<html lang="en" class="overflow-hidden">
+{% extends "website/views/layout.html" %}
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="format-detection" content="telephone=no">
+{% block title %}
+    Configurator | Tailwind CSS Animated
+{% endblock %}
 
-    <title>Configurator | Tailwind CSS Animated</title>
-    <meta name="description" content="">
-    <meta name="robots" content="index,follow">
-
-    <link rel="shortcut icon" href="/favicons/favicon.ico">
-
-    <meta name="theme-color" content="#ffffff">
-    <meta name="application-name" content="Tailwind CSS Animated">
-    <meta name="color-scheme" content="light">
-
-    <link rel="stylesheet" href="/css/app.css">
-</head>
-
-<body class="overflow-hidden">
-
-    <!-- Tailwind Viewport Indicator -->
-    <span 
-        x-data="{w: window.innerWidth,right: false, visible:false}" 
-        @click="right=!right" 
-        x-show="visible"
-        x-cloak
-        class="cursor-pointer text-xs absolute bottom-0 z-50 bg-white p-1 before:mr-1
-        before:content-['xs'] sm:before:content-['sm'] md:before:content-['md'] before:font-bold
-        lg:before:content-['lg'] xl:before:content-['xl'] 2xl:before:content-['2xl']" 
-        :class="right ? 'right-0':'left-0'" 
-        x-on:resize.window="w=window.innerWidth" 
-        x-html="w+' px'">
-    </span>
-
-    <!-- Alpine Store Display -->
-    <div
-        x-data="{open:false, visible:false}" 
-        @click="open = ! open" 
-        x-show="visible"
-        x-cloak
-        class="absolute bg-white z-50 top-16 right-0 p-1 cursor-pointer hidden lg:block">
-        <p class="text-xs font-bold">Alpinejs Variables</p>
-        <p x-show="open" x-collapse class="text-xs" x-html="'timing: '+$store.properties.timing">loading...</p>
-        <p x-show="open" x-collapse class="text-xs" x-html="'direction: '+$store.properties.direction">loading...</p>
-        <p x-show="open" x-collapse class="text-xs" x-html="'fillmode: '+$store.properties.fillmode">loading...</p>
-        <p x-show="open" x-collapse class="text-xs" x-html="'duration: '+$store.properties.duration">loading...</p>
-        <p x-show="open" x-collapse class="text-xs" x-html="'delay: '+$store.properties.delay">loading...</p>
-        <p x-show="open" x-collapse class="text-xs" x-html="'easing: '+$store.properties.easing">loading...</p>
-        <p x-show="open" x-collapse class="text-xs" x-html="'currentAnimation: '+$store.properties.currentAnimation">loading...</p>
-    </div>
-
-
+{% block content %}
     <div id="mobile" x-data="{menu:false}" class="bg-gray-100 h-screen bg-dotted lg:hidden">
         <header class="grid grid-cols-4 items-center bg-gray-900 text-white py-2.5 px-6 justify-between w-full h-16">
             <a class="mr-auto" href="#">
@@ -62,38 +13,7 @@
 
             <h1 class="uppercase mx-auto p text-white col-span-2 text-center leading-5">Tailwindcss Animated</h1>
 
-            <button class="w-12 h-12 place-self-end self-center flex flex-col gap-3.5 justify-center px-1 items-center" @click="menu = !menu">
-                <span :class="menu ? 'rotate-45 translate-y-2':''" class="block h-[3px] w-full bg-cyan-500 transition"></span>
-                <span :class="menu ? '-rotate-45 -translate-y-2':''" class="block h-[3px] w-full bg-cyan-500 transition"></span>
-            </button>
-
-            <div class="absolute top-16 right-0" x-show="menu" x-collapse x-cloak>
-                <nav class=" flex flex-col bg-white p-4 px-6 text-gray-900 text-xl gap-3">
-                    <a class="flex gap-3 group" href="/">
-                        <img class="w-4 invert opacity-50 group-hover:translate-x-1 transition" src="/images/icons/arrow-right-white.svg" alt="">
-                        
-                        <span class="border-b border-violet-500">Configurator</span>
-                    </a>
-    
-                    <a class="flex gap-3 group" href="/about.html">
-                        <img class="w-4 invert opacity-50 group-hover:translate-x-1 transition" src="/images/icons/arrow-right-white.svg" alt="">
-                        
-                        About
-                    </a>
-    
-                    <a class="flex gap-3 group" href="#">
-                        <img class="w-4 invert opacity-50 group-hover:translate-x-1 transition" src="/images/icons/arrow-right-white.svg" alt="">
-                        
-                        Docs
-                    </a>
-    
-                    <a class="flex gap-3 group" href="https://github.com/new-data-services/tailwindcss-animated">
-                        <img class="w-4 invert opacity-50 group-hover:translate-x-1 transition" src="/images/icons/arrow-right-white.svg" alt="">
-                        
-                        Github
-                    </a>
-                </nav>
-            </div>
+            {% include "website/views/partials/menu-mobile.html" %}
         </header>
 
         <div class="h-full flex flex-col items-center justify-center px-8">
@@ -156,24 +76,7 @@
 
             <h1 class="uppercase mx-auto p text-white">Tailwindcss Animated</h1>
 
-            <nav class="flex gap-6 items-center justify-end">
-                <a 
-                    class="
-                        relative after:content-[''] after:absolute after:left-0 after:bottom-0 
-                        after:h-px after:w-full after:bg-cyan-500" 
-                    href="#"
-                >
-                    Configurator
-                </a>
-
-                <a class="" href="/about.html">About</a>
-
-                <a class="px-4 py-2 bg-cyan-500 hover:bg-white text-gray-900 transition duration-75" href="#">Docs</a>
-
-                <a href="https://github.com/orgs/new-data-services/repositories/tailwindcss-animated">
-                    <img src="/images/icons/github.svg" alt="">
-                </a>
-            </nav>
+            {% include "website/views/partials/menu-desktop.html" %}
         </header>
 
         <div>
@@ -1131,8 +1034,4 @@
         </p>
         
     </div>
-
-    <script type="module" src="/js/app.js"></script>
-</body>
-
-</html>
+{% endblock %}

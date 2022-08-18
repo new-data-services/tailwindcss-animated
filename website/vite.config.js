@@ -1,4 +1,4 @@
-const glob = require('glob');
+import nunjucks from 'vite-plugin-nunjucks';
 
 export default {
     root: './website',
@@ -6,8 +6,11 @@ export default {
         outDir: './../dist',
         emptyOutDir: true,
         rollupOptions: {
-            input: glob.sync('./website/*.html', { absolute: true })
-        }
+            input: [
+                './website/index.html',
+                './website/about.html',
+            ],
+        },
     },
     css: {
         postcss: {
@@ -16,8 +19,16 @@ export default {
                 require('postcss-discard-comments'),
                 require('tailwindcss/nesting'),
                 require('tailwindcss')('./website/tailwind.config.js'),
-                require('autoprefixer')
-            ]
-        }
-    }
+                require('autoprefixer'),
+            ],
+        },
+    },
+    plugins: [
+        nunjucks({
+            variables: {
+                'index.html': { page: 'index' },
+                'about.html': { page: 'about' },
+            },
+        }),
+    ],
 };

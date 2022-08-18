@@ -1,0 +1,25 @@
+<nav class="gap-6 items-center justify-end hidden lg:flex">
+    <a
+        href="/index.html"
+        {% if page === 'index' %}
+            class="border-b"
+        {% endif %}
+    >
+        Configurator
+    </a>
+
+    <a
+        href="/about.html"
+        {% if page === 'about' %}
+            class="border-b"
+        {% endif %}
+    >
+        About
+    </a>
+
+    <a class="px-4 py-2 bg-cyan-500 hover:bg-opacity-70 text-gray-900 transition duration-75" href="#">Docs</a>
+
+    <a href="https://github.com/orgs/new-data-services/repositories/tailwindcss-animated">
+        <img class="invert opacity-50" src="/images/icons/github.svg" alt="">
+    </a>
+</nav>
