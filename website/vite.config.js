@@ -8,7 +8,7 @@ export default {
         rollupOptions: {
             input: [
                 './website/index.html',
-                './website/about.html',
+                './website/configurator.html',
             ],
         },
     },
@@ -27,7 +27,7 @@ export default {
         nunjucks({
             variables: {
                 'index.html': { page: 'index' },
-                'about.html': { page: 'about' },
+                'configurator.html': { page: 'configurator' },
             },
         }),
     ],
