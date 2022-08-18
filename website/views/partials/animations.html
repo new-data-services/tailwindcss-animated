@@ -1,0 +1,53 @@
+<div x-data="{ presets: ['wiggle', 'wiggle-more', 'rotate-y', 'rotate-x', 'jump', 'jump-in', 'jump-out', 'spin', 'ping', 'pulse', 'bounce', 'shake'] }">
+
+    <span class="subline ml-6 block mb-1">Interactions</span>
+
+    <hr class="ml-6 border-gray-100">
+
+    <template x-for="preset in presets">
+        <div>
+            <button
+                @click="set('animation', preset)"
+                class="p-1 w-full group"
+            >
+                <div 
+                    :class="$store.properties.animation == preset ? 'bg-violet-50 border-violet-300' : 'border-transparent hover:border-violet-50'"
+                    class="border flex justify-start hover:bg-violet-50 p-1.5 w-full transition duration-75 px-5 gap-4 items-center"
+                > 
+                    <img class="bg-violet-50 w-8 h-8" :src="`/images/icons/animations/${preset}.svg`" alt="">
+
+                    <span x-text="preset" class="group-hover:text-violet-700"></span>
+                </div>
+            </button>
+
+            <hr class="ml-6 border-gray-100">
+        </div>
+    </template>
+</div>
+
+<div x-data="{ presets: ['fade', 'fade-down', 'fade-up', 'fade-left', 'fade-right', 'flip-up', 'flip-down'] }">
+
+    <span class="subline ml-6 block mb-1 mt-8">Transitions</span>
+
+    <hr class="ml-6 border-gray-100">
+
+    <template x-for="preset in presets">
+        <div>
+            <button
+                @click="set('animation', preset)"
+                class="p-1 w-full group"
+            >
+                <div 
+                    :class="$store.properties.animation == preset ? 'bg-violet-50 border-violet-300' : 'border-transparent hover:border-violet-50'"
+                    class="border flex justify-start hover:bg-violet-50 p-1.5 w-full transition duration-75 px-5 gap-4 items-center"
+                > 
+                    <img class="bg-violet-50 w-8 h-8" :src="`/images/icons/animations/${preset}.svg`" alt="">
+
+                    <span x-text="preset" class="group-hover:text-violet-700"></span>
+                </div>
+            </button>
+
+            <hr class="ml-6 border-gray-100">
+        </div>
+    </template>
+</div>

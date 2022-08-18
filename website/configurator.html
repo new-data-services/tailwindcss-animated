@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <div id="mobile" x-data="{menu:false}" class="bg-gray-100 h-screen bg-dotted lg:hidden">
+    <div id="mobile" x-data="{ menu:false }" class="bg-gray-100 h-screen bg-dotted lg:hidden">
         <header class="grid grid-cols-4 items-center bg-gray-900 text-white py-2.5 px-6 justify-between w-full h-16">
             <a class="mr-auto" href="#">
                 <img class="w-20 hover:scale-105 transition" src="/images/icons/wave.svg" alt="">
@@ -32,42 +32,9 @@
     </div>
 
     <div 
-        id="app" 
-        x-int="init()" 
+        id="app"
         class="hidden lg:block"
-        x-data="{
-            hint:0, 
-            Ypos:0,
-            sethint(x, el) {
-                this.hint = x;
-                this.Ypos = el.getBoundingClientRect().y+7;
-            },
-            preview:1,
-            reflowMode:1,
-            reflowHandler() {
-                const previewObjects = document.querySelector('.preview').children;
-                for (let i = 0; i < previewObjects.length; i++) {
-                    console.log(previewObjects[i]);
-                    previewObjects[i].setAttribute('x-on:mouseenter','-');
-                    previewObjects[i].setAttribute('x-on:click','-');
-                }
-                if (this.reflowMode == 2) {
-                    for (let i = 0; i < previewObjects.length; i++) {
-                        console.log(previewObjects[i]);
-                        previewObjects[i].setAttribute('x-on:click','$store.properties.reflowPreview()');
-                    }
-                }
-                else if (this.reflowMode == 3) {
-                    for (let i = 0; i < previewObjects.length; i++) {
-                        console.log(previewObjects[i]);
-                        previewObjects[i].setAttribute('x-on:mouseenter','$store.properties.reflowPreview()');
-                    }
-                }
-            },
-            leftColSize:'width:384px',
-            rightColSize:'width:384px',
-            rightSize:384,
-        }"
+        x-data="configurator()"
     >
         <header class="grid grid-cols-3 items-center bg-gray-900 text-white py-2.5 px-6 justify-between absolute w-full h-16 z-10">
             <a class="mr-auto" href="#">
@@ -82,352 +49,7 @@
         <div>
             <div class="w-full bg-gray-100 h-[100vh] pt-16 flex">
                 <div :style="leftColSize" class="bg-white py-8 overflow-y-scroll hide-scrollbar shrink-0 z-10">
-                    <span class="subline ml-6 block mb-1">Interactions</span>
-
-                    <hr class="ml-6 border-gray-100">
-
-                    <button x-data class="p-1 w-full group"
-                            @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)"  >
-                        <div 
-                            :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
-                            class="
-                            border flex justify-start
-                             hover:bg-violet-50 p-1.5 w-full transition duration-75 px-5 gap-4 items-center"
-                        > 
-                            <img class="bg-violet-50 w-8 h-8" src="/images/icons/animations/wiggle.svg" alt="">
-
-                            <span x-ref="anim" class="group-hover:text-violet-700">wiggle</span>
-                        </div>
-                    </button>
-
-                    <hr class="ml-6 border-gray-100">
-
-                    <button x-data class="p-1 w-full group"
-                            @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
-                        <div 
-                            :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
-                            class="
-                            border flex justify-start
-                             hover:bg-violet-50 p-1.5 w-full transition duration-75 px-5 gap-4 items-center"
-                        >
-                            <img class="bg-violet-50 w-8 h-8" src="/images/icons/animations/wiggle-more.svg" alt="">
-
-                            <span x-ref="anim"
-
-                            class="group-hover:text-violet-700">wiggle-more</span>
-                        </div>
-                    </button>
-
-                    <hr class="ml-6 border-gray-100">
-
-                    <button x-data class="p-1 w-full group"
-                            @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
-                        <div 
-                            :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
-                            class="
-                            border flex justify-start
-                             hover:bg-violet-50 p-1.5 w-full transition duration-75 px-5 gap-4 items-center"
-                        >
-                            <img class="bg-violet-50 w-8 h-8" src="/images/icons/animations/rotate-y.svg" alt="">
-
-                            <span x-ref="anim"
-
-                            class="group-hover:text-violet-700">rotate-y</span>
-                        </div>
-                    </button>
-
-                    <hr class="ml-6 border-gray-100">
-
-                    <button x-data class="p-1 w-full group"
-                            @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
-                        <div 
-                            :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
-                            class="
-                            border flex justify-start
-                             hover:bg-violet-50 p-1.5 w-full transition duration-75 px-5 gap-4 items-center"
-                        >
-                            <img class="bg-violet-50 w-8 h-8" src="/images/icons/animations/rotate-x.svg" alt="">
-
-                            <span x-ref="anim"
-
-                            class="group-hover:text-violet-700">rotate-x</span>
-                        </div>
-                    </button>
-
-                    <hr class="ml-6 border-gray-100">
-
-                    <button x-data class="p-1 w-full group"
-                            @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
-                        <div 
-                            :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
-                            class="
-                            border flex justify-start
-                             hover:bg-violet-50 p-1.5 w-full transition duration-75 px-5 gap-4 items-center"
-                        >
-                            <img class="bg-violet-50 w-8 h-8" src="/images/icons/animations/jump.svg" alt="">
-
-                            <span x-ref="anim"
-
-                            class="group-hover:text-violet-700">jump</span>
-                        </div>
-                    </button>
-
-                    <hr class="ml-6 border-gray-100">
-
-                    <button x-data class="p-1 w-full group"
-                            @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
-                        <div 
-                            :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
-                            class="
-                            border flex justify-start
-                             hover:bg-violet-50 p-1.5 w-full transition duration-75 px-5 gap-4 items-center"
-                        >
-                            <img class="bg-violet-50 w-8 h-8" src="/images/icons/animations/jump-in.svg" alt="">
-
-                            <span x-ref="anim"
-
-                            class="group-hover:text-violet-700">jump-in</span>
-                        </div>
-                    </button>
-
-                    <hr class="ml-6 border-gray-100">
-
-                    <button x-data class="p-1 w-full group"
-                            @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
-                        <div 
-                            :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
-                            class="
-                            border flex justify-start
-                             hover:bg-violet-50 p-1.5 w-full transition duration-75 px-5 gap-4 items-center"
-                        >
-                            <img class="bg-violet-50 w-8 h-8" src="/images/icons/animations/jump-out.svg" alt="">
-
-                            <span x-ref="anim"
-
-                            class="group-hover:text-violet-700">jump-out</span>
-                        </div>
-                    </button>
-
-                    <hr class="ml-6 border-gray-100">
-
-                    <button x-data class="p-1 w-full group"
-                            @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
-                        <div 
-                            :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
-                            class="
-                            border flex justify-start
-                             hover:bg-violet-50 p-1.5 w-full transition duration-75 px-5 gap-4 items-center"
-                        >
-                            <img class="bg-violet-50 w-8 h-8" src="/images/icons/animations/spin.svg" alt="">
-
-                            <span x-ref="anim"
-
-                            class="group-hover:text-violet-700">spin</span>
-                        </div>
-                    </button>
-
-                    <hr class="ml-6 border-gray-100">
-
-                    <button x-data class="p-1 w-full group"
-                            @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
-                        <div 
-                            :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
-                            class="
-                            border flex justify-start
-                             hover:bg-violet-50 p-1.5 w-full transition duration-75 px-5 gap-4 items-center"
-                        >
-                            <img class="bg-violet-50 w-8 h-8" src="/images/icons/animations/ping.svg" alt="">
-
-                            <span x-ref="anim"
-
-                            class="group-hover:text-violet-700">ping</span>
-                        </div>
-                    </button>
-
-                    <hr class="ml-6 border-gray-100">
-
-                    <button x-data class="p-1 w-full group"
-                            @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
-                        <div 
-                            :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
-                            class="
-                            border flex justify-start
-                             hover:bg-violet-50 p-1.5 w-full transition duration-75 px-5 gap-4 items-center"
-                        >
-                            <img class="bg-violet-50 w-8 h-8" src="/images/icons/animations/pulse.svg" alt="">
-
-                            <span x-ref="anim"
-
-                            class="group-hover:text-violet-700">pulse</span>
-                        </div>
-                    </button>
-
-                    <hr class="ml-6 border-gray-100">
-
-                    <button x-data class="p-1 w-full group"
-                            @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
-                        <div 
-                            :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
-                            class="
-                            border flex justify-start
-                             hover:bg-violet-50 p-1.5 w-full transition duration-75 px-5 gap-4 items-center"
-                        >
-                            <img class="bg-violet-50 w-8 h-8" src="/images/icons/animations/bounce.svg" alt="">
-
-                            <span x-ref="anim"
-
-                            class="group-hover:text-violet-700">bounce</span>
-                        </div>
-                    </button>
-
-                    <hr class="ml-6 border-gray-100">
-
-                    <button x-data class="p-1 w-full group"
-                            @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
-                        <div 
-                            :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
-                            class="
-                            border flex justify-start
-                             hover:bg-violet-50 p-1.5 w-full transition duration-75 px-5 gap-4 items-center"
-                        >
-                            <img class="bg-violet-50 w-8 h-8" src="/images/icons/animations/shake.svg" alt="">
-
-                            <span x-ref="anim"
-
-                            class="group-hover:text-violet-700">shake</span>
-                        </div>
-                    </button>
-
-                    <hr class="ml-6 border-gray-100">
-
-                    <span class="subline ml-6 block mb-1 mt-8">Transitions</span>
-
-                    <hr class="ml-6 border-gray-100">
-
-                    <button x-data class="p-1 w-full group"
-                            @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
-                        <div 
-                            :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
-                            class="
-                            border flex justify-start
-                             hover:bg-violet-50 p-1.5 w-full transition duration-75 px-5 gap-4 items-center"
-                        >
-                            <img class="bg-violet-50 w-8 h-8" src="/images/icons/animations/fade.svg" alt="">
-
-                            <span x-ref="anim"
-
-                            class="group-hover:text-violet-700">fade</span>
-                        </div>
-                    </button>
-
-                    <hr class="ml-6 border-gray-100">
-
-                    <button x-data class="p-1 w-full group"
-                            @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
-                        <div 
-                            :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
-                            class="
-                            border flex justify-start
-                             hover:bg-violet-50 p-1.5 w-full transition duration-75 px-5 gap-4 items-center"
-                        >
-                            <img class="bg-violet-50 w-8 h-8" src="/images/icons/animations/fade-down.svg" alt="">
-
-                            <span x-ref="anim"
-
-                            class="group-hover:text-violet-700">fade-down</span>
-                        </div>
-                    </button>
-
-                    <hr class="ml-6 border-gray-100">
-
-                    <button x-data class="p-1 w-full group"
-                            @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
-                        <div 
-                            :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
-                            class="
-                            border flex justify-start
-                             hover:bg-violet-50 p-1.5 w-full transition duration-75 px-5 gap-4 items-center"
-                        >
-                            <img class="bg-violet-50 w-8 h-8" src="/images/icons/animations/fade-up.svg" alt="">
-
-                            <span x-ref="anim"
-
-                            class="group-hover:text-violet-700">fade-up</span>
-                        </div>
-                    </button>
-
-                    <hr class="ml-6 border-gray-100">
-
-                    <button x-data class="p-1 w-full group"
-                            @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
-                        <div 
-                            :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
-                            class="
-                            border flex justify-start
-                             hover:bg-violet-50 p-1.5 w-full transition duration-75 px-5 gap-4 items-center"
-                        >
-                            <img class="bg-violet-50 w-8 h-8" src="/images/icons/animations/fade-left.svg" alt="">
-
-                            <span x-ref="anim"
-
-                            class="group-hover:text-violet-700">fade-left</span>
-                        </div>
-                    </button>
-
-                    <hr class="ml-6 border-gray-100">
-
-                    <button x-data class="p-1 w-full group"
-                            @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
-                        <div 
-                            :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
-                            class="
-                            border flex justify-start
-                             hover:bg-violet-50 p-1.5 w-full transition duration-75 px-5 gap-4 items-center"
-                        >
-                            <img class="bg-violet-50 w-8 h-8" src="/images/icons/animations/fade-right.svg" alt="">
-
-                            <span x-ref="anim"
-
-                            class="group-hover:text-violet-700">fade-right</span>
-                        </div>
-                    </button>
-
-                    <hr class="ml-6 border-gray-100">
-
-                    <button x-data class="p-1 w-full group"
-                            @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
-                        <div 
-                            :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
-                            class="
-                            border flex justify-start
-                             hover:bg-violet-50 p-1.5 w-full transition duration-75 px-5 gap-4 items-center"
-                        >
-                            <img class="bg-violet-50 w-8 h-8" src="/images/icons/animations/flip-up.svg" alt="">
-
-                            <span x-ref="anim"
-
-                            class="group-hover:text-violet-700">flip-up</span>
-                        </div>
-                    </button>
-
-                    <hr class="ml-6 border-gray-100">
-
-                    <button x-data class="p-1 w-full group"
-                            @click="$store.properties.modifyProperty('currentAnimation', $refs.anim.innerHTML)">
-                        <div 
-                            :class="$refs.anim.innerHTML == $store.properties.currentAnimation ? 'bg-violet-50 border-violet-300':'border-transparent hover:border-violet-50'"
-                            class="
-                            border flex justify-start
-                             hover:bg-violet-50 p-1.5 w-full transition duration-75 px-5 gap-4 items-center"
-                        >
-                            <img class="bg-violet-50 w-8 h-8" src="/images/icons/animations/flip-down.svg" alt="">
-
-                            <span x-ref="anim" class="group-hover:text-violet-700">flip-down</span>
-                        </div>
-                    </button>
-
-                    <hr class="ml-6 border-gray-100">
-
+                    {% include "website/views/partials/animations.html" %}
                 </div>
 
                 <div 
@@ -438,7 +60,7 @@
 
                 <div 
                     x-data="{
-                        range:0,
+                        range: 0,
                         scale() {
                             return 'transform: scale('+ (this.range * 10 + 100) +'%' + ')'
                         }
@@ -447,26 +69,24 @@
                 >
                     <div class="grow flex items-center justify-center preview transition pointer-events-none [&>*]:pointer-events-auto" :style="scale()">
                         <img 
-                            :class="$store.properties.classList()" 
+                            :class="computedClasses()"
                             x-cloak 
                             x-show="preview == 1" 
-                            :style="preview == 1 ? '':'display:none;'" 
                             class="transition" 
                             src="/images/icons/logo.svg" 
                             alt="">
 
                         <span 
-                            :class="$store.properties.classList()" 
+                            :class="computedClasses()" 
                             x-cloak 
                             x-show="preview == 2" 
-                            :style="preview == 2 ? '':'display:none;'" 
                             class="transition h1 text-center"
                         >
                             Build your custom <br>animations with ease.
                         </span>
 
                         <p 
-                            :class="$store.properties.classList()" 
+                            :class="computedClasses()" 
                             x-cloak 
                             x-show="preview == 3" 
                             :style="preview == 3 ? '':'display:none;'" 
@@ -478,19 +98,17 @@
                         </p>
 
                         <img 
-                            :class="$store.properties.classList()" 
+                            :class="computedClasses()" 
                             x-cloak 
                             x-show="preview == 4" 
-                            :style="preview == 4 ? '':'display:none;'" 
                             class="transition max-w-md" 
                             src="/images/demo-jezael-melgoza.jpg" 
                             alt="">
 
                         <button 
-                            :class="$store.properties.classList()" 
+                            :class="computedClasses()" 
                             x-cloak 
                             x-show="preview == 5" 
-                            :style="preview == 5 ? '':'display:none;'" 
                             class="transition bg-violet-300 py-2 px-3 hover:bg-violet-200 active:bg-violet-300 duration-75 text-violet-900"
                         >
                             Get started now
@@ -498,123 +116,7 @@
 
                     </div>
 
-                    <div class="bg-white w-full p-3 flex gap-2.5 flex-wrap flex-row-reverse justify-end 2xl:justify-start 2xl:flex-row">
-                        <div class="flex">
-                            <div class="bg-gray-100 p-2.5 flex items-center gap-2.5">
-                                <img class="cursor-zoom-out" @click="if (range > -8) {range--}" src="/images/icons/shrink.svg" alt="">
-    
-                                <input x-refs="scale()" x-model="range" class="w-40" type="range" min="-8" max="10">
-    
-                                <img class="cursor-zoom-in" @click="if (range < 10) {range++}" src="/images/icons/enlarge.svg" alt="">
-                            </div>
-    
-                            <span 
-                                @click="range = 0"
-                                title="reset"
-                                class="cursor-pointer text-gray-700 flex px-4 border-l border-gray-200 h-full bg-gray-100 
-                                w-20 items-center justify-center" 
-                                x-text="range * 10 + 100 +' %'">
-                            </span>
-                        </div>
-
-                        <div class="flex gap-2.5">
-                            <button 
-                                @click="preview = 1"
-                                x-data="{active:false}" 
-                                @mouseenter="active=true" 
-                                @mouseleave="active=false" 
-                                class="w-10 h-10 flex justify-center items-center transition duration-75"
-                                :class="preview == 1 ? 'bg-violet-50 border border-violet-300':'bg-gray-100 hover:bg-violet-50'"
-                            >
-                                <img :src="active || preview == 1 ? '/images/icons/preview-logo-active.svg':'/images/icons/preview-logo.svg'" alt="">
-                            </button>
-    
-                            <button 
-                                @click="preview = 2"
-                                x-data="{active:false}" 
-                                @mouseenter="active=true" 
-                                @mouseleave="active=false" 
-                                class="w-10 h-10 flex justify-center items-center transition duration-75"
-                                :class="preview == 2 ? 'bg-violet-50 border border-violet-300':'bg-gray-100 hover:bg-violet-50'"
-                            >
-                                <img :src="active || preview == 2 ? '/images/icons/preview-headline-active.svg':'/images/icons/preview-headline.svg'" alt="">
-                            </button>
-    
-                            <button 
-                                @click="preview = 3"
-                                x-data="{active:false}" 
-                                @mouseenter="active=true" 
-                                @mouseleave="active=false" 
-                                class="w-10 h-10 flex justify-center items-center transition duration-75"
-                                :class="preview == 3 ? 'bg-violet-50 border border-violet-300':'bg-gray-100 hover:bg-violet-50'"
-                            >
-                                <img :src="active || preview == 3 ? '/images/icons/preview-text-active.svg':'/images/icons/preview-text.svg'" alt="">
-                            </button>
-    
-                            <button 
-                                @click="preview = 4"
-                                x-data="{active:false}" 
-                                @mouseenter="active=true" 
-                                @mouseleave="active=false" 
-                                class="w-10 h-10 flex justify-center items-center transition duration-75"
-                                :class="preview == 4 ? 'bg-violet-50 border border-violet-300':'bg-gray-100 hover:bg-violet-50'"
-                            >
-                                <img :src="active || preview == 4 ? '/images/icons/preview-image-active.svg':'/images/icons/preview-image.svg'" alt="">
-                            </button>
-    
-                            <button 
-                                @click="preview = 5"
-                                x-data="{active:false}" 
-                                @mouseenter="active=true" 
-                                @mouseleave="active=false" 
-                                class="w-10 h-10 flex justify-center items-center transition duration-75"
-                                :class="preview == 5 ? 'bg-violet-50 border border-violet-300':'bg-gray-100 hover:bg-violet-50'"
-                            >
-                                <img :src="active || preview == 5 ? '/images/icons/preview-button-active.svg':'/images/icons/preview-button.svg'" alt="">
-                            </button>
-                        </div>
-
-                        <div class="2xl:grow flex justify-end">
-                            <div x-data="{open:false}" class=" text-violet-900 h-10 transition duration-75 bg-violet-100 flex items-center relative w-40 cursor-pointer">
-
-                                <span 
-                                    x-text="reflowMode == 1 ? 'Play':(reflowMode == 2 ? 'on click':'on hover')" 
-                                    class="grow px-5 h-full flex items-center"
-                                    :class="reflowMode == 1 ? 'hover:bg-violet-200 text-violet-900':'bg-violet-50 text-violet-300 cursor-not-allowed cursor pointer-events-none'"
-                                    @click="$store.properties.reflowPreview()"
-                                >
-                                    Play
-                                </span>
-
-                                <div @click="open = !open" class="border-l h-full flex items-center justify-center px-3 border-violet-200 hover:bg-violet-200">
-                                    <img class="transition duration-200" :class="open ? 'rotate-180':''" src="/images/icons/chevron.svg" alt="">
-                                </div>
-
-                                <div x-show="open" x-collapse class="absolute w-full top-0 left-0 -translate-y-full">
-                                    <div 
-                                        @click="reflowMode = 1; open = false; reflowHandler()" 
-                                        class="bg-violet-100 w-full border-b border-violet-200 py-2 hover:bg-violet-200 px-5"
-                                    >
-                                        Play
-                                    </div>
-
-                                    <div 
-                                        @click="reflowMode = 2; open = false; reflowHandler()" 
-                                        class="bg-violet-100 w-full border-b border-violet-200 py-2 hover:bg-violet-200 px-5"
-                                    >
-                                        on click
-                                    </div>
-
-                                    <div 
-                                        @click="reflowMode = 3; open = false, reflowHandler()" 
-                                        class="bg-violet-100 w-full border-b border-violet-200 py-2 hover:bg-violet-200 px-5"
-                                    >
-                                        on hover
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% include "website/views/partials/controls.html" %}
                 </div>
 
                 <div 
@@ -626,331 +128,40 @@
                 <div :style="rightColSize" class="bg-white flex flex-col relative shrink-0 z-10">
                     <div class="py-8 px-6 h-full hide-scrollbar pb-64 overflow-y-auto">
 
-                        <div class="flex gap-2 items-center mb-1 relative">
-                            <div class="group">
-                                <img @mouseenter="sethint(1,$el)" @mouseleave="hint=0" class="cursor-pointer" src="/images/icons/info.svg" alt="">
-                            </div>
+                        {% include "website/views/partials/timing.html" %}
 
-                            <span class="subline">Timing</span>
+                        {% include "website/views/partials/easing.html" %}
 
-                            <span 
-                                @click="
-                                $store.properties.modifyProperty('timing', null);
-                                $store.properties.modifyProperty('direction', null);
-                                $store.properties.modifyProperty('fillmode', null);
-                                $store.properties.modifyProperty('duration', null);
-                                $store.properties.modifyProperty('delay', null);
-                                $store.properties.modifyProperty('easing', null);
-                                "
-                                class="p-small ml-auto cursor-pointer text-violet-500 hover:text-violet-300 active:text-violet-500">
-                                Reset all properties
-                            </span>
+                        {% include "website/views/partials/direction.html" %}
 
-                        </div>
-                        
-                        <hr class="border-gray-100 mb-4">
+                        {% include "website/views/partials/fillmode.html" %}
 
-
-                        <div class="mb-4 grid gap-4">
-                            <div class="grid grid-cols-2 gap-6">
-                                <button x-data="{active:false}" @mouseenter="active=true" @mouseleave="active=false" :class="$store.properties.timing != 'infinite' ? 'ring-1 ring-violet-300 bg-violet-50':''" 
-                                class="bg-gray-100 hover:bg-violet-50 p-4 flex flex-col items-center hover:text-violet-900" 
-                                @click="showIterationCount = true, $store.properties.modifyProperty('timing', 'once')">
-                                    <img class="w-8 h-8" :src="active || $store.properties.timing != 'infinite' ? '/images/icons/iterate-active.svg':'/images/icons/iterate.svg'" alt="">
-
-                                    iterations
-                                </button>
-        
-                                <button x-data="{active:false}" @mouseenter="active=true" @mouseleave="active=false" :class="$store.properties.timing == 'infinite' ? 'ring-1 ring-violet-300 bg-violet-50':''" 
-                                class="bg-gray-100 hover:bg-violet-50 p-4 flex flex-col items-center hover:text-violet-900" 
-                                @click="showIterationCount = false, $store.properties.modifyProperty('timing', 'infinite')">
-                                    <img class="w-9 h-8" :src="active || $store.properties.timing == 'infinite' ? '/images/icons/infinite-active.svg':'/images/icons/infinite.svg'" alt="">
-
-                                    infinite
-                                </button>
-                            </div>
-
-                            <div :class="$store.properties.timing == 'infinite' ? 'opacity-40 pointer-events-none':''" class="grid grid-cols-3">
-                                <button :class="$store.properties.timing == 'once' ? 'ring-1 ring-violet-300 ring-inset bg-violet-50 border-gray-100':'border-gray-200'" 
-                                class="bg-gray-100 hover:bg-violet-50 p-4 border-r" 
-                                @click="$store.properties.modifyProperty('timing', 'once')">
-                                    once
-                                </button>
-
-                                <button :class="$store.properties.timing == 'twice' ? 'ring-1 ring-violet-300 ring-inset bg-violet-50 border-gray-100':'border-gray-200'" 
-                                class="bg-gray-100 hover:bg-violet-50 p-4 border-r"  
-                                @click="$store.properties.modifyProperty('timing', 'twice')">
-                                    twice
-                                </button>
-
-                                <button :class="$store.properties.timing == 'thrice' ? 'ring-1 ring-violet-300 ring-inset bg-violet-50 border-gray-100':''" 
-                                class="bg-gray-100 hover:bg-violet-50 p-4"  
-                                @click="$store.properties.modifyProperty('timing', 'thrice')">
-                                    thrice
-                                </button>
-                            </div>
-
-                            <div 
-                                x-data="{
-                                    roundDelay(property, el, store) {
-                                        if (el.value != null) {
-                                            if (el.value < 1 || el.value == null) {
-                                                el.value = null;
-                                            }
-                                        }
-                                        store.properties.modifyProperty(property, el.value);
-                                        el.blur()
-                                    },
-                                    roundDuration(property, el, store) {
-                                        if (el.value != null) {
-                                            if (el.value < 1 || el.value == null) {
-                                                el.value = null;
-                                            }
-                                        }
-                                        store.properties.modifyProperty(property, el.value);
-                                        el.blur()
-                                    },
-                                }" 
-                                class="grid grid-cols-2 gap-6"
-                            >
-                                <div class="flex relative">
-                                    <label for="duration">
-                                        <input 
-                                            x-init="$el.value = $store.properties.duration" 
-                                            name="duration" 
-                                            type="number" 
-                                            class="border border-gray-200 bg-gray-50 p-3 px-4 after:content-['hello'] w-full focus:border-violet-300 focus:bg-white peer" 
-                                            placeholder=" " 
-                                            required
-                                            @keyup.enter="roundDuration('duration', $el, $store)"
-                                            @focusout="roundDuration('duration', $el, $store)"
-                                        >
-
-                                        <span class="pointer-events-none absolute text-gray-300 bg-gray-50 transition-all px-1 input-label">
-                                            duration
-                                        </span>
-                                    </label>
-                                    <span class="block bg-gray-100 border border-gray-200 p-3 px-4 border-l-0">ms</span>
-                                </div>
-
-                                <div class="flex relative">
-                                    <label for="delay">
-                                        <input 
-                                            x-init="$el.value = $store.properties.delay" 
-                                            name="delay" 
-                                            type="number" 
-                                            class="border border-gray-200 bg-gray-50 p-3 px-4 after:content-['hello'] w-full focus:border-violet-300 focus:bg-white peer" 
-                                            placeholder=" " 
-                                            required
-                                            @keyup.enter="roundDelay('delay', $el, $store)"
-                                            @focusout="roundDelay('delay', $el, $store)"
-                                        >
-
-                                        <span class="pointer-events-none absolute text-gray-300 bg-gray-50 transition-all px-1 input-label">
-                                            delay
-                                        </span>
-                                    </label>
-                                    <span class="block bg-gray-100 border border-gray-200 p-3 px-4 border-l-0">ms</span>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="flex gap-2 items-center mb-1 relative">
-                            <div class="group">
-                                <img @mouseenter="sethint(2,$el)" @mouseleave="hint=0" class="cursor-pointer" src="/images/icons/info.svg" alt="">
-                            </div>
-
-                            <span class="subline">Easing</span>
-
-                        </div>
-                        
-                        <hr class="border-gray-100 mb-4">
-
-
-                        <div x-data class="mb-4">
-                            <div class="grid grid-cols-2 gap-x-6 gap-y-4">
-                                <button 
-                                    x-data="{active:false}" @mouseenter="active=true" @mouseleave="active=false" 
-                                    :class="$store.properties.easing == 'ease-linear' ? 'ring-1 ring-violet-300 ring-inset bg-violet-50':''"
-                                    class="bg-gray-100 hover:bg-violet-50 p-4 flex flex-col items-center"
-                                    @click="$store.properties.modifyProperty('easing','ease-linear')"
-                                >
-                                    <img class="w-8 h-8 mb-1" :src="active || $store.properties.easing == 'ease-linear' ? '/images/icons/ease-linear-active.svg':'/images/icons/ease-linear.svg'" alt="">
-        
-                                    ease linear
-                                </button>
-        
-                                <button 
-                                    x-data="{active:false}" @mouseenter="active=true" @mouseleave="active=false" 
-                                    :class="$store.properties.easing == 'ease-in' ? 'ring-1 ring-violet-300 ring-inset bg-violet-50':''"
-                                    class="bg-gray-100 hover:bg-violet-50 p-4 flex flex-col items-center"
-                                    @click="$store.properties.modifyProperty('easing','ease-in')"
-                                >
-                                    <img class="w-8 h-8 mb-1" :src="active || $store.properties.easing == 'ease-in' ? '/images/icons/ease-in-active.svg':'/images/icons/ease-in.svg'" alt="">
-
-                                    ease in
-                                </button>
-
-                                <button 
-                                    x-data="{active:false}" @mouseenter="active=true" @mouseleave="active=false" 
-                                    :class="$store.properties.easing == 'ease-out' ? 'ring-1 ring-violet-300 ring-inset bg-violet-50':''"
-                                    class="bg-gray-100 hover:bg-violet-50 p-4 flex flex-col items-center"
-                                    @click="$store.properties.modifyProperty('easing','ease-out')"
-                                >
-                                    <img class="w-8 h-8 mb-1" :src="active || $store.properties.easing == 'ease-out' ? '/images/icons/ease-out-active.svg':'/images/icons/ease-out.svg'" alt="">
-
-                                    ease out
-                                </button>
-        
-                                <button 
-                                    x-data="{active:false}" @mouseenter="active=true" @mouseleave="active=false" 
-                                    :class="$store.properties.easing == 'ease-in-out' ? 'ring-1 ring-violet-300 ring-inset bg-violet-50':''"
-                                    class="bg-gray-100 hover:bg-violet-50 p-4 flex flex-col items-center"
-                                    @click="$store.properties.modifyProperty('easing', 'ease-in-out')"
-                                >
-                                    <img class="w-8 h-8 mb-1" :src="active || $store.properties.easing == 'ease-in-out' ? '/images/icons/ease-in-out-active.svg':'/images/icons/ease-in-out.svg'" alt="">
-
-                                    ease in out
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- ACCORDION (DIRECTION) -->
-
-                        <div x-data="{open:false}" class="mb-4"> 
-                            <div class="flex gap-2 items-center relative" @click="open = !open">
-                                <div class="group">
-                                    <img @mouseenter="sethint(3,$el)" @mouseleave="hint=0" class="cursor-pointer" src="/images/icons/info.svg" alt="">
-                                </div>
-        
-                                <span class="subline">Direction</span>
-        
-                                <button :class="open ? 'bg-violet-50':'bg-gray-100'" class="ml-auto h-7 w-7 flex items-center justify-center">
-                                    <svg :class="open ? 'text-violet-500 rotate-180':'text-gray-300'" class="mt-0.5 stroke-current transition" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M1 1L7 7L13 1"/>
-                                    </svg>
-                                </button>
-                            </div>
-                            
-                            <hr class="border-gray-100 transition-all" :class="open ? 'pb-4':''">
-        
-        
-                            <div x-show="open" x-collapse>
-                                <div :class="open ? 'opacity-100':'opacity-0'" class="transition">
-                                    <div class="grid grid-cols-2">
-                                        <button 
-                                            @click="$store.properties.modifyProperty('direction', 'normal')"
-                                            class="p-4 bg-gray-100 hover:bg-violet-50 border-b border-r border-gray-200"
-                                            :class="$store.properties.direction == 'normal' ? 'ring-1 ring-violet-300 ring-inset bg-violet-50 border-gray-100':''"
-                                        >
-                                            normal
-                                        </button>
-
-                                        <button 
-                                            @click="$store.properties.modifyProperty('direction', 'reverse')"
-                                            class="p-4 bg-gray-100 hover:bg-violet-50 border-b border-gray-200"
-                                            :class="$store.properties.direction == 'reverse' ? 'ring-1 ring-violet-300 ring-inset bg-violet-50 border-gray-100':''"
-                                        >
-                                            reverse
-                                        </button>
-
-                                        <button 
-                                            @click="$store.properties.modifyProperty('direction', 'alternate')"
-                                            class="p-4 bg-gray-100 hover:bg-violet-50 border-r"
-                                            :class="$store.properties.direction == 'alternate' ? 'ring-1 ring-violet-300 ring-inset bg-violet-50 border-gray-100':''"
-                                        >
-                                            alternate
-                                        </button>
-
-                                        <button 
-                                            @click="$store.properties.modifyProperty('direction', 'alternate-reverse')"
-                                            class="p-4 bg-gray-100 hover:bg-violet-50"
-                                            :class="$store.properties.direction == 'alternate-reverse' ? 'ring-1 ring-violet-300 ring-inset bg-violet-50 border-gray-100':''"
-                                        >
-                                            alternate-reverse
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ACCORDION (FILLMODE) -->
-
-                        <div x-data="{open:false}" class="mb-4"> 
-                            <div class="flex gap-2 items-center relative" @click="open = !open">
-                                <div class="group">
-                                    <img @mouseenter="sethint(4,$el)" @mouseleave="hint=0" class="cursor-pointer" src="/images/icons/info.svg" alt="">
-                                </div>
-        
-                                <span class="subline">Fillmode</span>
-        
-                                <button :class="open ? 'bg-violet-50':'bg-gray-100'" class="ml-auto h-7 w-7 flex items-center justify-center">
-                                    <svg :class="open ? 'text-violet-500 rotate-180':'text-gray-300'" class="mt-0.5 stroke-current transition" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M1 1L7 7L13 1"/>
-                                    </svg>
-                                </button>
-                            </div>
-                            
-                            <hr class="border-gray-100 transition-all" :class="open ? 'pb-4':''">
-        
-        
-                            <div x-show="open" x-collapse>
-                                <div :class="open ? 'opacity-100':'opacity-0'" class="transition">
-                                    <div class="grid grid-cols-3">
-                                        <button 
-                                            class="bg-gray-100 hover:bg-violet-50 p-4 border-r border-gray-200"
-                                            @click="$store.properties.modifyProperty('fillmode', 'forwards')"
-                                            :class="$store.properties.fillmode == 'forwards' ? 'ring-1 ring-violet-300 ring-inset bg-violet-50 border-gray-100':''"
-                                        >
-                                            forwards
-                                        </button>
-            
-                                        <button 
-                                            class="bg-gray-100 hover:bg-violet-50 p-4 border-r border-gray-200"
-                                            @click="$store.properties.modifyProperty('fillmode', 'backwards')"
-                                            :class="$store.properties.fillmode == 'backwards' ? 'ring-1 ring-violet-300 ring-inset bg-violet-50 border-gray-100':''"
-                                        >
-                                            backwards
-                                        </button>
-            
-                                        <button 
-                                            class="bg-gray-100 hover:bg-violet-50 p-4"
-                                            @click="$store.properties.modifyProperty('fillmode', 'both')"
-                                            :class="$store.properties.fillmode == 'both' ? 'ring-1 ring-violet-300 ring-inset bg-violet-50 border-gray-100':''"
-                                        >
-                                            both
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                     <div 
                         x-data="{
                             copy(type) {
                                 if (type == 'print') {
-                                    this.feedbackText = 'copied classlist!';
+                                    this.feedbackText = 'Copied classlist';
                                     $refs.feedback.classList.remove('opacity-0','duration-300');
                                     setTimeout(function(){ $refs.feedback.classList.add('opacity-0','duration-300'); }, 300);
                                     navigator.clipboard.writeText($refs.print.innerHTML);
                                 }
                                 else if (type == 'link') {
-                                    this.feedbackText = 'copied link!';
+                                    this.feedbackText = 'Copied link';
                                     $refs.feedback.classList.remove('opacity-0','duration-300');
                                     setTimeout(function(){ $refs.feedback.classList.add('opacity-0','duration-300'); }, 300);
                                     navigator.clipboard.writeText(window.location.href);
                                 }
                             },
-                            feedbackText:'copied Output!'
+                            feedbackText:'Copied Output'
                         }"
                         class="bg-white h-64 border-t border-gray-100 p-3 flex flex-col absolute w-full bottom-0"
                     >
                         <div 
                             x-ref="print"
                             class="bg-gray-900 py-4 px-5 grow overflow-y-scroll hide-scrollbar flex flex-col text-cyan-500 font-mono break-lines print" 
-                            x-text="$store.properties.classList()"
+                            x-text="computedClasses()"
                         >
                         </div>
 

@@ -8,6 +8,9 @@ module.exports = {
         ecmaVersion: 2020,
         sourceType: 'module',
     },
+    "globals": {
+        "Alpine": "readonly"
+    },
     extends: 'eslint:recommended',
     ignorePatterns: ['node_modules'],
     rules: {
