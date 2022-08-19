@@ -4,7 +4,8 @@
 @import "base/global.css";
 
 @import "tailwindcss/components";
-@import "elements/backgrounds.css";
-@import "elements/inputs.css";
+@import "elements/background.css";
+@import "elements/input.css";
+@import "elements/tooltip.css";
 
 @import "tailwindcss/utilities";

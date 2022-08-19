@@ -1,7 +1,11 @@
 <div x-data="{ open: $store.properties.direction ?? false }" class="mb-4"> 
     <div class="flex gap-2 items-center relative" @click="open = ! open">
-        <div class="group">
-            <img @mouseenter="sethint(3,$el)" @mouseleave="hint=0" class="cursor-pointer" src="/images/icons/info.svg" alt="">
+        <div class="tooltip">
+            <img src="/images/icons/info.svg" alt="">
+    
+            <div class="bubble">
+                The direction property sets whether an animation should play forward, backward, or alternate back and forth between playing the sequence forward and backward.
+            </div>
         </div>
 
         <span class="subline">Direction</span>

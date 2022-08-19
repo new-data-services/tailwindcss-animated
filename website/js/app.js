@@ -19,13 +19,6 @@ window.configurator = () => {
         reflow,
         copy,
 
-        hint: 0,
-        Ypos: 0,
-        sethint(x, el) {
-            this.hint = x;
-            this.Ypos = el.getBoundingClientRect().y+7;
-        },
-
         init() {
             history.getProperties();
         },

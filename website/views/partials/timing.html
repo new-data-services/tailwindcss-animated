@@ -1,6 +1,10 @@
 <div class="flex gap-2 items-center mb-1 relative">
-    <div class="group">
-        <img @mouseenter="sethint(1,$el)" @mouseleave="hint=0" class="cursor-pointer" src="/images/icons/info.svg" alt="">
+    <div class="tooltip">
+        <img src="/images/icons/info.svg" alt="">
+
+        <div class="bubble">
+            The timing properties defines when, how fast and how often the animation is executed.
+        </div>
     </div>
 
     <span class="subline">Timing</span>

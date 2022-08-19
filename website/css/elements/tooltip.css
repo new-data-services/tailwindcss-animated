@@ -1,0 +1,26 @@
+.tooltip {
+    @apply cursor-help relative;
+
+    .bubble {
+        @apply p-small text-white bg-gray-900 px-3 py-2 absolute z-20 scale-0 transition-transform;
+        content: attr(data-tip);
+        width: 12rem;
+        min-height: 4rem;
+        top: -1rem;
+        left: 2rem;
+        transform-origin: 0 1.5rem;
+
+        &::before {
+            @apply absolute border-transparent border-r-gray-900;
+            content: "";
+            border-width: .75rem;
+            border-right-width: 1rem;
+            top: .7rem;
+            left: -1.7rem;
+        }
+    }
+
+    &:hover .bubble {
+        @apply scale-100 delay-100;
+    }
+}

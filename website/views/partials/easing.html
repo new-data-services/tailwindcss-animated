@@ -1,6 +1,10 @@
 <div class="flex gap-2 items-center mb-1 relative">
-    <div class="group">
-        <img @mouseenter="sethint(2,$el)" @mouseleave="hint=0" class="cursor-pointer" src="/images/icons/info.svg" alt="">
+    <div class="tooltip">
+        <img src="/images/icons/info.svg" alt="">
+        
+        <div class="bubble">
+            The easing property specifies the speed curve of the transition effect.
+        </div>
     </div>
 
     <span class="subline">Easing</span>

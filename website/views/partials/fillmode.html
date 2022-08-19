@@ -1,7 +1,11 @@
 <div x-data="{ open: $store.properties.fill ?? false }" class="mb-4"> 
     <div class="flex gap-2 items-center relative" @click="open = ! open">
-        <div class="group">
-            <img @mouseenter="sethint(4,$el)" @mouseleave="hint=0" class="cursor-pointer" src="/images/icons/info.svg" alt="">
+        <div class="tooltip">
+            <img src="/images/icons/info.svg" alt="">
+    
+            <div class="bubble">
+                The fill mode sets how the animation applies styles to its target before and after its execution.
+            </div>
         </div>
 
         <span class="subline">Fill mode</span>
