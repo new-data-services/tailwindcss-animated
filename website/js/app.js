@@ -1,14 +1,19 @@
 import Alpine from 'alpinejs';
 import collapse from '@alpinejs/collapse';
 import intersect from '@alpinejs/intersect';
+
 import defaults from './defaults';
-import history from './helper/history';
+import history from './modules/history';
+import preview from './modules/preview';
+import reflow from './modules/reflow';
 
 Alpine.store('properties', defaults);
 window.Alpine = Alpine;
 
 window.configurator = () => {
     return {
+        preview,
+        reflow,
 
         leftColSize: 'width:384px',
         rightColSize: 'width:384px',
@@ -19,32 +24,6 @@ window.configurator = () => {
         sethint(x, el) {
             this.hint = x;
             this.Ypos = el.getBoundingClientRect().y+7;
-        },
-
-        preview: 1,
-        reflowMode: 1,
-        reflowHandler() {
-            const previewObjects = document.querySelector('.preview').children;
-
-            switch (this.reflowMode) {
-                case 2:
-                    for (let i = 0; i < previewObjects.length; i++) {
-                        previewObjects[i].removeAttribute('x-on:mouseenter');
-                        previewObjects[i].setAttribute('x-on:click', 'reflow()');
-                    }
-                    break;
-                case 3:
-                    for (let i = 0; i < previewObjects.length; i++) {
-                        previewObjects[i].removeAttribute('x-on:click');
-                        previewObjects[i].setAttribute('x-on:mouseenter', 'reflow()');
-                    }
-                    break;
-                default:
-                    for (let i = 0; i < previewObjects.length; i++) {
-                        previewObjects[i].removeAttribute('x-on:mouseenter');
-                        previewObjects[i].removeAttribute('x-on:click');
-                    }
-              }
         },
 
         init() {
@@ -71,21 +50,13 @@ window.configurator = () => {
             history.setProperties();
         },
 
-        reflow() {
-            const nodes = document.querySelector('.preview').childNodes;
-
-            for (let i = 0; i < nodes.length; i++) {
-                let copy = nodes[i];
-                nodes[i].parentNode.replaceChild(nodes[i], copy);
-            }
-        },
-
         computedClasses() {
             return Object.values(Alpine.store('properties'))
                 .filter(value => value !== null)
                 .map(value => 'animate-' + value)
                 .join(' ');
-        }
+        },
+
     };
 };
 

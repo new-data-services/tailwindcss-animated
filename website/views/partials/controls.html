@@ -1,60 +1,61 @@
 <div class="bg-white w-full p-3 flex gap-2.5 flex-wrap flex-row-reverse justify-end 2xl:justify-start 2xl:flex-row">
     <div class="flex">
         <div class="bg-gray-100 p-2.5 flex items-center gap-2.5">
-            <img class="cursor-zoom-out" @click="if (range > -8) {range--}" src="/images/icons/shrink.svg" alt="">
+            <img class="cursor-zoom-out" @click="if (preview.scale > 2) { preview.scale--; }" src="/images/icons/shrink.svg" alt="">
 
-            <input x-refs="scale()" x-model="range" class="w-40" type="range" min="-8" max="10">
+            <input x-model="preview.scale" class="w-40" type="range" min="2" max="20">
 
-            <img class="cursor-zoom-in" @click="if (range < 10) {range++}" src="/images/icons/enlarge.svg" alt="">
+            <img class="cursor-zoom-in" @click="if (preview.scale < 20) { preview.scale++; }" src="/images/icons/enlarge.svg" alt="">
         </div>
 
-        <span 
-            @click="range = 0"
+        <span
+            @click="preview.scale = 10"
             title="reset"
-            class="cursor-pointer text-gray-700 flex px-4 border-l border-gray-200 h-full bg-gray-100 w-20 items-center justify-center" 
-            x-text="range * 10 + 100 +' %'">
+            class="cursor-pointer text-gray-700 flex px-4 border-l border-gray-200 h-full bg-gray-100 w-20 items-center justify-center"
+            x-text="`${preview.computedScale()} %`"
+        >
         </span>
     </div>
 
     <div class="flex gap-2.5">
         <button 
-            @click="preview = 1"
+            @click="preview.setMode('logo')"
+            :class="preview.mode === 'logo' ? 'bg-violet-50 border border-violet-300' : 'bg-gray-100 hover:bg-violet-50'"
             class="w-10 h-10 flex justify-center items-center transition duration-75"
-            :class="preview == 1 ? 'bg-violet-50 border border-violet-300':'bg-gray-100 hover:bg-violet-50'"
         >
-            <img :src="preview == 1 ? '/images/icons/preview-logo-active.svg' : '/images/icons/preview-logo.svg'" alt="">
+            <img :src="preview.mode === 'logo' ? '/images/icons/preview-logo-active.svg' : '/images/icons/preview-logo.svg'" alt="">
         </button>
 
         <button 
-            @click="preview = 2"
+            @click="preview.setMode('headline')"
+            :class="preview.mode === 'headline' ? 'bg-violet-50 border border-violet-300' : 'bg-gray-100 hover:bg-violet-50'"
             class="w-10 h-10 flex justify-center items-center transition duration-75"
-            :class="preview == 2 ? 'bg-violet-50 border border-violet-300' : 'bg-gray-100 hover:bg-violet-50'"
         >
-            <img :src="preview == 2 ? '/images/icons/preview-headline-active.svg' : '/images/icons/preview-headline.svg'" alt="">
+            <img :src="preview.mode === 'headline' ? '/images/icons/preview-headline-active.svg' : '/images/icons/preview-headline.svg'" alt="">
         </button>
 
         <button 
-            @click="preview = 3"
+            @click="preview.setMode('text')"
+            :class="preview.mode === 'text' ? 'bg-violet-50 border border-violet-300' : 'bg-gray-100 hover:bg-violet-50'"
             class="w-10 h-10 flex justify-center items-center transition duration-75"
-            :class="preview == 3 ? 'bg-violet-50 border border-violet-300' : 'bg-gray-100 hover:bg-violet-50'"
         >
-            <img :src="preview == 3 ? '/images/icons/preview-text-active.svg' : '/images/icons/preview-text.svg'" alt="">
+            <img :src="preview.mode === 'text' ? '/images/icons/preview-text-active.svg' : '/images/icons/preview-text.svg'" alt="">
         </button>
 
         <button 
-            @click="preview = 4"
+            @click="preview.setMode('image')"
+            :class="preview.mode === 'image' ? 'bg-violet-50 border border-violet-300' : 'bg-gray-100 hover:bg-violet-50'"
             class="w-10 h-10 flex justify-center items-center transition duration-75"
-            :class="preview == 4 ? 'bg-violet-50 border border-violet-300' : 'bg-gray-100 hover:bg-violet-50'"
         >
-            <img :src="preview == 4 ? '/images/icons/preview-image-active.svg' : '/images/icons/preview-image.svg'" alt="">
+            <img :src="preview.mode === 'image' ? '/images/icons/preview-image-active.svg' : '/images/icons/preview-image.svg'" alt="">
         </button>
 
         <button 
-            @click="preview = 5"
+            @click="preview.setMode('button')"
+            :class="preview.mode === 'button' ? 'bg-violet-50 border border-violet-300' : 'bg-gray-100 hover:bg-violet-50'"
             class="w-10 h-10 flex justify-center items-center transition duration-75"
-            :class="preview == 5 ? 'bg-violet-50 border border-violet-300' : 'bg-gray-100 hover:bg-violet-50'"
         >
-            <img :src="preview == 5 ? '/images/icons/preview-button-active.svg' : '/images/icons/preview-button.svg'" alt="">
+            <img :src="preview.mode === 'button' ? '/images/icons/preview-button-active.svg' : '/images/icons/preview-button.svg'" alt="">
         </button>
     </div>
 
@@ -62,10 +63,10 @@
         <div x-data="{ open: false }" class=" text-violet-900 h-10 transition duration-75 bg-violet-100 flex items-center relative w-40 cursor-pointer">
 
             <span 
-                x-text="reflowMode == 1 ? 'Play' : (reflowMode == 2 ? 'on click' : 'on hover')" 
+                x-text="reflow.mode === 'play' ? 'Play' : `on ${reflow.mode}`"
+                :class="reflow.mode === 'play' ? 'hover:bg-violet-200 text-violet-900' : 'bg-violet-50 text-violet-300 cursor-not-allowed cursor pointer-events-none'"
                 class="grow px-5 h-full flex items-center"
-                :class="reflowMode == 1 ? 'hover:bg-violet-200 text-violet-900' : 'bg-violet-50 text-violet-300 cursor-not-allowed cursor pointer-events-none'"
-                @click="reflow()"
+                @click="reflow.run()"
             >
                 Play
             </span>
@@ -76,21 +77,21 @@
 
             <div x-show="open" x-cloak x-collapse class="absolute w-full top-0 left-0 -translate-y-full">
                 <div 
-                    @click="reflowMode = 1; open = false; reflowHandler()"
+                    @click="reflow.setMode('play'); open = false;"
                     class="bg-violet-100 w-full border-b border-violet-200 py-2 hover:bg-violet-200 px-5"
                 >
                     Play
                 </div>
 
                 <div 
-                    @click="reflowMode = 2; open = false; reflowHandler()"
+                    @click="reflow.setMode('click'); open = false;"
                     class="bg-violet-100 w-full border-b border-violet-200 py-2 hover:bg-violet-200 px-5"
                 >
                     on click
                 </div>
 
                 <div 
-                    @click="reflowMode = 3; open = false, reflowHandler()"
+                    @click="reflow.setMode('hover'); open = false;"
                     class="bg-violet-100 w-full border-b border-violet-200 py-2 hover:bg-violet-200 px-5"
                 >
                     on hover
