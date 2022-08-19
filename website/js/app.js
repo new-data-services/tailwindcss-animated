@@ -35,7 +35,7 @@ window.configurator = () => {
         set(property, value) {
             Alpine.store('properties')[property] = value;
 
-            this.reflow();
+            this.reflow.run();
 
             history.setProperties();
         },
@@ -47,7 +47,7 @@ window.configurator = () => {
                     Alpine.store('properties')[key] = null;
                 });
 
-            this.reflow();
+            this.reflow.run();
 
             history.setProperties();
         },
