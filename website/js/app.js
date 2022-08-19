@@ -3,6 +3,7 @@ import collapse from '@alpinejs/collapse';
 import intersect from '@alpinejs/intersect';
 
 import defaults from './defaults';
+import classMapper from './modules/classMapper';
 import history from './modules/history';
 import preview from './modules/preview';
 import panels from './modules/panels';
@@ -44,9 +45,8 @@ window.configurator = () => {
         },
 
         computedClasses() {
-            return Object.values(Alpine.store('properties'))
-                .filter(value => value !== null)
-                .map(value => 'animate-' + value)
+            return Object.entries(Alpine.store('properties'))
+                .map(classMapper)
                 .join(' ');
         },
 
