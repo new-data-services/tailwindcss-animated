@@ -23,12 +23,11 @@ export default {
     },
 
     run() {
-        const nodes = document.querySelector('.preview').childNodes;
+        document.querySelectorAll('.preview .previewItem').forEach(node => {
+            const copy = node;
 
-        for (let i = 0; i < nodes.length; i++) {
-            let copy = nodes[i];
-            nodes[i].parentNode.replaceChild(nodes[i], copy);
-        }
+            node.parentNode.replaceChild(node, copy);
+        });
     },
 
 };

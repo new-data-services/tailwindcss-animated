@@ -70,13 +70,14 @@
 
     <div class="grid grid-cols-2 gap-6">
         <div class="flex relative">
-            <label for="duration">
+            <label>
                 <input
-                    name="duration"
+                    x-init="$el.value = $store.properties.duration" 
+                    @keyup.enter="set('duration', $el.value)"
+                    @focusout="set('duration', $el.value)"
                     type="number"
-                    class="border border-gray-200 bg-gray-50 p-3 px-4 w-full focus:border-violet-300 focus:bg-white peer"
                     placeholder=" "
-                    x-model="$store.properties.duration"
+                    class="border border-gray-200 bg-gray-50 p-3 px-4 w-full focus:border-violet-300 focus:bg-white peer"
                 >
 
                 <span class="pointer-events-none absolute text-gray-300 bg-gray-50 transition-all px-1 input-label">
@@ -88,13 +89,14 @@
         </div>
 
         <div class="flex relative">
-            <label for="delay">
+            <label>
                 <input 
-                    name="delay"
+                    x-init="$el.value = $store.properties.delay" 
+                    @keyup.enter="set('delay', $el.value)"
+                    @focusout="set('delay', $el.value)"
                     type="number"
-                    class="border border-gray-200 bg-gray-50 p-3 px-4 w-full focus:border-violet-300 focus:bg-white peer"
                     placeholder=" "
-                    x-model="$store.properties.delay"
+                    class="border border-gray-200 bg-gray-50 p-3 px-4 w-full focus:border-violet-300 focus:bg-white peer"
                 >
 
                 <span class="pointer-events-none absolute text-gray-300 bg-gray-50 transition-all px-1 input-label">

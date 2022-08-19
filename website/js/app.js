@@ -50,6 +50,16 @@ window.configurator = () => {
                 .join(' ');
         },
 
+        arbitraryValues() {
+            return ['duration', 'delay'].map(key => {
+                if (! Alpine.store('properties')[key]) {
+                    return;
+                }
+
+                return `animation-${key}: ${Alpine.store('properties')[key]}ms;`;
+            }).join('');
+        },
+
     };
 };
 
