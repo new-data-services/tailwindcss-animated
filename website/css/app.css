@@ -4,6 +4,7 @@
 @import "base/global.css";
 
 @import "tailwindcss/components";
-/*@import "my-custom-component.css";*/
+@import "elements/backgrounds.css";
+@import "elements/inputs.css";
 
 @import "tailwindcss/utilities";
