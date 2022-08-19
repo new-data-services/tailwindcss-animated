@@ -14,9 +14,10 @@ export default {
         const url = new URL(window.location.origin + window.location.pathname);
 
         Object.entries(Alpine.store('properties'))
-            .filter(([value]) => value !== null)
             .forEach(([key, value]) => {
-                url.searchParams.set(key, value);
+                if (value) {
+                    url.searchParams.set(key, value);
+                }
             });
 
         window.history.replaceState(null, null, url);
