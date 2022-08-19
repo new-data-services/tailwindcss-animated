@@ -1,7 +1,5 @@
 :root {
     color-scheme: light only;
-
-    /* fluid font-size from .94 to 1.12 rem (~ 15 to 18 px) with fallback to 16px */
     font-size: 100%;
 }
 
