@@ -81,45 +81,34 @@
                         {% include "website/views/partials/fillmode.html" %}
                     </div>
 
-                    <div 
-                        x-data="{
-                            copy(type) {
-                                if (type == 'print') {
-                                    this.feedbackText = 'Copied classlist';
-                                    navigator.clipboard.writeText($refs.print.innerHTML);
-                                }
-                                else if (type == 'link') {
-                                    this.feedbackText = 'Copied link';
-                                    navigator.clipboard.writeText(window.location.href);
-                                }
-
-                                $refs.feedback.classList.remove('opacity-0','duration-300');
-                                setTimeout(function(){ $refs.feedback.classList.add('opacity-0','duration-300'); }, 300);
-                            },
-                            feedbackText:'Copied Output'
-                        }"
-                        class="bg-white h-64 border-t border-gray-100 p-3 flex flex-col absolute w-full bottom-0"
-                    >
+                    <div class="bg-white h-64 border-t border-gray-100 p-3 flex flex-col absolute w-full bottom-0">
                         <div 
-                            x-ref="print"
+                            id="output"
+                            x-ref="output"
                             class="bg-gray-900 py-4 px-5 grow overflow-y-scroll hide-scrollbar flex flex-col text-cyan-500 font-mono break-lines print" 
                             x-text="computedClasses()"
                         >
                         </div>
 
                         <div class="flex w-full">
-                            <button @click="copy('print')" id="copy-output" class="bg-cyan-500 p-2.5 px-4 hover:bg-opacity-60 transition justify-center flex gap-2 items-center shrink-0 active:bg-opacity-100 grow">
+                            <button
+                                @click="copy.classes()"
+                                class="bg-cyan-500 p-2.5 px-4 hover:bg-opacity-60 transition justify-center flex gap-2 items-center shrink-0 active:bg-opacity-100 grow"
+                            >
                                 <img class="w-4.5 opacity-50" src="/images/icons/copy.svg" alt="">
-                                
+
                                 Copy animation classes
                             </button>
-                            
-                            <button @click="copy('link')" id="copy-output" class="bg-violet-300 p-2.5 px-4 hover:bg-violet-200 transition shrink-0 text-violet-900 active:bg-violet-300">
+
+                            <button
+                                @click="copy.url()"
+                                class="bg-violet-300 p-2.5 px-4 hover:bg-violet-200 transition shrink-0 text-violet-900 active:bg-violet-300"
+                            >
                                 Copy link
                             </button>
                         </div>
 
-                        <span x-ref="feedback" x-html="feedbackText" class="absolute bg-violet-500 text-violet-200 p-1 px-2 right-3 opacity-0 duration-300">copied Output!</span>
+                        <span id="copyFeedback" class="pointer-events-none absolute bg-violet-500 text-violet-200 p-1 px-2 right-3 opacity-0">Copied to clipboard</span>
                     </div>
                 </div>
             </div>

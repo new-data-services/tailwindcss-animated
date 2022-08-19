@@ -6,6 +6,7 @@ import defaults from './defaults';
 import history from './modules/history';
 import preview from './modules/preview';
 import reflow from './modules/reflow';
+import copy from './modules/copy';
 
 Alpine.store('properties', defaults);
 window.Alpine = Alpine;
@@ -14,6 +15,7 @@ window.configurator = () => {
     return {
         preview,
         reflow,
+        copy,
 
         leftColSize: 'width:384px',
         rightColSize: 'width:384px',
