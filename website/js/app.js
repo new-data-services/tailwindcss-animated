@@ -5,6 +5,7 @@ import intersect from '@alpinejs/intersect';
 import defaults from './defaults';
 import history from './modules/history';
 import preview from './modules/preview';
+import panels from './modules/panels';
 import reflow from './modules/reflow';
 import copy from './modules/copy';
 
@@ -14,12 +15,9 @@ window.Alpine = Alpine;
 window.configurator = () => {
     return {
         preview,
+        panels,
         reflow,
         copy,
-
-        leftColSize: 'width:384px',
-        rightColSize: 'width:384px',
-        rightSize: 384,
 
         hint: 0,
         Ypos: 0,

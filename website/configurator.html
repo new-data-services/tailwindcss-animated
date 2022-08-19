@@ -48,12 +48,12 @@
 
         <div>
             <div class="w-full bg-gray-100 h-[100vh] pt-16 flex">
-                <div :style="leftColSize" class="bg-white py-8 overflow-y-scroll hide-scrollbar shrink-0 z-10">
+                <div :style="panels.getCssStyles('left')" class="bg-white py-8 overflow-y-scroll hide-scrollbar shrink-0 z-10 w-1/5 min-w-[200px]">
                     {% include "website/views/partials/animations.html" %}
                 </div>
 
                 <div 
-                    @drag="if (event.pageX > 200 && event.pageX < window.innerWidth/3) {leftColSize='width:'+event.pageX+'px'}" 
+                    @drag="panels.setWidth('left', event.pageX)"
                     draggable="true" 
                     class="h-auto border-r border-transparent hover:border-cyan-500 transition delay-100 scale-x-[400%] relative z-30 cursor-ew-resize">
                 </div>
@@ -64,13 +64,13 @@
                     {% include "website/views/partials/controls.html" %}
                 </div>
 
-                <div 
-                    @drag="if ((window.innerWidth-event.pageX) > 350 && (window.innerWidth-event.pageX) < window.innerWidth/3) {rightColSize='width:'+(window.innerWidth-event.pageX)+'px'; rightSize=(window.innerWidth-event.pageX) }" 
+                <div
+                    @drag="panels.setWidth('right', window.innerWidth - event.pageX)"
                     draggable="true" 
                     class="h-auto border-r border-transparent hover:border-cyan-500 transition delay-100 scale-x-[400%] z-30 cursor-ew-resize">
                 </div>
 
-                <div :style="rightColSize" class="bg-white flex flex-col relative shrink-0 z-10">
+                <div :style="panels.getCssStyles('right')" class="bg-white flex flex-col relative shrink-0 z-10 w-1/4 min-w-[350px]">
                     <div class="py-8 px-6 h-full hide-scrollbar pb-64 overflow-y-auto">
                         {% include "website/views/partials/timing.html" %}
 
