@@ -44,7 +44,7 @@ This plugin brings various utility classes as well as several ready-to-use CSS a
 There are several animations that can be integrated with a single utility class. These extend the Spin, Ping and Pulse animations of Tailwind CSS.
 
 Open the configurator to see them in action:<br>
-https://tailwindcss-animated.com/preview/
+https://tailwindcss-animated.com/configurator.html
 
 All animations can be customized with the utility classes below.
 
