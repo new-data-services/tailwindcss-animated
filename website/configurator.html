@@ -7,11 +7,11 @@
 {% block content %}
     <div id="mobile" x-data="{ menu:false }" class="bg-gray-100 h-screen bg-dotted lg:hidden">
         <header class="grid grid-cols-4 items-center bg-gray-900 text-white py-2.5 px-6 justify-between w-full h-16">
-            <a class="mr-auto" href="#">
+            <a class="mr-auto" href="/">
                 <img class="w-20 hover:scale-105 transition" src="/images/icons/wave.svg" alt="">
             </a>
 
-            <h1 class="uppercase mx-auto p text-white col-span-2 text-center leading-5">Tailwindcss Animated</h1>
+            <h1 class="uppercase mx-auto p text-white col-span-2 text-center leading-5">Tailwind CSS Animated</h1>
 
             {% include "website/views/partials/menu-mobile.html" %}
         </header>
@@ -21,7 +21,7 @@
 
             <h3 class="text-center mb-4 max-w-xs">It seems like you’re on a mobile device.</h3>
 
-            <p class="p text-center mb-8 max-w-xs">Try again on a desktop device or learn more about Tailwindcss Animated instead.</p>
+            <p class="p text-center mb-8 max-w-xs">Try again on a desktop device or learn more about Tailwind CSS Animated instead.</p>
 
             <a href="/" class="flex items-center gap-2 py-2 px-3 bg-violet-500 text-white hover:bg-opacity-80">
                 About
@@ -37,11 +37,11 @@
         x-data="configurator()"
     >
         <header class="grid grid-cols-3 items-center bg-gray-900 text-white py-2.5 px-6 justify-between absolute w-full h-16 z-10">
-            <a class="mr-auto" href="#">
+            <a class="mr-auto" href="/">
                 <img class="w-20 hover:scale-105 transition" src="/images/icons/wave.svg" alt="">
             </a>
 
-            <h1 class="uppercase mx-auto p text-white">Tailwindcss Animated</h1>
+            <h1 class="uppercase mx-auto p text-white">Tailwind CSS Animated</h1>
 
             {% include "website/views/partials/menu-desktop.html" %}
         </header>
