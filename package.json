@@ -17,6 +17,9 @@
         "animated",
         "keyframes"
     ],
+    "files": [
+        "/src"
+    ],
     "main": "src/index.js",
     "scripts": {
         "dev": "vite --config ./website/vite.config.js",
