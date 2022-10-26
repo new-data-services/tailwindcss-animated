@@ -1,14 +1,10 @@
 export default ([key, value]) => {
-
     if (value) {
         return;
     }
-    
+
     function getStyle(property) {
-        return window.getComputedStyle(
-            document.getElementsByClassName("previewItem")[0]
-        )
-        [property];
+        return window.getComputedStyle(document.getElementsByClassName('previewItem')[0])[property];
     }
 
     switch (key) {
@@ -35,7 +31,7 @@ export default ([key, value]) => {
                 default:
                     return 'animate-ease-...';
             }
-            
+
         case 'count':
             value = getStyle('animationIterationCount');
             switch (value) {
@@ -46,36 +42,38 @@ export default ([key, value]) => {
                 case 3:
                     return 'animate-thrice';
                 default:
-                    return 'animate-infinite'
+                    return 'animate-infinite';
             }
 
         default:
-            return 'animate-' + getStyle('animation-'+key)
+            return 'animate-' + getStyle('animation-'+key);
     }
 };
 
 function mapDuration() {
-    let value = window.getComputedStyle(document.getElementsByClassName("previewItem")[0]).animationDuration;
+    let value = window.getComputedStyle(document.getElementsByClassName('previewItem')[0]).animationDuration;
 
     if (!value.includes('m')) {
         value = parseInt(value) * 1000;
     }
-    
+
     if ([0, 75, 100, 150, 200, 300, 500, 700, 1000].includes(parseInt(value))) {
         return `animate-duration-${value}`;
     }
+
     return 'animate-duration-[' + value + 'ms]';
 }
 
 function mapDelay() {
-    let value = window.getComputedStyle(document.getElementsByClassName("previewItem")[0]).animationDelay;
+    let value = window.getComputedStyle(document.getElementsByClassName('previewItem')[0]).animationDelay;
 
     if (!value.includes('m')) {
         value = parseInt(value)*1000;
     }
-    
+
     if ([0, 75, 100, 150, 200, 300, 500, 700, 1000].includes(parseInt(value))) {
         return `animate-delay-${value}`;
     }
+
     return 'animate-delay-[' + value + 'ms]';
 }

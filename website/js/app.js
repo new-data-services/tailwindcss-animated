@@ -55,7 +55,7 @@ window.configurator = () => {
         presetClasses() {
             return Object.entries(Alpine.store('properties'))
                 .map(presetMapper)
-                .filter((a) => a)
+                .filter((a) => a);
         },
 
         arbitraryValues() {
