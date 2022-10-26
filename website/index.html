@@ -110,16 +110,41 @@
             </p>
             </div>
 
-            <div :class="intersect ? 'animate-fade-left animate-ease-out animate-delay-300':'opacity-0'" class="bg-gray-900 border-[5px] border-gray-700 p-5 h-64">
-                <span class="block text-gray-700">> npm install -D tailwindcss</span>
-                <span class="block text-gray-700">> npx tailwindcss init</span>
-                <span class="block text-cyan-500 after:content-[''] after:p-1 after:bg-white after:ml-1 after:py-px">
-                    <span class="text-violet-500">
-                        >
+            <div :class="intersect ? 'animate-fade-left animate-ease-out animate-delay-300':'opacity-0'" class="bg-gray-900 border-[5px] border-gray-700 p-5 h-64 flex">
+                <div class="grow">
+                    <span class="block text-gray-700">> npm install -D tailwindcss</span>
+                    <span class="block text-gray-700">> npx tailwindcss init</span>
+                    <span class="block text-cyan-500 after:content-[''] after:p-1 after:bg-white after:ml-1 after:py-px cursor-flash">
+                        <span class="text-violet-500">
+                            >
+                        </span>
+    
+                        npm install -D tailwindcss-animated
                     </span>
+                </div>
 
-                    npm install -D tailwindcss-animated
-                </span>
+                <button 
+                    class="shrink-0 hover:bg-gray-700/30 rounded p-2 w-10 group mb-auto duration-75 
+                    cursor-pointer transition after:absolute focus:after:opacity-0 after:duration-1000 
+                    focus:after:delay-500 focus:after:transition focus:after:content-[attr(data-feedback)] 
+                    relative after:left-1/2 after:-translate-x-1/2 after:bottom-0 after:translate-y-full
+                    after:text-sm active:bg-gray-700/50" 
+                    data-feedback="Copied"
+                >
+                    <svg 
+                        class="stroke-current text-gray-700 group-hover:text-white transition" 
+                        @click="navigator.clipboard.writeText('npm install -D tailwindcss-animated');"
+                        viewBox="0 0 20 20" 
+                        fill="none" 
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path d="M15.625 4.375H3.125V19.375H15.625V4.375Z" stroke-miterlimit="10" stroke-linecap="round"/>
+                        <path d="M5.625 0.625H19.375V16.875" stroke-miterlimit="10" stroke-linecap="square" stroke-linejoin="round"/>
+                        <path d="M6.875 8.125H11.875" stroke-miterlimit="10" stroke-linecap="square" stroke-linejoin="round"/>
+                        <path d="M6.875 11.875H11.875" stroke-miterlimit="10" stroke-linecap="square" stroke-linejoin="round"/>
+                        <path d="M6.875 15.625H11.875" stroke-miterlimit="10" stroke-linecap="square" stroke-linejoin="round"/>
+                    </svg>
+                </button>
             </div>
         </div>
     </section>
@@ -137,29 +162,29 @@
             </div>
 
             <ul x-data="{intersect:false}" x-intersect:enter="intersect=true" x-intersect:leave="intersect=false" class="text-violet-300 p-10 bg-gray-900 grid grid-cols-2 gap-4">
-                <div class="flex flex-col gap-4">
-                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-100':''">wiggle</li>
-                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-200':''">wiggle-more</li>
-                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-300':''">rotate-y</li>
-                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[400ms]':''">rotate-x</li>
-                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-500':''">jump</li>
-                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[600ms]':''">jump-in</li>
-                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-700':''">jump-out</li>
-                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[800ms]':''">spin</li>
-                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[900ms]':''">ping</li>
-                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-1000':''">pulse</li>
+                <div class="flex flex-col gap-4" :class="intersect ? '[&_li]:animate-duration-100':''">
+                    <li class="animate-fade-left animate-delay-100">wiggle</li>
+                    <li class="animate-fade-left animate-delay-200">wiggle-more</li>
+                    <li class="animate-fade-left animate-delay-300">rotate-y</li>
+                    <li class="animate-fade-left animate-delay-[400ms]">rotate-x</li>
+                    <li class="animate-fade-left animate-delay-500">jump</li>
+                    <li class="animate-fade-left animate-delay-[600ms]">jump-in</li>
+                    <li class="animate-fade-left animate-delay-700">jump-out</li>
+                    <li class="animate-fade-left animate-delay-[800ms]">spin</li>
+                    <li class="animate-fade-left animate-delay-[900ms]">ping</li>
+                    <li class="animate-fade-left animate-delay-1000">pulse</li>
                 </div>
 
-                <div class="flex flex-col gap-4">
-                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[1100ms]':''">bounce</li>
-                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[1200ms]':''">shake</li>
-                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[1300ms]':''">fade</li>
-                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[1400ms]':''">fade-down</li>
-                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[1500ms]':''">fade-up</li>
-                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[1600ms]':''">fade-left</li>
-                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[1700ms]':''">fade-right</li>
-                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[1800ms]':''">flip-up</li>
-                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[1900ms]':''">flip-down</li>
+                <div class="flex flex-col gap-4" :class="intersect ? '[&_li]:animate-duration-100':''">
+                    <li class="animate-delay-[1100ms] animate-fade-left">bounce</li>
+                    <li class="animate-delay-[1200ms] animate-fade-left">shake</li>
+                    <li class="animate-delay-[1300ms] animate-fade-left">fade</li>
+                    <li class="animate-delay-[1400ms] animate-fade-left">fade-down</li>
+                    <li class="animate-delay-[1500ms] animate-fade-left">fade-up</li>
+                    <li class="animate-delay-[1600ms] animate-fade-left">fade-left</li>
+                    <li class="animate-delay-[1700ms] animate-fade-left">fade-right</li>
+                    <li class="animate-delay-[1800ms] animate-fade-left">flip-up</li>
+                    <li class="animate-delay-[1900ms] animate-fade-left">flip-down</li>
                 </div>
             </ul>
         </div>

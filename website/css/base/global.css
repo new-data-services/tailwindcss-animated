@@ -49,3 +49,17 @@ strong {
 [x-cloak] {
     display: none !important;
 }
+
+.cursor-flash::after {
+    animation-name: cursor-flash;
+    animation-duration: 1s;
+    animation-transition: none;
+    animation-iteration-count:infinite;
+}
+
+@keyframes cursor-flash {
+  0% {opacity: 1;}
+  49% {opacity: 1;}
+  50% {opacity: 0;}
+  100% {opacity: 0;}
+}
