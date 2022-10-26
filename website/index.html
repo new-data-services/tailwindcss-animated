@@ -162,29 +162,29 @@
             </div>
 
             <ul x-data="{intersect:false}" x-intersect:enter="intersect=true" x-intersect:leave="intersect=false" class="text-violet-300 p-10 bg-gray-900 grid grid-cols-2 gap-4">
-                <div class="flex flex-col gap-4" :class="intersect ? '[&_li]:animate-duration-100':''">
-                    <li class="animate-fade-left animate-delay-100">wiggle</li>
-                    <li class="animate-fade-left animate-delay-200">wiggle-more</li>
-                    <li class="animate-fade-left animate-delay-300">rotate-y</li>
-                    <li class="animate-fade-left animate-delay-[400ms]">rotate-x</li>
-                    <li class="animate-fade-left animate-delay-500">jump</li>
-                    <li class="animate-fade-left animate-delay-[600ms]">jump-in</li>
-                    <li class="animate-fade-left animate-delay-700">jump-out</li>
-                    <li class="animate-fade-left animate-delay-[800ms]">spin</li>
-                    <li class="animate-fade-left animate-delay-[900ms]">ping</li>
-                    <li class="animate-fade-left animate-delay-1000">pulse</li>
+                <div class="flex flex-col gap-4">
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-100':''">wiggle</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-200':''">wiggle-more</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-300':''">rotate-y</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[400ms]':''">rotate-x</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-500':''">jump</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[600ms]':''">jump-in</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-700':''">jump-out</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[800ms]':''">spin</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[900ms]':''">ping</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-1000':''">pulse</li>
                 </div>
 
-                <div class="flex flex-col gap-4" :class="intersect ? '[&_li]:animate-duration-100':''">
-                    <li class="animate-delay-[1100ms] animate-fade-left">bounce</li>
-                    <li class="animate-delay-[1200ms] animate-fade-left">shake</li>
-                    <li class="animate-delay-[1300ms] animate-fade-left">fade</li>
-                    <li class="animate-delay-[1400ms] animate-fade-left">fade-down</li>
-                    <li class="animate-delay-[1500ms] animate-fade-left">fade-up</li>
-                    <li class="animate-delay-[1600ms] animate-fade-left">fade-left</li>
-                    <li class="animate-delay-[1700ms] animate-fade-left">fade-right</li>
-                    <li class="animate-delay-[1800ms] animate-fade-left">flip-up</li>
-                    <li class="animate-delay-[1900ms] animate-fade-left">flip-down</li>
+                <div class="flex flex-col gap-4">
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[1100ms]':''">bounce</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[1200ms]':''">shake</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[1300ms]':''">fade</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[1400ms]':''">fade-down</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[1500ms]':''">fade-up</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[1600ms]':''">fade-left</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[1700ms]':''">fade-right</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[1800ms]':''">flip-up</li>
+                    <li :class="intersect ? 'animate-fade-left animate-duration-100 animate-delay-[1900ms]':''">flip-down</li>
                 </div>
             </ul>
         </div>

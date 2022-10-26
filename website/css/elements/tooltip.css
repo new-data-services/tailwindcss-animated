@@ -20,7 +20,22 @@
         }
     }
 
-    &:hover .bubble {
+    .bubble-question {
+        @apply p-small text-white bg-gray-700 px-3 py-2 absolute z-20 
+        scale-0 transition-transform origin-bottom bottom-8 left-1/2 -translate-x-1/2;
+        content: attr(data-tip);
+        width: 12rem;
+        min-height: 4rem;
+
+        &::before {
+            @apply absolute border-transparent border-t-gray-700 bottom-0 left-1/2 -translate-x-1/2 translate-y-full;
+            content: "";
+            border-width: .75rem;
+            border-top-width: 1rem;
+        }
+    }
+
+    &:hover .bubble, &:hover .bubble-question {
         @apply scale-100 delay-100;
     }
 }
