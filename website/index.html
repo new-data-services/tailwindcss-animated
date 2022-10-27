@@ -17,10 +17,25 @@
     <span class="block bg-gradient-to-r from-violet-500 to-cyan-500 h-[2px] w-full fixed top-16 z-20"></span>
 
     <section class="relative flex items-center justify-center bg-white mt-16 px-6">
-        <div class="w-full h-full absolute animate-fade animate-ease-in animate-fill-backwards animate-duration-[2000ms] animate-delay-1000">
-            <div class="absolute flex items-center justify-center w-full h-full animate-ease-in animate-duration-[2000ms] animate-spin animate-once animate-reverse">
-                <img class=" w-[50vw] lg:w-[65vw] hidden md:block absolute left-0 -translate-x-1/2 md:-translate-x-1/4 bottom-0 translate-y-8 lg:translate-y-24" src="/images/icons/wave.svg" alt="">
-                <img class=" w-[80vw] hidden md:block absolute -right-[30vw] top-0 translate-x-24 -translate-y-16 md:translate-x-8 md:-translate-y-24 lg:-translate-y-32 2xl:-translate-y-44" src="/images/icons/wave.svg" alt="">
+        <div 
+            class="w-full h-full absolute animate-fade animate-ease-in animate-fill-backwards 
+            animate-duration-[2000ms] animate-delay-1000"
+        >
+            <div 
+                class="absolute flex items-center justify-center w-full h-full animate-ease-in 
+                animate-duration-[2000ms] animate-spin animate-once animate-reverse"
+            >
+                <img 
+                    class="w-[50vw] lg:w-[65vw] hidden md:block absolute right-1/2 -bottom-12 lg:-bottom-28 [@media(min-width:2150px)]:-bottom-48 max-w-screen-2xl -translate-x-16" 
+                    src="/images/icons/wave.svg" 
+                    alt=""
+                >
+
+                <img 
+                    class="w-[80vw] hidden md:block absolute left-1/2 -top-24 lg:-top-36 2xl:-top-48 max-w-screen-2xl transform-x-16" 
+                    src="/images/icons/wave.svg" 
+                    alt=""
+                >
             </div>
         </div>
 
@@ -95,16 +110,41 @@
             </p>
             </div>
 
-            <div :class="intersect ? 'animate-fade-left animate-ease-out animate-delay-300':'opacity-0'" class="bg-gray-900 border-[5px] border-gray-700 p-5 h-64">
-                <span class="block text-gray-700">> npm install -D tailwindcss</span>
-                <span class="block text-gray-700">> npx tailwindcss init</span>
-                <span class="block text-cyan-500 after:content-[''] after:p-1 after:bg-white after:ml-1 after:py-px">
-                    <span class="text-violet-500">
-                        >
+            <div :class="intersect ? 'animate-fade-left animate-ease-out animate-delay-300':'opacity-0'" class="bg-gray-900 border-[5px] border-gray-700 p-5 h-64 flex">
+                <div class="grow">
+                    <span class="block text-gray-700">> npm install -D tailwindcss</span>
+                    <span class="block text-gray-700">> npx tailwindcss init</span>
+                    <span class="block text-cyan-500 after:content-[''] after:p-1 after:bg-white after:ml-1 after:py-px cursor-flash">
+                        <span class="text-violet-500">
+                            >
+                        </span>
+    
+                        npm install -D tailwindcss-animated
                     </span>
+                </div>
 
-                    npm install -D tailwindcss-animated
-                </span>
+                <button 
+                    class="shrink-0 hover:bg-gray-700/30 rounded p-2 w-10 group mb-auto duration-75 
+                    cursor-pointer transition after:absolute focus:after:opacity-0 after:duration-1000 
+                    focus:after:delay-500 focus:after:transition focus:after:content-[attr(data-feedback)] 
+                    relative after:left-1/2 after:-translate-x-1/2 after:bottom-0 after:translate-y-full
+                    after:text-sm active:bg-gray-700/50" 
+                    data-feedback="Copied"
+                >
+                    <svg 
+                        class="stroke-current text-gray-700 group-hover:text-white transition" 
+                        @click="navigator.clipboard.writeText('npm install -D tailwindcss-animated');"
+                        viewBox="0 0 20 20" 
+                        fill="none" 
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path d="M15.625 4.375H3.125V19.375H15.625V4.375Z" stroke-miterlimit="10" stroke-linecap="round"/>
+                        <path d="M5.625 0.625H19.375V16.875" stroke-miterlimit="10" stroke-linecap="square" stroke-linejoin="round"/>
+                        <path d="M6.875 8.125H11.875" stroke-miterlimit="10" stroke-linecap="square" stroke-linejoin="round"/>
+                        <path d="M6.875 11.875H11.875" stroke-miterlimit="10" stroke-linecap="square" stroke-linejoin="round"/>
+                        <path d="M6.875 15.625H11.875" stroke-miterlimit="10" stroke-linecap="square" stroke-linejoin="round"/>
+                    </svg>
+                </button>
             </div>
         </div>
     </section>

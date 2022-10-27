@@ -4,6 +4,7 @@ import intersect from '@alpinejs/intersect';
 
 import defaults from './defaults';
 import classMapper from './modules/classMapper';
+import presetMapper from './modules/presetMapper';
 import history from './modules/history';
 import preview from './modules/preview';
 import panels from './modules/panels';
@@ -47,7 +48,14 @@ window.configurator = () => {
         computedClasses() {
             return Object.entries(Alpine.store('properties'))
                 .map(classMapper)
+                .filter((a) => a)
                 .join(' ');
+        },
+
+        presetClasses() {
+            return Object.entries(Alpine.store('properties'))
+                .map(presetMapper)
+                .filter((a) => a);
         },
 
         arbitraryValues() {

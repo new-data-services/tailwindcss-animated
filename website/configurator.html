@@ -81,13 +81,43 @@
                         {% include "website/views/partials/fillmode.html" %}
                     </div>
 
-                    <div class="bg-white h-64 border-t border-gray-100 p-3 flex flex-col absolute w-full bottom-0">
-                        <div 
-                            id="output"
-                            x-ref="output"
-                            class="bg-gray-900 py-4 px-5 grow overflow-y-scroll hide-scrollbar flex flex-col text-cyan-500 font-mono break-lines print" 
-                            x-text="computedClasses()"
-                        >
+                    <div class="bg-white h-76 border-t border-gray-100 p-3 flex flex-col absolute w-full bottom-0">
+                        <div class="bg-gray-900 px-5 hide-scrollbar py-4 font-mono break-lines">
+                            <div 
+                                id="output"
+                                x-ref="output"
+                                class="text-cyan-500 print"
+                                x-text="computedClasses()"
+                            >
+                            </div>
+    
+                            <div 
+                                x-data="{presets: presetClasses()}"
+                                x-init="$watch('presetClasses()', value => presets = value)"
+                            >
+                                <template x-for="preset in presets">
+                                    <div class="relative flex text-cyan-500/50 items-center gap-2">
+                                        <span 
+                                            class="cursor-not-allowed select-none text-cyan-500/50" 
+                                            x-text="preset">
+                                        </span>
+
+                                        <div class="tooltip">
+                                            <svg class="w-3.5" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <g opacity="0.5">
+                                                <path d="M13.5 1V0.5H13H1H0.5V1V13V13.5H1H13H13.5V13V1Z" stroke="#74EEFF" stroke-miterlimit="10" stroke-linecap="square"/>
+                                                <rect x="6" y="9" width="2" height="2" fill="#74EEFF"/>
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M7 8C8.38071 8 9.5 6.88071 9.5 5.5C9.5 4.11929 8.38071 3 7 3C5.61929 3 4.5 4.11929 4.5 5.5H5.5H6C6 4.94772 6.44772 4.5 7 4.5C7.55228 4.5 8 4.94772 8 5.5C8 6.05228 7.55228 6.5 7 6.5H6V7.79198C6.30623 7.92578 6.64445 8 7 8Z" fill="#74EEFF"/>
+                                                </g>
+                                            </svg>
+                                            
+                                            <div class="bubble-question select-none">
+                                                Deactivated classes represent properties that are applied by default for the selected animation
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
                         </div>
 
                         <div class="flex w-full">
