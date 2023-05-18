@@ -97,19 +97,19 @@ it('should add `timing-function` utilities', () => {
 
 it('should add predefined animations', () => {
     run({
-        content: [{ raw: String.raw`<div class="animate-wiggle animate-fade"></div>` }],
+        content: [{ raw: String.raw`<div class="animate-fade animate-wiggle"></div>` }],
     }).then(result => {
         expect(result.css).toMatchCss(String.raw`
-            @keyframes wiggle {
-                0%, 100% { transform: rotate(-3deg); }
-                50% { transform: rotate(3deg); }
-            }
-            .animate-wiggle { animation: wiggle 1s both; }
             @keyframes fade {
                 0% { opacity: 0; }
                 100% { opacity: 1; }
             }
             .animate-fade { animation: fade 1s both; }
+            @keyframes wiggle {
+                0%, 100% { transform: rotate(-3deg); }
+                50% { transform: rotate(3deg); }
+            }
+            .animate-wiggle { animation: wiggle 1s both; }
         `);
     });
 });
