@@ -28,8 +28,8 @@
         "build": "npm run prod",
         "preview": "vite preview --config ./website/vite.config.js",
         "test": "jest",
-        "lint": "npm run eslint",
-        "eslint": "node node_modules/eslint/bin/eslint.js --config ./.build/cs/.eslintrc.js {src,website}/**/*.js"
+        "eslint": "npx eslint src/**",
+        "eslint:fix": "npx eslint src/** --fix"
     },
     "peerDependencies": {
         "tailwindcss": ">=3.1.0"
@@ -39,7 +39,7 @@
         "@alpinejs/intersect": "^3.10.3",
         "alpinejs": "^3.10.3",
         "autoprefixer": "^10.4.8",
-        "eslint": "^8.21.0",
+        "eslint": "^8.40.0",
         "jest": "^29.3.1",
         "postcss": "^8.4.16",
         "postcss-discard-comments": "^5.1.2",
