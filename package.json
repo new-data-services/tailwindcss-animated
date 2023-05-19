@@ -1,6 +1,5 @@
 {
     "name": "tailwindcss-animated",
-    "version": "1.0.0",
     "description": "Extended animation utilities for Tailwind CSS",
     "author": "new-data-services",
     "license": "MIT",
