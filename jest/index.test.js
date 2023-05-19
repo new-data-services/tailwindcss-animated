@@ -1,5 +1,3 @@
-/* eslint-env jest */
-
 const path = require('path');
 const postcss = require('postcss');
 const tailwindcss = require('tailwindcss');
@@ -8,7 +6,7 @@ function run(config, plugin = tailwindcss) {
     const { currentTestName } = expect.getState();
 
     config = {
-        plugins: [require('./index.js')],
+        plugins: [require('./../src/index.js')],
         corePlugins: { preflight: false },
         ...config,
     };
