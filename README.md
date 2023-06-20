@@ -1,6 +1,6 @@
 # Tailwind CSS Animated
 
-Extended animation utilities for Tailwind CSS<br>
+Extended animation utilities for Tailwind CSS (v3.1 and newer)<br>
 https://tailwindcss-animated.com
 
 
@@ -132,7 +132,7 @@ All variants and breakpoints (hover, focus, lg, ...) work with animations und an
 
 ## Arbitrary values
 
-You can create custom properies on the fly by using square brackets. This works for Delay and Durations values.
+This plugin uses the Just-in-Time (JIT) engine, which allows you to create custom delay and duration properies on the fly by using square brackets.
 
 ```html
 <div class="animate-delay-[85ms] animate-duration-[2s]">
