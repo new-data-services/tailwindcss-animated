@@ -11,8 +11,10 @@ pids
 *.seed
 *.pid.lock
 
-# nodejs directories
+# dependencies
 node_modules
+package-lock.json
+yarn.lock
 .npm
 
 # yarn integrity file
