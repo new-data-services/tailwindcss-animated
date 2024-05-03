@@ -167,3 +167,9 @@ module.exports = {
 ```
 
 Take a look at [src/theme.js](https://github.com/new-data-services/tailwindcss-animated/blob/main/src/theme.js) for the default settings.
+
+---
+
+<a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind%20CSS-3.1+-38bdf8?style=for-the-badge"></a>
+<a href="https://www.npmjs.com/package/tailwindcss-animated"><img src="https://img.shields.io/npm/v/tailwindcss-animated?style=for-the-badge"></a>
+<a href="https://www.npmjs.com/package/tailwindcss-animated"><img src="https://img.shields.io/npm/dt/tailwindcss-animated?style=for-the-badge"></a>
