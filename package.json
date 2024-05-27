@@ -22,8 +22,8 @@
     "main": "src/index.js",
     "scripts": {
         "test": "jest --setupFilesAfterEnv '<rootDir>/jest/customMatchers.js'",
-        "eslint": "npx eslint src/**",
-        "eslint:fix": "npx eslint src/** --fix"
+        "eslint": "npx eslint {src,jest}/**",
+        "eslint:fix": "npx eslint {src,jest}/** --fix"
     },
     "peerDependencies": {
         "tailwindcss": ">=3.1.0"
@@ -31,6 +31,7 @@
     "devDependencies": {
         "@eslint/js": "^9.3.0",
         "eslint": "^9.3.0",
+        "eslint-plugin-jest": "^28.5.0",
         "jest": "^29.7.0",
         "prettier": "^2.8.8",
         "tailwindcss": "^3.1.0"
