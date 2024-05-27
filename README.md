@@ -75,15 +75,6 @@ All animations can be customized with the utility classes below.
 | animate-delay-700 | animation-delay: 700ms; |
 | animate-delay-1000 | animation-delay: 1000ms; |
 
-### Iteration Count
-
-| Class | Properties |
-|-----|-----|
-| animate-infinite | animation-iteration-count: infinite; |
-| animate-once | animation-iteration-count: 1; |
-| animate-twice | animation-iteration-count: 2; |
-| animate-thrice | animation-iteration-count: 3; |
-
 ### Direction
 
 | Class | Properties |
@@ -92,6 +83,15 @@ All animations can be customized with the utility classes below.
 | animate-reverse | animation-direction: reverse; |
 | animate-alternate | animation-direction: alternate; |
 | animate-alternate-reverse | animation-direction: alternate-reverse; |
+
+### Iteration Count
+
+| Class | Properties |
+|-----|-----|
+| animate-infinite | animation-iteration-count: infinite; |
+| animate-once | animation-iteration-count: 1; |
+| animate-twice | animation-iteration-count: 2; |
+| animate-thrice | animation-iteration-count: 3; |
 
 ### Timing Function
 
@@ -119,6 +119,14 @@ All animations can be customized with the utility classes below.
 | animate-play | animation-play-state: running; |
 | animate-stop | animation-play-state: paused; |
 | animate-pause | animation-play-state: paused; |
+
+### Composition
+
+| Class | Properties |
+|-----|-----|
+| animate-replace | animation-composition: replace; |
+| animate-add | animation-composition: add; |
+| animate-accumulate | animation-composition: accumulate; |
 
 ## Variant modifiers and breakpoints
 

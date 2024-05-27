@@ -1,6 +1,7 @@
 const plugin = require('tailwindcss/plugin')
 
 module.exports = plugin(api => {
+    require('./utilities/composition')(api)
     require('./utilities/delay')(api)
     require('./utilities/direction')(api)
     require('./utilities/duration')(api)

@@ -93,6 +93,18 @@ it('should add `timing-function` utilities', () => {
     })
 })
 
+it('should add `composition` utilities', () => {
+    return run({
+        content: [{ raw: String.raw`<div class="animate-replace animate-add animate-accumulate"></div>` }],
+    }).then(result => {
+        expect(result.css).toMatchCss(String.raw`
+            .animate-replace { animation-composition: replace; }
+            .animate-add { animation-composition: add; }
+            .animate-accumulate { animation-composition: accumulate; }
+        `)
+    })
+})
+
 it('should add predefined animations', () => {
     return run({
         content: [{ raw: String.raw`<div class="animate-fade animate-wiggle"></div>` }],
