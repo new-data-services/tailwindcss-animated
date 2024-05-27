@@ -4,4 +4,4 @@ module.exports = ({ matchUtilities, theme }) => matchUtilities({
     }),
 }, {
     values: theme('animationDelay'),
-});
+})

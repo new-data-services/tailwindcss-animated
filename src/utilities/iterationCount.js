@@ -11,4 +11,4 @@ module.exports = ({ addUtilities }) => addUtilities({
     '.animate-thrice': {
         'animation-iteration-count': '3',
     },
-});
+})

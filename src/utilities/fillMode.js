@@ -11,4 +11,4 @@ module.exports = ({ addUtilities }) => addUtilities({
     '.animate-fill-both': {
         'animation-fill-mode': 'both',
     },
-});
+})

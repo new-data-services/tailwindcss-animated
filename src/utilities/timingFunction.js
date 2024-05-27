@@ -11,4 +11,4 @@ module.exports = ({ addUtilities }) => addUtilities({
     '.animate-ease-in-out': {
         'animation-timing-function': 'cubic-bezier(0.4, 0, 0.2, 1)',
     },
-});
+})

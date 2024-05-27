@@ -11,4 +11,4 @@ module.exports = ({ addUtilities }) => addUtilities({
     '.animate-pause': {
         'animation-play-state': 'paused',
     },
-});
+})
