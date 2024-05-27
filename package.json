@@ -21,6 +21,8 @@
     ],
     "main": "src/index.js",
     "scripts": {
+        "watch": "npm run dev -- -w",
+        "dev": "tailwindcss -o public/tailwind.css",
         "test": "jest --setupFilesAfterEnv '<rootDir>/jest/customMatchers.js'",
         "eslint": "npx eslint {src,jest}/**",
         "eslint:fix": "npx eslint {src,jest}/** --fix"
