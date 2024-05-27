@@ -1,14 +1,18 @@
 module.exports = ({ addUtilities }) => addUtilities({
     '.animate-normal': {
-        'animation-direction': 'normal',
+        '--tw-animate-direction': 'normal',
+        'animation-direction': 'var(--tw-animate-direction)',
     },
     '.animate-reverse': {
-        'animation-direction': 'reverse',
+        '--tw-animate-direction': 'reverse',
+        'animation-direction': 'var(--tw-animate-direction)',
     },
     '.animate-alternate': {
-        'animation-direction': 'alternate',
+        '--tw-animate-direction': 'alternate',
+        'animation-direction': 'var(--tw-animate-direction)',
     },
     '.animate-alternate-reverse': {
-        'animation-direction': 'alternate-reverse',
+        '--tw-animate-direction': 'alternate-reverse',
+        'animation-direction': 'var(--tw-animate-direction)',
     },
 })

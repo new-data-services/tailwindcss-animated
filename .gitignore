@@ -12,9 +12,11 @@ yarn-debug.log*
 yarn-error.log*
 
 # misc
+/.build
 /.idea
+/.nvmrc
 /.vscode
-.nvmrc
-.DS_Store
+/dist
 *.local
+.DS_Store
 .env

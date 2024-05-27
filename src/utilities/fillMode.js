@@ -1,14 +1,18 @@
 module.exports = ({ addUtilities }) => addUtilities({
     '.animate-fill-none': {
-        'animation-fill-mode': 'normal',
+        '--tw-animate-fill': 'normal',
+        'animation-fill-mode': 'var(--tw-animate-fill)',
     },
     '.animate-fill-forwards': {
-        'animation-fill-mode': 'forwards',
+        '--tw-animate-fill': 'forwards',
+        'animation-fill-mode': 'var(--tw-animate-fill)',
     },
     '.animate-fill-backwards': {
-        'animation-fill-mode': 'backwards',
+        '--tw-animate-fill': 'backwards',
+        'animation-fill-mode': 'var(--tw-animate-fill)',
     },
     '.animate-fill-both': {
-        'animation-fill-mode': 'both',
+        '--tw-animate-fill': 'both',
+        'animation-fill-mode': 'var(--tw-animate-fill)',
     },
 })

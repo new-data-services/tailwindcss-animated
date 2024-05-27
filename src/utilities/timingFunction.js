@@ -1,14 +1,18 @@
 module.exports = ({ addUtilities }) => addUtilities({
     '.animate-ease-linear': {
-        'animation-timing-function': 'linear',
+        '--tw-animate-easing': 'linear',
+        'animation-timing-function': 'var(--tw-animate-easing)',
     },
     '.animate-ease-in': {
-        'animation-timing-function': 'cubic-bezier(0.4, 0, 1, 1)',
+        '--tw-animate-easing': 'cubic-bezier(0.4, 0, 1, 1)',
+        'animation-timing-function': 'var(--tw-animate-easing)',
     },
     '.animate-ease-out': {
-        'animation-timing-function': 'cubic-bezier(0, 0, 0.2, 1)',
+        '--tw-animate-easing': 'cubic-bezier(0, 0, 0.2, 1)',
+        'animation-timing-function': 'var(--tw-animate-easing)',
     },
     '.animate-ease-in-out': {
-        'animation-timing-function': 'cubic-bezier(0.4, 0, 0.2, 1)',
+        '--tw-animate-easing': 'cubic-bezier(0.4, 0, 0.2, 1)',
+        'animation-timing-function': 'var(--tw-animate-easing)',
     },
 })

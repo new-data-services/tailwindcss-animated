@@ -1,14 +1,18 @@
 module.exports = ({ addUtilities }) => addUtilities({
     '.animate-infinite': {
-        'animation-iteration-count': 'infinite',
+        '--tw-animate-iteration': 'infinite',
+        'animation-iteration-count': 'var(--tw-animate-iteration)',
     },
     '.animate-once': {
-        'animation-iteration-count': '1',
+        '--tw-animate-iteration': '1',
+        'animation-iteration-count': 'var(--tw-animate-iteration)',
     },
     '.animate-twice': {
-        'animation-iteration-count': '2',
+        '--tw-animate-iteration': '2',
+        'animation-iteration-count': 'var(--tw-animate-iteration)',
     },
     '.animate-thrice': {
-        'animation-iteration-count': '3',
+        '--tw-animate-iteration': '3',
+        'animation-iteration-count': 'var(--tw-animate-iteration)',
     },
 })

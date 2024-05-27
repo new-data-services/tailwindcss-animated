@@ -1,14 +1,18 @@
 module.exports = ({ addUtilities }) => addUtilities({
     '.animate-run': {
-        'animation-play-state': 'running',
+        '--tw-animate-state': 'running',
+        'animation-play-state': 'var(--tw-animate-state)',
     },
     '.animate-play': {
-        'animation-play-state': 'running',
+        '--tw-animate-state': 'running',
+        'animation-play-state': 'var(--tw-animate-state)',
     },
     '.animate-stop': {
-        'animation-play-state': 'paused',
+        '--tw-animate-state': 'paused',
+        'animation-play-state': 'var(--tw-animate-state)',
     },
     '.animate-pause': {
-        'animation-play-state': 'paused',
+        '--tw-animate-state': 'paused',
+        'animation-play-state': 'var(--tw-animate-state)',
     },
 })
