@@ -86,7 +86,7 @@ it('should add `fill-mode` utilities', () => {
 
 it('should add `iteration-count` utilities', () => {
     return run({
-        content: [{ raw: String.raw`<div class="animate-infinite animate-once"></div>` }],
+        content: [{ raw: String.raw`<div class="animate-infinite animate-once animate-iteration-[7]"></div>` }],
     }).then(result => {
         expect(result.css).toMatchCss(String.raw`
             .animate-infinite {
@@ -95,6 +95,10 @@ it('should add `iteration-count` utilities', () => {
             }
             .animate-once {
                 --tw-animate-iteration: 1;
+                animation-iteration-count: var(--tw-animate-iteration);
+            }
+            .animate-iteration-\[7\] {
+                --tw-animate-iteration: 7;
                 animation-iteration-count: var(--tw-animate-iteration);
             }
         `)
@@ -120,15 +124,19 @@ it('should add `play-state` utilities', () => {
 
 it('should add `timing-function` utilities', () => {
     return run({
-        content: [{ raw: String.raw`<div class="animate-ease-linear animate-ease-in-out"></div>` }],
+        content: [{ raw: String.raw`<div class="animate-ease animate-ease-[cubic-bezier(1,0.66,0.33,0)] animate-ease-linear"></div>` }],
     }).then(result => {
         expect(result.css).toMatchCss(String.raw`
-            .animate-ease-linear {
-                --tw-animate-easing: linear;
+            .animate-ease {
+                --tw-animate-easing: ease;
                 animation-timing-function: var(--tw-animate-easing);
             }
-            .animate-ease-in-out {
-                --tw-animate-easing: cubic-bezier(0.4, 0, 0.2, 1);
+            .animate-ease-\[cubic-bezier\(1\2c 0\.66\2c 0\.33\2c 0\)\] {
+                --tw-animate-easing: cubic-bezier(1, 0.66, 0.33, 0);
+                animation-timing-function: var(--tw-animate-easing);
+            }
+            .animate-ease-linear {
+                --tw-animate-easing: linear;
                 animation-timing-function: var(--tw-animate-easing);
             }
         `)
