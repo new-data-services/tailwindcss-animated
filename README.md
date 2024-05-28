@@ -60,6 +60,7 @@ All animations can be customized with the utility classes below.
 | animate-duration-500 | animation-duration: 500ms; |
 | animate-duration-700 | animation-duration: 700ms; |
 | animate-duration-1000 | animation-duration: 1000ms; |
+| [animate-duration-[5s]](#arbitrary-values) | animation-duration: 5s; |
 
 ### Delay
 
@@ -74,6 +75,7 @@ All animations can be customized with the utility classes below.
 | animate-delay-500 | animation-delay: 500ms; |
 | animate-delay-700 | animation-delay: 700ms; |
 | animate-delay-1000 | animation-delay: 1000ms; |
+| [animate-delay-[5s]](#arbitrary-values) | animation-delay: 5s; |
 
 ### Direction
 
@@ -92,15 +94,18 @@ All animations can be customized with the utility classes below.
 | animate-once | animation-iteration-count: 1; |
 | animate-twice | animation-iteration-count: 2; |
 | animate-thrice | animation-iteration-count: 3; |
+| [animate-iteration-[10]](#arbitrary-values) | animation-iteration-count: 10; |
 
 ### Timing Function
 
 | Class | Properties |
 |-----|-----|
+| animate-ease | animation-timing-function: ease; |
 | animate-ease-linear | animation-timing-function: linear; |
 | animate-ease-in | animation-timing-function: cubic-bezier(0.4, 0, 1, 1); |
 | animate-ease-out | animation-timing-function: cubic-bezier(0, 0, 0.2, 1); |
 | animate-ease-in-out | animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); |
+| [animate-ease-[cubic-bezier(1,1,0,0)]](#arbitrary-values) | animation-timing-function: cubic-bezier(1, 1, 0, 0); |
 
 ### Fill Mode
 
@@ -140,10 +145,10 @@ All variants and breakpoints (hover, focus, lg, ...) work with animations und an
 
 ## Arbitrary values
 
-This plugin uses the Just-in-Time (JIT) engine, which allows you to create custom delay and duration properies on the fly by using square brackets.
+This plugin uses the Just-in-Time (JIT) engine, which allows you to use [arbitrary values](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values) for most animation properties.
 
 ```html
-<div class="animate-delay-[85ms] animate-duration-[2s]">
+<div class="animate-delay-[85ms] animate-duration-[2s] animate-iteration-[10]">
   <!-- ... -->
 </div>
 ```
