@@ -1,8 +1,7 @@
 # Tailwind CSS Animated
 
-Extended animation utilities for Tailwind CSS (v3.1 and newer)<br>
+Extended animation utilities for Tailwind CSS<br>
 https://tailwindcss-animated.com
-
 
 ## Installation
 
@@ -23,7 +22,6 @@ module.exports = {
   ],
 }
 ```
-
 
 ## Usage
 
@@ -60,7 +58,7 @@ All animations can be customized with the utility classes below.
 | animate-duration-500 | animation-duration: 500ms; |
 | animate-duration-700 | animation-duration: 700ms; |
 | animate-duration-1000 | animation-duration: 1000ms; |
-| [animate-duration-[5s]](#arbitrary-values) | animation-duration: 5s; |
+| animate-duration-\[5s\] [*](#arbitrary-values) | animation-duration: 5s; |
 
 ### Delay
 
@@ -75,7 +73,7 @@ All animations can be customized with the utility classes below.
 | animate-delay-500 | animation-delay: 500ms; |
 | animate-delay-700 | animation-delay: 700ms; |
 | animate-delay-1000 | animation-delay: 1000ms; |
-| [animate-delay-[5s]](#arbitrary-values) | animation-delay: 5s; |
+| animate-delay-\[5s\] [*](#arbitrary-values) | animation-delay: 5s; |
 
 ### Direction
 
@@ -94,7 +92,7 @@ All animations can be customized with the utility classes below.
 | animate-once | animation-iteration-count: 1; |
 | animate-twice | animation-iteration-count: 2; |
 | animate-thrice | animation-iteration-count: 3; |
-| [animate-iteration-[10]](#arbitrary-values) | animation-iteration-count: 10; |
+| animate-iteration-\[10\] [*](#arbitrary-values) | animation-iteration-count: 10; |
 
 ### Timing Function
 
@@ -105,7 +103,7 @@ All animations can be customized with the utility classes below.
 | animate-ease-in | animation-timing-function: cubic-bezier(0.4, 0, 1, 1); |
 | animate-ease-out | animation-timing-function: cubic-bezier(0, 0, 0.2, 1); |
 | animate-ease-in-out | animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); |
-| [animate-ease-[cubic-bezier(1,1,0,0)]](#arbitrary-values) | animation-timing-function: cubic-bezier(1, 1, 0, 0); |
+| animate-ease-\[cubic-bezier(1,1,0,0)\] [*](#arbitrary-values) | animation-timing-function: cubic-bezier(1, 1, 0, 0); |
 
 ### Fill Mode
 
@@ -180,6 +178,36 @@ module.exports = {
 ```
 
 Take a look at [src/theme.js](https://github.com/new-data-services/tailwindcss-animated/blob/main/src/theme.js) for the default settings.
+
+## FAQ
+
+### How to animate on scroll?
+
+To run animations when an element enters the viewport, you need JavaScript. (At least until [animation-timeline](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timeline) has good browser support)
+
+A good starting point for a JavaScript solution would be the [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API). Or tools that build on it, such as the [Alpine.js Intersect plugin](https://alpinejs.dev/plugins/intersect) and the [Tailwind CSS Intersection plugin](https://github.com/heidkaemper/tailwindcss-intersect), to name just two.
+
+### Does this work with the Play CDN?
+
+Unfortunately not. The Tailwind CSS Play CDN currently does not support third-party plugins.
+
+### How to combine multiple animations?
+
+The simplest approach is to nest two elements:
+
+```html
+<div class="animate-pulse">
+    <div class="animate-bounce"></div>
+</div>
+```
+
+### Can keyframes and offset values be changed?
+
+Offset positions of predefined animations can't be changed on the fly. But the behavior can still be modified with [animation-composition](#composition) utilities.
+
+If you need more details on how compositions work, check out the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-composition).
+
+
 
 ---
 
