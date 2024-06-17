@@ -20,6 +20,7 @@
         "/src"
     ],
     "main": "src/index.js",
+    "types": "src/index.d.ts",
     "scripts": {
         "watch": "npm run dev -- -w",
         "dev": "tailwindcss -o dist/tailwind.css",
