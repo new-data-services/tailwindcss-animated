@@ -12,11 +12,11 @@ yarn-debug.log*
 yarn-error.log*
 
 # misc
+/dist/tailwind.css
 /.build
 /.idea
 /.nvmrc
 /.vscode
-/dist
 *.local
 .DS_Store
 .env
