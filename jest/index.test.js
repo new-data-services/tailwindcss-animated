@@ -182,12 +182,6 @@ it('should add predefined animations', () => {
             .animate-spin {
                 animation: spin var(--tw-animate-duration, 1s) var(--tw-animate-easing, linear) var(--tw-animate-delay, 0s) var(--tw-animate-iteration, infinite) var(--tw-animate-fill, none);
             }
-            .animate-fade {
-                animation-composition: var(--tw-animate-composition);
-            }
-            .animate-spin {
-                animation-composition: var(--tw-animate-composition);
-            }
         `)
     })
 })

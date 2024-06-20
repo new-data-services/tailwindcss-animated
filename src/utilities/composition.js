@@ -1,4 +1,4 @@
-module.exports = ({ addUtilities, matchUtilities, theme }) => {
+module.exports = ({ addUtilities }) => {
     addUtilities({
         '.animate-replace': {
             '--tw-animate-composition': 'replace',
@@ -12,21 +12,5 @@ module.exports = ({ addUtilities, matchUtilities, theme }) => {
             '--tw-animate-composition': 'accumulate',
             'animation-composition': 'var(--tw-animate-composition)',
         },
-    })
-
-    matchUtilities({
-        animate: value => {
-            const properties = value.split(/ +(?![^(]*\))/g)
-
-            if (properties.includes('replace') || properties.includes('add') || properties.includes('accumulate')) {
-                return
-            }
-
-            return {
-                'animation-composition': 'var(--tw-animate-composition)',
-            }
-        },
-    }, {
-        values: theme('animation'),
     })
 }
