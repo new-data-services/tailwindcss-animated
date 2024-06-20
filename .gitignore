@@ -12,7 +12,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # misc
-/dist/tailwind.css
+/public/tailwind.css
 /.build
 /.idea
 /.nvmrc
