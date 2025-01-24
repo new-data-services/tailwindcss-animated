@@ -25,16 +25,16 @@
         "watch": "npm run dev -- -w",
         "dev": "tailwindcss -o public/tailwind.css",
         "test": "jest --setupFilesAfterEnv '<rootDir>/jest/customMatchers.js'",
-        "eslint": "npx eslint {src,jest}/**",
-        "eslint:fix": "npx eslint {src,jest}/** --fix"
+        "lint": "npx eslint {src,jest}/**",
+        "lint:fix": "npx eslint {src,jest}/** --fix"
     },
     "peerDependencies": {
         "tailwindcss": ">=3.1.0"
     },
     "devDependencies": {
-        "@eslint/js": "^9.3.0",
-        "eslint": "^9.3.0",
-        "eslint-plugin-jest": "^28.5.0",
+        "@eslint/js": "^9.18.0",
+        "eslint": "^9.18.0",
+        "eslint-plugin-jest": "^28.11.0",
         "jest": "^29.7.0",
         "prettier": "^2.8.8",
         "tailwindcss": "^3.1.0"
