@@ -13,6 +13,7 @@ yarn-error.log*
 
 # misc
 /public/tailwind.css
+/public/app.css
 /.build
 /.idea
 /.nvmrc

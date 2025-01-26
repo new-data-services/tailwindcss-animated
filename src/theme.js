@@ -1,3 +1,17 @@
+function isPositiveInteger(value) {
+    const num = Number(value)
+
+    return Number.isInteger(num) && num >= 0 && String(num) === String(value)
+}
+
+const bareMilliseconds = {
+    __BARE_VALUE__: (value) => {
+        if (isPositiveInteger(value.value)) {
+            return `${value.value}ms`
+        }
+    }
+}
+
 module.exports = {
     extend: {
         animationDelay: {
@@ -11,6 +25,7 @@ module.exports = {
             500: '500ms',
             700: '700ms',
             1000: '1000ms',
+            ...bareMilliseconds,
         },
         animationDuration: {
             75: '75ms',
@@ -21,6 +36,7 @@ module.exports = {
             500: '500ms',
             700: '700ms',
             1000: '1000ms',
+            ...bareMilliseconds,
         },
         animationTimingFunction: {
             DEFAULT: 'ease',
