@@ -1,3 +1,5 @@
-@import "tailwindcss" source("../public");
+@import "tailwindcss" source(none);
 
-@plugin "../src";
+@import "../src/";
+
+@source "../public/index.html"

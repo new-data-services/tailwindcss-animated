@@ -12,10 +12,18 @@ const bareMilliseconds = {
     }
 }
 
+const bareIntegers = {
+    __BARE_VALUE__: (value) => {
+        if (isPositiveInteger(value.value)) {
+            return value.value
+        }
+    }
+}
+
 module.exports = {
     extend: {
         animationDelay: {
-            none: '0ms',
+            none: '0s',
             0: '0ms',
             75: '75ms',
             100: '100ms',
@@ -28,6 +36,7 @@ module.exports = {
             ...bareMilliseconds,
         },
         animationDuration: {
+            none: '0s',
             75: '75ms',
             100: '100ms',
             150: '150ms',
@@ -50,30 +59,28 @@ module.exports = {
             'once': '1',
             'twice': '2',
             'thrice': '3',
-            1: '1',
-            2: '2',
-            3: '3',
+            ...bareIntegers,
         },
         animation: {
-            'spin': 'spin var(--tw-animate-duration, 1s) var(--tw-animate-easing, linear) var(--tw-animate-delay, 0s) var(--tw-animate-iteration, infinite) var(--tw-animate-fill, none)',
-            'ping': 'ping var(--tw-animate-duration, 1s) var(--tw-animate-easing, cubic-bezier(0, 0, 0.2, 1)) var(--tw-animate-delay, 0s) var(--tw-animate-iteration, infinite) var(--tw-animate-fill, none)',
-            'pulse': 'pulse var(--tw-animate-duration, 2s) var(--tw-animate-easing, cubic-bezier(0.4, 0, 0.6, 1)) var(--tw-animate-delay, 0s) var(--tw-animate-iteration, infinite) var(--tw-animate-fill, none)',
-            'bounce': 'bounce var(--tw-animate-duration, 1s) var(--tw-animate-easing, ease) var(--tw-animate-delay, 0s) var(--tw-animate-iteration, infinite) var(--tw-animate-fill, none)',
-            'wiggle': 'wiggle var(--tw-animate-duration, 1s) var(--tw-animate-easing, ease) var(--tw-animate-delay, 0s) var(--tw-animate-iteration, 1) var(--tw-animate-fill, both)',
-            'wiggle-more': 'wiggle-more var(--tw-animate-duration, 1s) var(--tw-animate-easing, ease) var(--tw-animate-delay, 0s) var(--tw-animate-iteration, 1) var(--tw-animate-fill, both)',
-            'rotate-y': 'rotate-y var(--tw-animate-duration, 1s) var(--tw-animate-easing, ease) var(--tw-animate-delay, 0s) var(--tw-animate-iteration, 1) var(--tw-animate-fill, both)',
-            'rotate-x': 'rotate-x var(--tw-animate-duration, 1s) var(--tw-animate-easing, ease) var(--tw-animate-delay, 0s) var(--tw-animate-iteration, 1) var(--tw-animate-fill, both)',
-            'jump': 'jump var(--tw-animate-duration, 500ms) var(--tw-animate-easing, ease) var(--tw-animate-delay, 0s) var(--tw-animate-iteration, 1) var(--tw-animate-fill, both)',
-            'jump-in': 'jump-in var(--tw-animate-duration, 500ms) var(--tw-animate-easing, ease) var(--tw-animate-delay, 0s) var(--tw-animate-iteration, 1) var(--tw-animate-fill, both)',
-            'jump-out': 'jump-out var(--tw-animate-duration, 500ms) var(--tw-animate-easing, ease) var(--tw-animate-delay, 0s) var(--tw-animate-iteration, 1) var(--tw-animate-fill, both)',
-            'shake': 'shake var(--tw-animate-duration, 500ms) var(--tw-animate-easing, ease) var(--tw-animate-delay, 0s) var(--tw-animate-iteration, 1) var(--tw-animate-fill, both)',
-            'fade': 'fade var(--tw-animate-duration, 1s) var(--tw-animate-easing, ease) var(--tw-animate-delay, 0s) var(--tw-animate-iteration, 1) var(--tw-animate-fill, both)',
-            'fade-down': 'fade-down var(--tw-animate-duration, 1s) var(--tw-animate-easing, ease) var(--tw-animate-delay, 0s) var(--tw-animate-iteration, 1) var(--tw-animate-fill, both)',
-            'fade-up': 'fade-up var(--tw-animate-duration, 1s) var(--tw-animate-easing, ease) var(--tw-animate-delay, 0s) var(--tw-animate-iteration, 1) var(--tw-animate-fill, both)',
-            'fade-left': 'fade-left var(--tw-animate-duration, 1s) var(--tw-animate-easing, ease) var(--tw-animate-delay, 0s) var(--tw-animate-iteration, 1) var(--tw-animate-fill, both)',
-            'fade-right': 'fade-right var(--tw-animate-duration, 1s) var(--tw-animate-easing, ease) var(--tw-animate-delay, 0s) var(--tw-animate-iteration, 1) var(--tw-animate-fill, both)',
-            'flip-up': 'flip-up var(--tw-animate-duration, 1s) var(--tw-animate-easing, ease) var(--tw-animate-delay, 0s) var(--tw-animate-iteration, 1) var(--tw-animate-fill, both)',
-            'flip-down': 'flip-down var(--tw-animate-duration, 1s) var(--tw-animate-easing, ease) var(--tw-animate-delay, 0s) var(--tw-animate-iteration, 1) var(--tw-animate-fill, both)',
+            'spin': 'spin var(--default-animation-duration, 1s) var(--default-animation-timing-function, linear) var(--default-animation-delay, 0s) infinite',
+            'ping': 'ping var(--default-animation-duration, 1s) var(--default-animation-timing-function, cubic-bezier(0, 0, 0.2, 1)) var(--default-animation-delay, 0s) infinite',
+            'pulse': 'pulse var(--default-animation-duration, 2s) var(--default-animation-timing-function, cubic-bezier(0.4, 0, 0.6, 1)) var(--default-animation-delay, 0s) infinite',
+            'bounce': 'bounce var(--default-animation-duration, 1s) var(--default-animation-timing-function, ease) var(--default-animation-delay, 0s) infinite',
+            'wiggle': 'wiggle var(--default-animation-duration, 1s) var(--default-animation-timing-function, ease) var(--default-animation-delay, 0s) both',
+            'wiggle-more': 'wiggle-more var(--default-animation-duration, 1s) var(--default-animation-timing-function, ease) var(--default-animation-delay, 0s) both',
+            'rotate-y': 'rotate-y var(--default-animation-duration, 1s) var(--default-animation-timing-function, ease) var(--default-animation-delay, 0s) both',
+            'rotate-x': 'rotate-x var(--default-animation-duration, 1s) var(--default-animation-timing-function, ease) var(--default-animation-delay, 0s) both',
+            'jump': 'jump var(--default-animation-duration, 0.5s) var(--default-animation-timing-function, ease) var(--default-animation-delay, 0s) both',
+            'jump-in': 'jump-in var(--default-animation-duration, 0.5s) var(--default-animation-timing-function, ease) var(--default-animation-delay, 0s) both',
+            'jump-out': 'jump-out var(--default-animation-duration, 0.5s) var(--default-animation-timing-function, ease) var(--default-animation-delay, 0s) both',
+            'shake': 'shake var(--default-animation-duration, 0.5s) var(--default-animation-timing-function, ease) var(--default-animation-delay, 0s) both',
+            'fade': 'fade var(--default-animation-duration, 1s) var(--default-animation-timing-function, ease) var(--default-animation-delay, 0s) both',
+            'fade-down': 'fade-down var(--default-animation-duration, 1s) var(--default-animation-timing-function, ease) var(--default-animation-delay, 0s) both',
+            'fade-up': 'fade-up var(--default-animation-duration, 1s) var(--default-animation-timing-function, ease) var(--default-animation-delay, 0s) both',
+            'fade-left': 'fade-left var(--default-animation-duration, 1s) var(--default-animation-timing-function, ease) var(--default-animation-delay, 0s) both',
+            'fade-right': 'fade-right var(--default-animation-duration, 1s) var(--default-animation-timing-function, ease) var(--default-animation-delay, 0s) both',
+            'flip-up': 'flip-up var(--default-animation-duration, 1s) var(--default-animation-timing-function, ease) var(--default-animation-delay, 0s) both',
+            'flip-down': 'flip-down var(--default-animation-duration, 1s) var(--default-animation-timing-function, ease) var(--default-animation-delay, 0s) both',
         },
         keyframes: {
             'wiggle': {
@@ -110,35 +117,35 @@ module.exports = {
             },
             'jump': {
                 '0%, 100%': {
-                    transform: 'scale(100%)',
+                    transform: 'scale(1)',
                 },
                 '10%': {
-                    transform: 'scale(80%)',
+                    transform: 'scale(0.8)',
                 },
                 '50%': {
-                    transform: 'scale(120%)',
+                    transform: 'scale(1.2)',
                 },
             },
             'jump-in': {
                 '0%': {
-                    transform: 'scale(0%)',
+                    transform: 'scale(0)',
                 },
                 '80%': {
-                    transform: 'scale(120%)',
+                    transform: 'scale(1.2)',
                 },
                 '100%': {
-                    transform: 'scale(100%)',
+                    transform: 'scale(1)',
                 },
             },
             'jump-out': {
                 '0%': {
-                    transform: 'scale(100%)',
+                    transform: 'scale(1)',
                 },
                 '20%': {
-                    transform: 'scale(120%)',
+                    transform: 'scale(1.2)',
                 },
                 '100%': {
-                    transform: 'scale(0%)',
+                    transform: 'scale(0)',
                 },
             },
             'shake': {

@@ -1,0 +1,8 @@
+@utility animate-duration-none {
+    animation-duration: 0s;
+}
+
+@utility animate-duration-* {
+    animation-duration: --value(integer)ms;
+    animation-duration: --value([*]);
+}

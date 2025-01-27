@@ -1,14 +1,14 @@
 const plugin = require('tailwindcss/plugin')
 
 module.exports = plugin(api => {
-    require('./utilities/composition')(api)
-    require('./utilities/delay')(api)
-    require('./utilities/direction')(api)
-    require('./utilities/duration')(api)
-    require('./utilities/fillMode')(api)
-    require('./utilities/iterationCount')(api)
-    require('./utilities/playState')(api)
-    require('./utilities/timingFunction')(api)
+    require('./compat/composition')(api)
+    require('./compat/delay')(api)
+    require('./compat/direction')(api)
+    require('./compat/duration')(api)
+    require('./compat/fill-mode')(api)
+    require('./compat/iteration-count')(api)
+    require('./compat/play-state')(api)
+    require('./compat/timing-function')(api)
 }, {
-    theme: require('./theme'),
+    theme: require('./compat/theme'),
 })

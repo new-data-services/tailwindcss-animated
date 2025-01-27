@@ -1,0 +1,8 @@
+@utility animate-delay-none {
+    animation-delay: 0s;
+}
+
+@utility animate-delay-* {
+    animation-delay: --value(integer)ms;
+    animation-delay: --value([*]);
+}

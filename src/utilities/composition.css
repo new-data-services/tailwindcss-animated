@@ -1,0 +1,11 @@
+@utility animate-replace {
+    animation-composition: replace;
+}
+
+@utility animate-add {
+    animation-composition: add;
+}
+
+@utility animate-accumulate {
+    animation-composition: accumulate;
+}

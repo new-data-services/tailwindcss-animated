@@ -2,151 +2,104 @@ const path = require('path')
 const postcss = require('postcss')
 const tailwindcss = require('@tailwindcss/postcss')
 
-async function run(file) {
+async function run(file, options = {}) {
     const { currentTestName } = expect.getState()
 
-    const result = await postcss(tailwindcss()).process(`
-        @import 'tailwindcss/utilities' source(none);
-        @plugin './../src/';
-        @source './${file}';
-    `, {
+    const config = [
+        options.scope
+            ? `@import "tailwindcss/${options.scope}" source(none);`
+            : '@import "tailwindcss" source(none);',
+        options?.importType === 'legacy'
+            ? '@plugin "./../src/";'
+            : '@import "./../src/";',
+        `@source "./${file}";`,
+    ].join('\n')
+
+    const result = await postcss(tailwindcss()).process(config, {
         from: `${path.resolve(__filename)}?test=${currentTestName}`,
     })
 
-    return result.css.replace(/^\/\*!.*?\n/, '').trim()
+    return result.css
 }
 
 it('generates `delay` utilities', async () => {
-    expect(await run('content/delay.html')).toMatchInlineSnapshot(`
-        ".animate-delay-75 {
-          --tw-animate-delay: 75ms;
-          animation-delay: var(--tw-animate-delay);
-        }
-        .animate-delay-333 {
-          --tw-animate-delay: 333ms;
-          animation-delay: var(--tw-animate-delay);
-        }
-        .animate-delay-\\[666ms\\] {
-          --tw-animate-delay: 666ms;
-          animation-delay: var(--tw-animate-delay);
-        }"
-    `)
+    expect(await run('content/delay.html', { scope: 'utilities' })).toIncludeAll([
+        '.animate-delay-75 { animation-delay: 75ms; }',
+        '.animate-delay-333 { animation-delay: 333ms; }',
+        '.animate-delay-\\[666ms\\] { animation-delay: 666ms; }',
+    ])
 })
 
 it('generates `duration` utilities', async () => {
-    expect(await run('content/duration.html')).toMatchInlineSnapshot(`
-        ".animate-duration-75 {
-          --tw-animate-duration: 75ms;
-          animation-duration: var(--tw-animate-duration);
-        }
-        .animate-duration-333 {
-          --tw-animate-duration: 333ms;
-          animation-duration: var(--tw-animate-duration);
-        }
-        .animate-duration-\\[666ms\\] {
-          --tw-animate-duration: 666ms;
-          animation-duration: var(--tw-animate-duration);
-        }"
-    `)
+    expect(await run('content/duration.html', { scope: 'utilities' })).toIncludeAll([
+        '.animate-duration-75 { animation-duration: 75ms; }',
+        '.animate-duration-333 { animation-duration: 333ms; }',
+        '.animate-duration-\\[666ms\\] { animation-duration: 666ms; }',
+    ])
 })
 
 it('generates `direction` utilities', async () => {
-    expect(await run('content/direction.html')).toMatchInlineSnapshot(`
-        ".animate-normal {
-          --tw-animate-direction: normal;
-          animation-direction: var(--tw-animate-direction);
-        }
-        .animate-reverse {
-          --tw-animate-direction: reverse;
-          animation-direction: var(--tw-animate-direction);
-        }"
-    `)
+    expect(await run('content/direction.html', { scope: 'utilities' })).toIncludeAll([
+        '.animate-normal { animation-direction: normal; }',
+        '.animate-reverse { animation-direction: reverse; }',
+    ])
 })
 
 it('generates `fill-mode` utilities', async () => {
-    expect(await run('content/fill-mode.html')).toMatchInlineSnapshot(`
-        ".animate-fill-both {
-          --tw-animate-fill: both;
-          animation-fill-mode: var(--tw-animate-fill);
-        }
-        .animate-fill-none {
-          --tw-animate-fill: normal;
-          animation-fill-mode: var(--tw-animate-fill);
-        }"
-    `)
+    expect(await run('content/fill-mode.html', { scope: 'utilities' })).toIncludeAll([
+        '.animate-fill-both { animation-fill-mode: both; }',
+        '.animate-fill-none { animation-fill-mode: normal; }',
+    ])
 })
 
 it('generates `iteration-count` utilities', async () => {
-    expect(await run('content/iteration-count.html')).toMatchInlineSnapshot(`
-        ".animate-infinite {
-          --tw-animate-iteration: infinite;
-          animation-iteration-count: var(--tw-animate-iteration);
-        }
-        .animate-iteration-\\[7\\] {
-          --tw-animate-iteration: 7;
-          animation-iteration-count: var(--tw-animate-iteration);
-        }
-        .animate-once {
-          --tw-animate-iteration: 1;
-          animation-iteration-count: var(--tw-animate-iteration);
-        }"
-    `)
+    expect(await run('content/iteration-count.html', { scope: 'utilities' })).toIncludeAll([
+        '.animate-infinite { animation-iteration-count: infinite; }',
+        '.animate-once { animation-iteration-count: 1; }',
+        '.animate-iteration-7 { animation-iteration-count: 7; }',
+        '.animate-iteration-\\[14\\] { animation-iteration-count: 14; }',
+    ])
 })
 
 it('generates `play-state` utilities', async () => {
-    expect(await run('content/play-state.html')).toMatchInlineSnapshot(`
-        ".animate-play {
-          --tw-animate-state: running;
-          animation-play-state: var(--tw-animate-state);
-        }
-        .animate-stop {
-          --tw-animate-state: paused;
-          animation-play-state: var(--tw-animate-state);
-        }"
-    `)
+    expect(await run('content/play-state.html', { scope: 'utilities' })).toIncludeAll([
+        '.animate-play { animation-play-state: running; }',
+        '.animate-stop { animation-play-state: paused; }',
+    ])
 })
 
 it('generates `timing-function` utilities', async () => {
-    expect(await run('content/timing-function.html')).toMatchInlineSnapshot(`
-        ".animate-ease {
-          --tw-animate-easing: ease;
-          animation-timing-function: var(--tw-animate-easing);
-        }
-        .animate-ease-\\[cubic-bezier\\(1\\,0\\.66\\,0\\.33\\,0\\)\\] {
-          --tw-animate-easing: cubic-bezier(1,0.66,0.33,0);
-          animation-timing-function: var(--tw-animate-easing);
-        }
-        .animate-ease-linear {
-          --tw-animate-easing: linear;
-          animation-timing-function: var(--tw-animate-easing);
-        }"
-    `)
+    expect(await run('content/timing-function.html', { scope: 'utilities' })).toIncludeAll([
+        '.animate-ease { animation-timing-function: ease; }',
+        '.animate-ease-linear { animation-timing-function: linear; }',
+        '.animate-ease-\\[cubic-bezier\\(1\\,0\\.66\\,0\\.33\\,0\\)\\] { animation-timing-function: cubic-bezier(1,0.66,0.33,0); }',
+    ])
 })
 
 it('generates `composition` utilities', async () => {
-    expect(await run('content/composition.html')).toMatchInlineSnapshot(`
-        ".animate-accumulate {
-          --tw-animate-composition: accumulate;
-          animation-composition: var(--tw-animate-composition);
-        }
-        .animate-add {
-          --tw-animate-composition: add;
-          animation-composition: var(--tw-animate-composition);
-        }
-        .animate-replace {
-          --tw-animate-composition: replace;
-          animation-composition: var(--tw-animate-composition);
-        }"
-    `)
+    expect(await run('content/composition.html', { scope: 'utilities' })).toIncludeAll([
+        '.animate-add { animation-composition: add; }',
+        '.animate-replace { animation-composition: replace; }',
+        '.animate-accumulate { animation-composition: accumulate; }',
+    ])
 })
 
-it('generates predefined animations', async () => {
-    expect(await run('content/predefined-animations.html')).toMatchInlineSnapshot(`
-        ".animate-fade {
-          animation: fade var(--tw-animate-duration, 1s) var(--tw-animate-easing, ease) var(--tw-animate-delay, 0s) var(--tw-animate-iteration, 1) var(--tw-animate-fill, both);
-        }
-        .animate-spin {
-          animation: spin var(--tw-animate-duration, 1s) var(--tw-animate-easing, linear) var(--tw-animate-delay, 0s) var(--tw-animate-iteration, infinite) var(--tw-animate-fill, none);
-        }"
-    `)
+it('generates predefined animations for modern import', async () => {
+    expect(await run('content/predefined-animations.html', { importType: 'modern' })).toIncludeAll([
+        '.animate-fade { animation: var(--animate-fade); }',
+        '--animate-fade: fade var(--default-animation-duration, 1s) var(--default-animation-timing-function, ease) var(--default-animation-delay, 0s) both;',
+        '@keyframes fade { 0% { opacity: 0; } 100% { opacity: 1; }}',
+        '.animate-spin { animation: var(--animate-spin); }',
+        '--animate-spin: spin var(--default-animation-duration, 1s) var(--default-animation-timing-function, linear) var(--default-animation-delay, 0s) infinite;',
+        '@keyframes spin { to { transform: rotate(360deg); }}',
+    ])
+})
+
+it('generates predefined animations for legacy import', async () => {
+    expect(await run('content/predefined-animations.html', { importType: 'legacy' })).toIncludeAll([
+        '.animate-fade { animation: fade var(--default-animation-duration, 1s) var(--default-animation-timing-function, ease) var(--default-animation-delay, 0s) both; }',
+        '@keyframes fade { 0% { opacity: 0; } 100% { opacity: 1; }}',
+        '.animate-spin { animation: spin var(--default-animation-duration, 1s) var(--default-animation-timing-function, linear) var(--default-animation-delay, 0s) infinite; }',
+        '@keyframes spin { to { transform: rotate(360deg); }}',
+    ])
 })

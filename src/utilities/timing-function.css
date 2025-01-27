@@ -1,0 +1,23 @@
+@utility animate-ease {
+    animation-timing-function: ease;
+}
+
+@utility animate-ease-linear {
+    animation-timing-function: linear;
+}
+
+@utility animate-ease-in {
+    animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+
+@utility animate-ease-out {
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+@utility animate-ease-in-out {
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@utility animate-ease-* {
+    animation-timing-function: --value([*]);
+}
