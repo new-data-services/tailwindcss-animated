@@ -1,24 +1,7 @@
-function isPositiveInteger(value) {
-    const num = Number(value)
+const { getBareMilliseconds, getBareIntegers } = require('./helper/bare-values')
 
-    return Number.isInteger(num) && num >= 0 && String(num) === String(value)
-}
-
-const bareMilliseconds = {
-    __BARE_VALUE__: (value) => {
-        if (isPositiveInteger(value.value)) {
-            return `${value.value}ms`
-        }
-    }
-}
-
-const bareIntegers = {
-    __BARE_VALUE__: (value) => {
-        if (isPositiveInteger(value.value)) {
-            return value.value
-        }
-    }
-}
+const bareMilliseconds = getBareMilliseconds()
+const bareIntegers = getBareIntegers()
 
 module.exports = {
     extend: {
