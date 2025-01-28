@@ -1,7 +1,9 @@
 {
     "private": true,
     "devDependencies": {
-        "tailwindcss": "3.1.0"
+        "autoprefixer": "^10.4.20",
+        "tailwindcss": "3.1.0",
+        "postcss": "^8.5.1"
     },
     "browserslist": {
         "defaults": [
