@@ -13,7 +13,6 @@ jobs:
         with:
           node-version: '20.x'
       - run: npm install
-      - run: npm install --prefix jest/legacy
       - run: npm test
 
   publish:
