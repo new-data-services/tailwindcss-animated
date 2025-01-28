@@ -5,13 +5,23 @@ https://tailwindcss-animated.com
 
 ## Installation
 
-Install the plugin from npm:
+First, install the plugin via npm:
 
 ```sh
-npm i tailwindcss-animated
+npm install tailwindcss-animated
 ```
 
-Then add the plugin to your tailwind.config.js file:
+## Import
+
+Second, import it alongside Tailwind CSS in your CSS file:
+
+```css
+/* tailwind css v4.x */
+@import "tailwindcss";
+@import "tailwindcss-animated";
+```
+
+Or, if you are using **Tailwind CSS v3.x** or the legacy JavaScript configuration file, import the plugin like this:
 
 ```js
 // tailwind.config.js
@@ -58,7 +68,9 @@ All animations can be customized with the utility classes below.
 | animate-duration-500 | animation-duration: 500ms; |
 | animate-duration-700 | animation-duration: 700ms; |
 | animate-duration-1000 | animation-duration: 1000ms; |
-| animate-duration-\[5s\] [*](#arbitrary-values) | animation-duration: 5s; |
+| animate-duration-[*\<value\>*] | animation-duration: *\<value\>* ms; |
+| animate-duration-*\<number\>* [*](#custom-properties-and-bare-values) | animation-duration: *\<number\>* ms; |
+| animate-duration-(*\<custom-property\>*) [*](#custom-properties-and-bare-values) | animation-duration: var(*\<custom-property\>*); |
 
 ### Delay
 
@@ -73,7 +85,9 @@ All animations can be customized with the utility classes below.
 | animate-delay-500 | animation-delay: 500ms; |
 | animate-delay-700 | animation-delay: 700ms; |
 | animate-delay-1000 | animation-delay: 1000ms; |
-| animate-delay-\[5s\] [*](#arbitrary-values) | animation-delay: 5s; |
+| animate-delay-[*\<value\>*] | animation-delay: *\<value\>* ms; |
+| animate-delay-*\<number\>* [*](#custom-properties-and-bare-values) | animation-delay: *\<number\>* ms; |
+| animate-delay-(*\<custom-property\>*) [*](#custom-properties-and-bare-values) | animation-delay: var(*\<custom-property\>*); |
 
 ### Direction
 
@@ -92,7 +106,9 @@ All animations can be customized with the utility classes below.
 | animate-once | animation-iteration-count: 1; |
 | animate-twice | animation-iteration-count: 2; |
 | animate-thrice | animation-iteration-count: 3; |
-| animate-iteration-\[10\] [*](#arbitrary-values) | animation-iteration-count: 10; |
+| animate-iteration-[*\<number\>*] | animation-iteration-count: *\<number\>*; |
+| animate-iteration-*\<number\>* [*](#custom-properties-and-bare-values) | animation-iteration-count: *\<number\>*; |
+| animate-iteration-(*\<custom-property\>*) [*](#custom-properties-and-bare-values) | animation-iteration-count: var(*\<custom-property\>*); |
 
 ### Timing Function
 
@@ -103,7 +119,8 @@ All animations can be customized with the utility classes below.
 | animate-ease-in | animation-timing-function: cubic-bezier(0.4, 0, 1, 1); |
 | animate-ease-out | animation-timing-function: cubic-bezier(0, 0, 0.2, 1); |
 | animate-ease-in-out | animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); |
-| animate-ease-\[cubic-bezier(1,1,0,0)\] [*](#arbitrary-values) | animation-timing-function: cubic-bezier(1, 1, 0, 0); |
+| animate-ease-[*\<value\>*] | animation-timing-function: *\<value\>*; |
+| animate-ease-(*\<custom-property\>*) [*](#custom-properties-and-bare-values) | animation-timing-function: var(*\<custom-property\>*); |
 
 ### Fill Mode
 
@@ -143,7 +160,7 @@ All variants and breakpoints (hover, focus, lg, ...) work with animations und an
 
 ## Arbitrary values
 
-This plugin uses the Just-in-Time (JIT) engine, which allows you to use [arbitrary values](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values) for most animation properties.
+Of course, you can use arbitrary values for animations ultilities:
 
 ```html
 <div class="animate-delay-[85ms] animate-duration-[2s] animate-iteration-[10]">
@@ -151,33 +168,29 @@ This plugin uses the Just-in-Time (JIT) engine, which allows you to use [arbitra
 </div>
 ```
 
-## Customizing your theme
+## Custom properties and bare values
 
-If you want to change some animations, extend your tailwind.config.js file:
+With **Tailwind CSS v4.0** or newer you can use the shorthand syntax for custom properties. Bare values for delay, duration and iteration utilities also work.
 
-```js
-// tailwind.config.js
-module.exports = {
-  theme: {
-    extend: {
-      animationDelay: {
-        275: '275ms',
-        5000: '5s',
-      },
-      animationDuration: {
-        2000: '2s',
-        'long': '10s',
-        'very-long': '20s',
-      },
-    },
-  },
-  plugins: [
-    require('tailwindcss-animated')
-  ],
-}
+```html
+<div class="animate-delay-(--my-custom-delay) animate-duration-1234">
+  <!-- ... -->
+</div>
 ```
 
-Take a look at [src/theme.js](https://github.com/new-data-services/tailwindcss-animated/blob/main/src/theme.js) for the default settings.
+More information on the new arbitrary value syntax can be found in the [Tailwind CSS Docs](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values).
+
+## Override default values
+
+All animations come with default values for duration, delay and timing function. If you want to overwrite these values globally, you can set the following CSS properties:
+
+```css
+:root {
+  --default-animation-duration: 500ms;
+  --default-animation-delay: 0s;
+  --default-animation-timing-function: ease;
+}
+```
 
 ## FAQ
 
@@ -186,10 +199,6 @@ Take a look at [src/theme.js](https://github.com/new-data-services/tailwindcss-a
 To run animations when an element enters the viewport, you need JavaScript. (At least until [animation-timeline](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timeline) has good browser support)
 
 A good starting point for a JavaScript solution would be the [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API). Or tools that build on it, such as the [Alpine.js Intersect plugin](https://alpinejs.dev/plugins/intersect) and the [Tailwind CSS Intersection plugin](https://github.com/heidkaemper/tailwindcss-intersect), to name just two.
-
-### Does this work with the Play CDN?
-
-Unfortunately not. The Tailwind CSS Play CDN currently does not support third-party plugins.
 
 ### How to combine multiple animations?
 
@@ -207,10 +216,12 @@ Offset positions of predefined animations can't be changed on the fly. But the b
 
 If you need more details on how compositions work, check out the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-composition).
 
+### Does this work with the Play CDN?
 
+Unfortunately not. The Tailwind CSS Play CDN currently does not support third-party plugins.
 
 ---
 
-<a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind%20CSS-3.1+-38bdf8?style=for-the-badge"></a>
-<a href="https://www.npmjs.com/package/tailwindcss-animated"><img src="https://img.shields.io/npm/v/tailwindcss-animated?style=for-the-badge"></a>
+<a href="https://v3.tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind%20CSS-3.1+-38bdf8?style=for-the-badge"></a>
+<a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind%20CSS-4.0+-38bdf8?style=for-the-badge"></a>
 <a href="https://www.npmjs.com/package/tailwindcss-animated"><img src="https://img.shields.io/npm/dt/tailwindcss-animated?style=for-the-badge"></a>
