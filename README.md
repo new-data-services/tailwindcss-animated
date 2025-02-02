@@ -18,7 +18,7 @@ Second, import it alongside Tailwind CSS in your CSS file:
 ```css
 /* tailwind css v4.x */
 @import "tailwindcss";
-@import "tailwindcss-animated";
+@plugin "tailwindcss-animated";
 ```
 
 Or, if you are using **Tailwind CSS v3.x** or the legacy JavaScript configuration file, import the plugin like this:
