@@ -46,6 +46,7 @@
         "jest": "^30.4.2",
         "postcss": "^8.5.14",
         "tailwindcss": "^4.3.0",
+        "tailwindcss-legacy": "npm:tailwindcss@^3.1.0",
         "typescript": "^5.9.3"
     }
 }

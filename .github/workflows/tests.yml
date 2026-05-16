@@ -31,14 +31,16 @@ jobs:
       - run: npm run lint
       - run: npm run typecheck
 
-  test-modern:
-    name: Node ${{ matrix.node-version }} / Tailwind ${{ matrix.tailwind }}
+  test:
+    name: Node ${{ matrix.node-version }} / Tailwind ${{ matrix.tailwind.v3 }} + ${{ matrix.tailwind.v4 }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         node-version: [20.x, 22.x, 24.x]
-        tailwind: ['4.0.7', '^4'] # @tailwindcss/postcss < 4.0.7 has a test runner bug
+        tailwind:
+          - { v3: '3.1.0', v4: '4.0.7' } # @tailwindcss/postcss < 4.0.7 has a test runner bug
+          - { v3: '^3', v4: '^4' }
     steps:
       - uses: actions/checkout@v5
       - name: Use Node.js ${{ matrix.node-version }}
@@ -55,35 +57,6 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('package.json') }}
           restore-keys: ${{ runner.os }}-node-
       - run: npm install
-      - name: Install Tailwind ${{ matrix.tailwind }}
-        run: npm install --no-save tailwindcss@${{ matrix.tailwind }} @tailwindcss/postcss@${{ matrix.tailwind }} @tailwindcss/cli@${{ matrix.tailwind }}
-      - run: npm test -- jest/index.test.js
-
-  test-legacy:
-    name: Node ${{ matrix.node-version }} / Tailwind ${{ matrix.tailwind }}
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        node-version: [20.x, 22.x, 24.x]
-        tailwind: ['3.1.0', '^3']
-    steps:
-      - uses: actions/checkout@v5
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v5
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: Get npm cache directory
-        id: npm-cache
-        run: echo "dir=$(npm config get cache)" >> $GITHUB_OUTPUT
-      - name: Cache npm dependencies
-        uses: actions/cache@v5
-        with:
-          path: ${{ steps.npm-cache.outputs.dir }}
-          key: ${{ runner.os }}-node-${{ hashFiles('package.json', 'jest/legacy/package.json') }}
-          restore-keys: ${{ runner.os }}-node-
-      - run: npm install
-      - run: npm install --prefix jest/legacy
-      - name: Install Tailwind ${{ matrix.tailwind }}
-        run: npm install --no-save --prefix jest/legacy tailwindcss@${{ matrix.tailwind }}
-      - run: npm test -- jest/legacy/index.test.js
+      - name: Install Tailwind ${{ matrix.tailwind.v3 }} + ${{ matrix.tailwind.v4 }}
+        run: npm install --no-save tailwindcss@${{ matrix.tailwind.v4 }} @tailwindcss/postcss@${{ matrix.tailwind.v4 }} @tailwindcss/cli@${{ matrix.tailwind.v4 }} tailwindcss-legacy@npm:tailwindcss@${{ matrix.tailwind.v3 }}
+      - run: npm test

@@ -1,24 +1,27 @@
 expect.extend({
-    toIncludeAll(received, expected) {
-        function stripped(str) {
-            return str.replace(/\s/g, '').replace(/;/g, '')
+    toContainAll(received, expected) {
+        if (typeof received !== 'string') {
+            throw new TypeError(`toContainAll: received value must be a string, got ${typeof received}`)
         }
 
-        const receivedStripped = stripped(received)
+        if (! Array.isArray(expected)) {
+            throw new TypeError('toContainAll: expected value must be an array of strings')
+        }
 
-        const pass = Array.isArray(expected) && expected.every(value => receivedStripped.includes(stripped(value)))
+        const normalize = str => str.replace(/[\s;]/g, '')
+        const pass = expected.every(value => normalize(received).includes(normalize(value)))
 
         return {
             pass,
             message: () => pass
-                ? this.utils.matcherHint('.not.toIncludeAll') +
-                  '\n\n' +
-                  `Expected not to have all of: ${this.utils.printExpected(received)}\n` +
-                  `Received: ${this.utils.printReceived(expected)}`
-                : this.utils.matcherHint('.toIncludeAll') +
-                  '\n\n' +
-                  `Expected to have all of: ${this.utils.printExpected(expected)}\n` +
-                  `Received: ${this.utils.printReceived(received)}`,
+                ? this.utils.matcherHint('.not.toContainAll')
+                    + '\n\n'
+                    + `Expected not to have all of: ${this.utils.printExpected(expected)}\n`
+                    + `Received: ${this.utils.printReceived(received)}`
+                : this.utils.matcherHint('.toContainAll')
+                    + '\n\n'
+                    + `Expected to have all of: ${this.utils.printExpected(expected)}\n`
+                    + `Received: ${this.utils.printReceived(received)}`,
         }
     },
 })
