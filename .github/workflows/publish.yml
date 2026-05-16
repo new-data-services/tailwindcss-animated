@@ -23,6 +23,9 @@ jobs:
   publish:
     needs: test
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
@@ -30,6 +33,4 @@ jobs:
           node-version: '24.x'
           registry-url: 'https://registry.npmjs.org'
       - run: npm version --no-git-tag-version ${{ github.event.release.tag_name }}
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: npm publish --provenance
