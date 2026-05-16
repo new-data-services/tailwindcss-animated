@@ -133,7 +133,7 @@ module.exports = {
             },
             'shake': {
                 '0%': {
-                    transform: 'translateX(0rem)',
+                    transform: 'translateX(0)',
                 },
                 '25%': {
                     transform: 'translateX(-1rem)',
@@ -142,7 +142,7 @@ module.exports = {
                     transform: 'translateX(1rem)',
                 },
                 '100%': {
-                    transform: 'translateX(0rem)',
+                    transform: 'translateX(0)',
                 },
             },
             'fade': {

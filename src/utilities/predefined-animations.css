@@ -85,10 +85,10 @@
 
     @keyframes jump-out {
         0% {
-            transform: scale(100%);
+            transform: scale(1);
         }
         20% {
-            transform: scale(120%);
+            transform: scale(1.2);
         }
         100% {
             transform: scale(0);

@@ -25,22 +25,28 @@
     "scripts": {
         "watch": "npm run dev -- -w",
         "dev": "npx @tailwindcss/cli -i resources/app.css -o public/app.css",
-        "test": "jest --setupFilesAfterEnv '<rootDir>/jest/customMatchers.js'",
-        "lint": "npx eslint {src,jest}/**",
-        "lint:fix": "npx eslint {src,jest}/** --fix"
+        "test": "jest",
+        "typecheck": "tsc --noEmit",
+        "lint": "eslint \"{src,jest}/**/*.js\"",
+        "lint:fix": "eslint \"{src,jest}/**/*.js\" --fix"
+    },
+    "jest": {
+        "setupFilesAfterEnv": ["<rootDir>/jest/customMatchers.js"]
     },
     "peerDependencies": {
         "tailwindcss": ">=3.1.0 || >=4.0.0"
     },
     "devDependencies": {
-        "@eslint/js": "^9.18.0",
-        "@tailwindcss/cli": "^4.0.0",
-        "@tailwindcss/postcss": "^4.0.0",
-        "eslint": "^9.18.0",
-        "eslint-plugin-jest": "^28.11.0",
-        "jest": "^29.7.0",
-        "postcss": "^8.5.1",
-        "tailwindcss": "^4.0.0",
-        "typescript": "^5.7.3"
+        "@eslint/js": "^9.39.4",
+        "@tailwindcss/cli": "^4.3.0",
+        "@tailwindcss/postcss": "^4.3.0",
+        "eslint": "^9.39.4",
+        "eslint-plugin-jest": "^29.15.2",
+        "globals": "^17.6.0",
+        "jest": "^30.4.2",
+        "postcss": "^8.5.14",
+        "tailwindcss": "^4.3.0",
+        "tailwindcss-legacy": "npm:tailwindcss@^3.1.0",
+        "typescript": "^5.9.3"
     }
 }
