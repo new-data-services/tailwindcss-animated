@@ -4,7 +4,10 @@ import eslintPluginJest from 'eslint-plugin-jest'
 
 export default [
     js.configs.recommended,
-    eslintPluginJest.configs['flat/recommended'],
+    {
+        ...eslintPluginJest.configs['flat/recommended'],
+        files: ['jest/**/*.js'],
+    },
     {
         languageOptions: {
             ecmaVersion: 2022,
